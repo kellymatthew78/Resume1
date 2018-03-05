@@ -1,0 +1,150 @@
+﻿/*General Styling*/
+body {
+    background-color: black;
+}
+
+h1 {
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+
+li {
+    float: left;
+}
+
+
+/*Fullpage*/
+.wrapper {
+    padding: 0px 250px;
+}
+
+/*Homepage*/
+.home {
+    background-image: url(../img/background1_kissing.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 750px;
+    color: white;
+    text-align: center;
+}
+
+
+/*main content of the homepage*/
+.homePane {
+    float: left;
+}
+
+/*top navigation section of the homepage 2-parts*/
+.homeNav {
+    
+}
+
+/*part 1 of top navigation section*/
+.hnSection1 {
+    padding-top: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+    .hnSection1 h2 {
+        padding: 5px;
+        border-style: solid;
+        border-width: 3px;
+        border-color: white;
+        width: 100px;
+        margin: auto;
+    }
+
+
+/*part 2 of top navigation section (NavBar)*/
+.hnSection2 {
+    padding-left: 13em;
+    padding-top: 1em;
+}
+
+    .hnSection2 ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        
+    }
+   
+    .hnSection2 li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 15px 15px;
+        text-decoration: none;
+    }
+/*li a:hover:not(.active) {
+    background-color: white;
+}*/
+
+.active {
+    background-color: greenyellow;
+}
+
+
+/*homepage content section 4 parts*/
+.homeContent {
+    padding-top: 23%;
+}
+
+/*part 1 of content (Header)*/
+.hcSection1 {
+    color: gold;
+}
+
+/*part 2 of content (Body)*/
+.hcSection2 {
+}
+
+/*part 3 of content (Scroll Nav)*/
+.hcSection3 {
+}
+
+/*part 4 of content (Bottom White Box Border)*/
+.hcSection4 {
+}
+
+/*side content of the homepage*/
+.sidePane {
+    float: right;
+    writing-mode: vertical-lr;
+    width: 35px;
+}
+
+
+/*side content of the homepage phone section*/
+.hsPhone {
+}
+
+/*side content of the homepage social media section*/
+.hsMedia {
+
+}
+
+    .hsMedia ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .hsMedia li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 15px 15px;
+        text-decoration: none;
+    }
+
+/*side content of the homepage copywrite section*/
+.hsCopywrite {
+   
+}
