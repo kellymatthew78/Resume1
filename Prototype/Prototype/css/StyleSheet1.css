@@ -18,7 +18,7 @@ li {
 
 /*Fullpage*/
 .wrapper {
-    padding: 0px 250px;
+    padding: 0px 200px;
 }
 
 /*Homepage*/
@@ -26,7 +26,8 @@ li {
     background-image: url(../img/background1_kissing.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    /*height: 750px;*/
+    /*background-size: cover;*/
+    height: 800px;
     color: white;
     text-align: center;
 }
@@ -35,6 +36,7 @@ li {
 /*main content of the homepage*/
 .homePane {
     float: left;
+    /*border: 5px solid blue;*/
 }
 
 /*top navigation section of the homepage 2-parts*/
@@ -93,6 +95,7 @@ li {
 /*homepage content section 4 parts*/
 .homeContent {
     padding-top: 23%;
+    text-align: center;
 }
 
 /*part 1 of content (Header)*/
@@ -102,6 +105,8 @@ li {
 
 /*part 2 of content (Body)*/
 .hcSection2 {
+    width: 900px;
+   
 }
 
 /*part 3 of content (Scroll Nav)*/
@@ -116,10 +121,10 @@ li {
 .sidePane {
     float: right;
     writing-mode: vertical-lr;
-    width: 35px;
+    width: 3em;
     height: auto;
     transform: rotate(-180deg);
-    border: 5px solid red;
+    /*border: 5px solid red;*/
 }
 
 
@@ -152,4 +157,18 @@ li {
 /*side content of the homepage copywrite section*/
 .hsCopywrite {
    
+}
+
+.invites{
+    background-color: #694fca;
+    height: 800px;
+    text-align: center;
+}
+
+.invContent{
+
+}
+
+#invHeader1{
+    text-decoration: 
 }
