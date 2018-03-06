@@ -46,6 +46,7 @@
                 </div>
                     <div class="sidePane">
                         <article class="hsPhone">
+                           <img src="img/phoneicon.png" alt="PHONE" />
                         </article>
                         <article class="hsMedia">
                             <ul>
@@ -54,6 +55,7 @@
                                 <li><a href="#">Instagram</a></li>
                                 <li><a href="#">Youtube</a></li>
                             </ul>
+                             
                         </article>
                       
                     </div>
