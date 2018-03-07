@@ -140,6 +140,8 @@ sup {
 
 img {
     border-style: none;
+    height: 26px;
+    width: 40px;
 }
 
 .clearfix::after {
