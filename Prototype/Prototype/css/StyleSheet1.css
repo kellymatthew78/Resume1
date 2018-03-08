@@ -14,15 +14,9 @@ li {
 }
 
 img {
-    width: 121px;
-    height: 95px;
     object-fit: contain;
 }
 
-.center-div {
-    margin: 0 auto;
-    max-width: 800px;
-}
 
 /*Fullpage*/
 .wrapper {
@@ -59,6 +53,13 @@ img {
     align-items: center;
     justify-content: center
 }
+#hnSection1 {
+    padding-top: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
 
     .hnSection1 h2 {
         padding: 5px;
@@ -113,8 +114,8 @@ img {
 
 /*part 2 of content (Body)*/
 .hcSection2 {
-    width: 900px;
-   
+    /*width: 900px;*/
+   padding: 0 75px;
 }
 
 /*part 3 of content (Scroll Nav)*/
@@ -122,16 +123,22 @@ img {
 }
 
 /*part 4 of content (Bottom White Box Border)*/
-.hcSection4 {
-}
 
+#Transition1 {
+    border-style: none;
+    height: 40em;
+    width: 40em;
+    margin-left: 3em;
+}
 /*side content of the homepage*/
 .sidePane {
     float: right;
     writing-mode: vertical-lr;
     width: 3em;
-    height: auto;
+    height: 600px;
     transform: rotate(-180deg);
+    position: absolute;
+    right: 12em;
     /*border: 5px solid red;*/
 }
 
@@ -140,10 +147,19 @@ img {
 .hsPhone {
     float: right;
     transform: rotate(-180deg);
+    position: relative;
+    /*border: 5px solid red;*/
+}
+
+#phoneimg {
+    position: absolute;
+    right: -150px;
+    height: 200px;
 }
 
 /*side content of the homepage social media section*/
 .hsMedia {
+    width: 300px;
 
 }
 
@@ -174,8 +190,19 @@ img {
     padding: 20px 20px;
 }
 
+.invTrasitionHeader {
+    color:white;
+}
+
+.invTrasitionHeader h1 {
+
+}
+
+.invTrasitionHeader h6{
+ 
+}
+
 .invContentBody p {
-   
 }
 
 /*Invites Content */
@@ -346,23 +373,118 @@ img {
 
 
 /*Seventh section (Footer) */
+.pfooter {
+    /*border: 5px solid blue;*/
+    background-color: #212121;
+    color: white;
+    /*height: 500px;*/
+    text-align: center;
+    padding: 10px;
+}
+
+#parent {
+    /*width: 615px;*/
+    /*background-color: #212121;*/
+    /*color: white;*/
+    /*border: solid 1px #aaa;*/
+    font-size: small;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    line-height: 20px;
+    overflow: hidden;
+}
+
+.parent {
+    /*width: 615px;*/
+    /*background-color: #212121;*/
+    /*color: white;*/
+    /*border: solid 1px #aaa;*/
+    font-size: small;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    line-height: 20px;
+    overflow: hidden;
+}
+
+.child {
+    width: 250px;
+    height: 35px;
+    /*border: solid 1px #ccc;*/
+    display: inline-block;
+    vertical-align: auto;
+}
+
+#pfS1 {
+    border: 2px solid red;
+    width: 120px;
+}
+
+#pfS2 {
+    border: 2px solid blue;
+    width: 300px;
+    float: right;
+}
+
+#pfS3 {
+    border: 2px solid green;
+    width: 280px;
+    float: right;
+}
+
+#pfS4 {
+    border: 2px solid yellow;
+    width: 280px;
+    float: right;
+}
 
 
+#unityborder {
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+}
+
+.socialico {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.pfooter img:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+.smico {
+    width: 16px;
+    height: 16px;
+}
+
+.smico2 {
+    width: 50px;
+    height: 50px;
+}
+
+.pfooter p {
+    font-size: xx-small;
+}
+
+.ptext {
+    color: mediumpurple;
+    font-size: xx-small;
+}
+
+.pfblog {
+    text-align: left;
+    width: 280px;
+}
+
+.pfblogdt {
+    float: right;
+}
 
 /*-------------------------------------------testing code css line 1-----------------------------------------------------*/
-.custimg2 {
-    /* Set rules to fill background */
-    max-height: 100px;
-    min-height: 100px;
-    min-width: 100%;
-    /* Set up proportionate scaling */
-    width: 100%;
-    height: auto;
-    /* Set up positioning */
-    /*position: fixed;
-    top: 0;
-    left: 0;*/
-}
 
 
 
