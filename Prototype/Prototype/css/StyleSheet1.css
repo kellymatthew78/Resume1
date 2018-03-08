@@ -1,4 +1,4 @@
-﻿/*General Styling*/
+﻿/*General Global Styling*/
 body {
     background-color: black;
 }
@@ -14,17 +14,22 @@ li {
 }
 
 img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 121px;
+    height: 95px;
+    object-fit: contain;
 }
 
+.center-div {
+    margin: 0 auto;
+    max-width: 800px;
+}
 
 /*Fullpage*/
 .wrapper {
     padding: 0px 200px;
 }
 
-/*Homepage*/
+/*First section (Homepage)*/
 .home {
     background-image: url(../img/background1_kissing.png);
     background-repeat: no-repeat;
@@ -157,6 +162,9 @@ img {
         text-decoration: none;
     }
 
+/*Transition into 2nd Section */
+
+
 /*Second section (Invites) */
 
 .invites{
@@ -169,6 +177,8 @@ img {
 .invContentBody p {
    
 }
+
+/*Invites Content */
 
 #invHeader1{
    font-size: 3em;
@@ -228,6 +238,8 @@ img {
     float: left;
 }
 
+/*Third section (Unity) */
+
 .unity {
     background-image: url('../img/WeAreUnity.png');
     background-repeat: no-repeat;
@@ -253,17 +265,22 @@ img {
     margin-left: 40%;
 }
 
-/*Transition into 3rd section */
+#imgplybuttion {
+    width: 120px;
+    height: 120px;
+}
+
+/*Transition into 4th section */
 .Transition2{
 
 }
 
-
-
-/*-------------------------------------------testing code css line 1-----------------------------------------------------*/
+/*Fourth section (honor) */
 .honor {
     background-color: white;
     height: 800px;
+    padding: 15em 5em;
+    /*margin-top: 20px;*/
 }
 
 #hHeader {
@@ -283,6 +300,69 @@ img {
 
 }
 
+/*Fifth section (Global) */
+.globalco {
+    background-image: url('../img/bg_snowforrest.png');
+    background-repeat: no-repeat;
+    /*background-size: 100% 100%;*/
+    background-size: cover;
+    /*color: white;*/
+    text-align: center;
+    padding: 20px 20px;
+}
+
+.globalco h1{
+    padding-top: 20em;
+}
+
+.globalco h4{
+    /*padding-top:16em;*/
+}
+
+#Transition3 {
+    /*border: 5px solid blue;*/
+}
+
+/*Sixth section (Customer) */
+.glcustomer {
+    /*border: 5px solid blue;*/
+    background-color:antiquewhite;
+    width: 200px;
+    height: 250px;
+    text-align: center;
+    padding: 10px;
+    float: left;
+    margin-right: 25px;
+}
+
+.glcustomer p{
+    font-size:10px;
+    }
+
+.custimg {
+        width: 100px;
+        height: 100px;
+    }
+
+
+/*Seventh section (Footer) */
+
+
+
+/*-------------------------------------------testing code css line 1-----------------------------------------------------*/
+.custimg2 {
+    /* Set rules to fill background */
+    max-height: 100px;
+    min-height: 100px;
+    min-width: 100%;
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+    /* Set up positioning */
+    /*position: fixed;
+    top: 0;
+    left: 0;*/
+}
 
 
 
