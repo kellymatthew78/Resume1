@@ -17,6 +17,11 @@ img {
     object-fit: contain;
 }
 
+.imgcontainer1 {
+    position: relative;
+    width: 100%;
+}
+
 
 /*Fullpage*/
 .wrapper {
@@ -29,16 +34,21 @@ img {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     /*background-size: cover;*/
-    height: 800px;
+    height: 100%;
     color: white;
     text-align: center;
+    width: 95em;
+    border: 3px solid blue; /*testing purpose*/
 }
-
 
 /*main content of the homepage*/
 .homePane {
     float: left;
-    /*border: 5px solid blue;*/
+    width: 90em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid green; /*testing purpose*/
 }
 
 /*top navigation section of the homepage 2-parts*/
@@ -46,38 +56,39 @@ img {
     
 }
 
-/*part 1 of top navigation section*/
-.hnSection1 {
+/*part 1 of top navigation section (Unity)*/
+    .hnSection1 {
     padding-top: 3%;
     display: flex;
     align-items: center;
     justify-content: center
+    /*border: 5px solid blue;*/
 }
-#hnSection1 {
+      #hnSection1 {
     padding-top: 1%;
     display: flex;
     align-items: center;
     justify-content: center
+    /*border: 5px solid blue;*/
 }
-
-
-    .hnSection1 h2 {
-        padding: 5px;
-        border-style: solid;
-        border-width: 3px;
-        border-color: white;
-        width: 100px;
-        margin: auto;
-    }
-
+      .hnSection1 h2 {
+    padding: 5px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+    width: 100px;
+    margin: auto;
+    /*border: 5px solid blue;*/
+}
 
 /*part 2 of top navigation section (NavBar)*/
-.hnSection2 {
-    padding-left: 13em;
-    padding-top: 1em;
+    .hnSection2 {
+    padding-left: 35%;
+    padding-top: 2em;
+    /*border: 5px solid blue;*/
 }
 
-    .hnSection2 ul {
+      .hnSection2 ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
@@ -85,51 +96,61 @@ img {
         
     }
    
-    .hnSection2 li a {
+      .hnSection2 li a {
         display: block;
         color: white;
         text-align: center;
         padding: 15px 15px;
         text-decoration: none;
     }
-/*li a:hover:not(.active) {
+      /*li a:hover:not(.active) {
     background-color: white;
 }*/
 
-.active {
+      .active {
     background-color: greenyellow;
 }
 
 
 /*homepage content section 4 parts*/
 .homeContent {
-    padding-top: 23%;
+    padding-top: 25%;
     text-align: center;
+    /*border: 3px solid yellow; /*testing purpose*/
 }
 
 /*part 1 of content (Header)*/
-.hcSection1 {
+    .hcSection1 {
     color: gold;
 }
 
 /*part 2 of content (Body)*/
-.hcSection2 {
+    .hcSection2 {
     /*width: 900px;*/
-   padding: 0 75px;
+   padding: 0 20%;
 }
 
 /*part 3 of content (Scroll Nav)*/
-.hcSection3 {
+    .hcSection3 {
 }
 
 /*part 4 of content (Bottom White Box Border)*/
+.imgTransition1 {
+    border: 3px solid lightgrey; /*testing purpose*/
+}
 
-#Transition1 {
-    border-style: none;
+    .imgTransition1 img {
+        height: 40em;
+        width: 40em;
+    } 
+    
+    #Transition1 {
+        /*border-style: none;
     height: 40em;
     width: 40em;
     margin-left: 3em;
-}
+    border: 3px solid yellow;*/ /*testing purpose*/
+    }
 /*side content of the homepage*/
 .sidePane {
     float: right;
@@ -138,8 +159,8 @@ img {
     height: 600px;
     transform: rotate(-180deg);
     position: absolute;
-    right: 12em;
-    /*border: 5px solid red;*/
+    right: 13em;
+    /*border: 3px solid yellow; /*testing purpose*/
 }
 
 
@@ -177,9 +198,6 @@ img {
         padding: 15px 15px;
         text-decoration: none;
     }
-
-/*Transition into 2nd Section */
-
 
 /*Second section (Invites) */
 

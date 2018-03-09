@@ -41,76 +41,7 @@
             vertical-align: auto;
         }
 
-        #pfS1 {
-            border: 2px solid red;
-            width: 120px;
-            
-        }
-
-        #pfS2 {
-            border: 2px solid blue;
-            width: 300px;
-            float: right;
-        }
-
-        #pfS3 {
-             border: 2px solid green;
-              width: 280px;
-              float: right;
-        }
-
-        #pfS4 {
-             border: 2px solid yellow;
-              width: 280px;
-              float: right;
-        }
-
-
-        #unityborder {
-            border-style: solid;
-            border-color: white;
-            border-width: 1px;
-        }
-
-        .socialico {
-            width: 20px;
-            height: 20px;
-            opacity: 0.5;
-            filter: alpha(opacity=50); /* For IE8 and earlier */
-        }
-
-        .pfooter img:hover {
-            opacity: 1.0;
-            filter: alpha(opacity=100); /* For IE8 and earlier */
-        }
-
-        .smico {
-            width: 16px;
-            height: 16px;
-        }
-
-        .smico2 {
-            width: 50px;
-            height: 50px;
-        }
-
-        .pfooter p {
-            font-size: xx-small;
-        }
-
-        .ptext {
-            color: mediumpurple;
-            font-size: xx-small;
-        }
-
-        .pfblog {
-            text-align: left;
-            width: 280px;
-        }
-
-        .pfblogdt {
-            float: right;
-        }
+       
     </style>
 </head>
 <body>
@@ -118,7 +49,7 @@
         <div class="wrapper">
         <div class="home">
             <div class="clearfix">
-                <div class="homePane">
+                <main class="homePane">
                     <section class="homeNav">
                         <header class="hnSection1">
                             <h2>UNITY</h2>
@@ -144,8 +75,8 @@
                     <section class="Transition1">
                         <img src="img/01Frame.png" style= "height:400px ; width: 400px;" />
                     </section>
-                </div>
-                <div class="sidePane">
+                </main>
+                <main class="sidePane">
                     <section class="hsPhone">
                         <img id="phoneimg" src="img/phoneicon.png" alt="PHONE" />
                     </section>
@@ -157,7 +88,7 @@
                             <li><a href="#">Youtube</a></li>
                         </ul>
                     </section>
-                </div>
+                </main>
             </div>
         </div>
         <div class="invites">
