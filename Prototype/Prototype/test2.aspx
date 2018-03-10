@@ -41,6 +41,12 @@
             vertical-align: auto;
         }
 
+         img.center {
+      display: block;
+       margin-left: auto;
+       margin-right: auto;
+    }
+
        
     </style>
 </head>
@@ -50,10 +56,10 @@
         <div class="home">
             <div class="clearfix">
                 <main class="homePane">
-                    <section class="homeNav">
-                        <header class="hnSection1">
+                    <header class="homeNav">
+                        <section class="hnSection1">
                             <h2>UNITY</h2>
-                        </header>
+                        </section>
                         <nav class="hnSection2">
                             <ul>
                                 <li><a class="active" href="#">Home</a></li>
@@ -64,34 +70,38 @@
                                 <li><a href="#">Shop</a></li>
                             </ul>
                         </nav>
-                    </section>
+                    </header>
                     <section class="homeContent">
                         <h1 class="hcSection1">HONOR THE DETAILS</h1>
                         <p class="hcSection2">
                             WE BRING YOUR PRODUCTS OR SERVICES ACROSS IN WAYS THAT MAKE PEOPLE FEEL GOOD AS THEY ENGAGE WITH YOUR BUSINESS
                         </p>
-                        <img class="hcSection3" src="" alt="Down Box" />
+                        <img class="hcSection3" src="#" alt="Down Box" />
                     </section>
-                    <section class="Transition1">
-                        <img src="img/01Frame.png" style= "height:400px ; width: 400px;" />
+                    <section class="imgTransition1">
+                        <img src="img/01Frame.png" />
                     </section>
                 </main>
                 <main class="sidePane">
                     <section class="hsPhone">
                         <img id="phoneimg" src="img/phoneicon.png" alt="PHONE" />
                     </section>
-                    <section class="hsMedia">
+                    <nav class="hsMedia">
                         <ul>
                             <li><a href="#">Facebook</a></li>
                             <li><a href="#">Twitter</a></li>
                             <li><a href="#">Instagram</a></li>
                             <li><a href="#">Youtube</a></li>
                         </ul>
-                    </section>
+                    </nav>
                 </main>
             </div>
         </div>
         <div class="invites">
+            <section class="invTrasitionHeader">
+                <h1>INVITES ACTIVE ATTENTION</h1>
+                <h6>THATS WHY WE INVENT, AND BUILD DIGITAL CAMPAIGNS</h6>
+            </section>
             <section class=" invContentBody">
                 <header id="invHeader1">Complexity should be secret</header>
                 <p id="invcontent1">We know you have a story to tell. You want the world to embrace your incredible idea, produts, and services. Trouble is, your not sure about the best way to get your message across. No problem. We do.</p>

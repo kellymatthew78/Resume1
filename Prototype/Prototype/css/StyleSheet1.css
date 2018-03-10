@@ -3,6 +3,11 @@ body {
     background-color: black;
 }
 
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
 
 p {
     font-family: verdana;
@@ -15,6 +20,15 @@ li {
 
 img {
     object-fit: contain;
+}
+
+.smicon{
+    height: 30px;
+    width: 30px;
+}
+
+.smimgline {
+    height: 30px;
 }
 
 .imgcontainer1 {
@@ -37,18 +51,18 @@ img {
     height: 100%;
     color: white;
     text-align: center;
-    width: 95em;
-    border: 3px solid blue; /*testing purpose*/
+    width: 100%;
+    /*/border: 3px solid blue; /*testing purpose*/
 }
 
 /*main content of the homepage*/
 .homePane {
     float: left;
-    width: 90em;
+    width: 100%;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border: 3px solid green; /*testing purpose*/
+    /*border: 3px solid green; /*testing purpose*/
 }
 
 /*top navigation section of the homepage 2-parts*/
@@ -103,13 +117,16 @@ img {
         padding: 15px 15px;
         text-decoration: none;
     }
-      /*li a:hover:not(.active) {
-    background-color: white;
-}*/
+
+      li a:hover:not(.active) {
+        /*background-color: white;*/
+        opacity: 0.5;
+        color: yellow;
+}
 
       .active {
-    background-color: greenyellow;
-}
+         background-color: greenyellow;
+       }
 
 
 /*homepage content section 4 parts*/
@@ -126,7 +143,6 @@ img {
 
 /*part 2 of content (Body)*/
     .hcSection2 {
-    /*width: 900px;*/
    padding: 0 20%;
 }
 
@@ -135,22 +151,20 @@ img {
 }
 
 /*part 4 of content (Bottom White Box Border)*/
-.imgTransition1 {
-    border: 3px solid lightgrey; /*testing purpose*/
+.frame1Parent {
+    /*border: 3px solid lightgrey; /*testing purpose*/
 }
 
-    .imgTransition1 img {
+    .frame1Parent img {
         height: 40em;
-        width: 40em;
+        width: 55em;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        top: 23em;
     } 
     
-    #Transition1 {
-        /*border-style: none;
-    height: 40em;
-    width: 40em;
-    margin-left: 3em;
-    border: 3px solid yellow;*/ /*testing purpose*/
-    }
 /*side content of the homepage*/
 .sidePane {
     float: right;
@@ -165,23 +179,22 @@ img {
 
 
 /*side content of the homepage phone section*/
-.hsPhone {
-    float: right;
-    transform: rotate(-180deg);
-    position: relative;
-    /*border: 5px solid red;*/
-}
+    .hsPhone {
+        float: right;
+        transform: rotate(-180deg);
+        position: relative;
+         /*border: 5px solid red;*/
+    }
 
-#phoneimg {
-    position: absolute;
-    right: -150px;
-    height: 200px;
-}
+    #phoneimg {
+        position: absolute;
+        right: -150px;
+        height: 200px;
+    }
 
 /*side content of the homepage social media section*/
 .hsMedia {
-    width: 300px;
-
+    width: 100%;
 }
 
     .hsMedia ul {
@@ -201,83 +214,106 @@ img {
 
 /*Second section (Invites) */
 
-.invites{
+.invites {
     background-color: #694fca;
-    height: 900px;
+    height: 50em;
     text-align: center;
     padding: 20px 20px;
+   /* border: 3px solid blue; /*testing purpose*/
 }
 
 .invTrasitionHeader {
-    color:white;
+    color: white;
+    position: relative;
+    top: 5em;
+    left: 29em;
 }
 
-.invTrasitionHeader h1 {
+    .invTrasitionHeader h1 {
+        font-family: 'Abraham Lincoln';
+        font-size: 33px;
+        line-height: 5px;
+        text-align: left;
+        
+    }
+    .invTrasitionHeader h6 {
+        font-family: 'Abraham Lincoln';
+        line-height: 5px;
+        text-align: left;
+    }
 
-}
-
-.invTrasitionHeader h6{
- 
-}
-
-.invContentBody p {
-}
 
 /*Invites Content */
-
-#invHeader1{
-   font-size: 3em;
-   text-align: left;
-   width: 300px;
-   float: left;
+.invContentBody {
+    padding-top: 10em;
+    color: white;
 }
+
+    .invContentBody h1 {
+        font-family: 'Abraham Lincoln';
+        font-size: 3em;
+        /*line-height: 5px;*/
+        text-align: left;
+        width: 300px;
+        height: 1em;
+        margin-left: 20%;
+    }
+
+    .invContentBody p {
+        font-family: 'Abraham Lincoln';
+        font-size: medium;
+        text-align: left;
+        width: 600px;
+        float: right;
+        text-align: left;
+        height: 1em;
+        margin-right: 20%;
+    }
+
 
 .invContent {
     text-align: left;
+    margin-top: 5em;
+    margin-left: 5em;
 }
 
-.invBoxHeader {
+    .invContent p{
+    text-align: left;
+   width: 15em;
+}
+
+    .invBoxHeader {
     color: yellow;
     font-size: 20px;
 }
 
-.invBox{
-    text-align: left;
-    width: 280px;
-
-}
-
-    .invBox p {
-        font-size: 15px;
-    }
-
 #invDiv1, #invDiv2, #invDiv3, #invDiv4 {
     width: 25%;
     height: 350px;
-    border-width: 1px;
-    border-color: #000;
-    border-style: hidden;
+    border: 1px hidden #000;
+    /*border: 1px solid blue;*/ /*testing purpose*/
     box-sizing: border-box;
     text-align: left;
     padding: 30px 30px;
     font-size: 15px;
+    line-height: 1em;
 }
 
-#invDiv1 {
+    #invDiv1 {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     float: left;
 }
 
-#invDiv2 {
+    #invDiv2 {
     float: left;
 }
 
-#sinvDiv3 {
+    #sinvDiv3 {
     float: left;
 }
 
-#invDiv4 {
+    #invDiv4 {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     float: left;
@@ -292,33 +328,42 @@ img {
     height: 800px;
     color: white;
     text-align: center;
+    font-family: 'Abraham Lincoln';
 }
 
-.uHeading{
-    width: 40em;
-    height: 30em;
-    padding-top: 9em;
-    padding-left: 10em;
-    color: black;
-    text-align: center;
-}
+/*Unity header section with image */
 
-.unity #playbutton {
-    width: 120px;
-    height: 120px;
-    text-align: center;
-    margin-left: 40%;
-}
+    .unity header {
+        width: 40em;
+        height: 30em;
+        padding-top: 9em;
+        padding-left: 10em;
+        color: black;
+        text-align: center;
+        margin-left: auto;
+        margin-right: 30%;
+    }
 
-#imgplybuttion {
-    width: 120px;
-    height: 120px;
-}
+    .unity img{
+        height: 200px;
+        width: 200px;
+
+    }
 
 /*Transition into 4th section */
-.Transition2{
-
+.frame2Parent {
+    border: 3px solid red; /*testing purpose*/
 }
+
+    .frame2Parent img {
+        height: 35em;
+        width: 55em;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        top: -2em;
+    } 
 
 /*Fourth section (honor) */
 .honor {

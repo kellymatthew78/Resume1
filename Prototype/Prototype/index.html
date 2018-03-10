@@ -5,6 +5,23 @@
     <title>Homepage</title>
     <link href="css/Normalize.css" rel="stylesheet" />
     <link href="css/StyleSheet1.css" rel="stylesheet" />
+
+    <style>
+        @font-face {
+            font-family: 'Abraham Lincoln';
+            src: url('../fonts/abrahamlincoln-webfont.woff2') format('woff2'), url('../fonts/abrahamlincoln-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Gotham Black';
+            src: url('../fonts/GothamBlack.woff2') format('woff2'), url('../fonts/GothamBlack.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+
 </head>
 <body>
     <div class="wrapper">
@@ -33,7 +50,7 @@
                         </p>
                         <img class="hcSection3" src="" alt="Down Box" />
                     </section>
-                    <section class="imgTransition1">
+                    <section class="frame1Parent">
                         <img src="img/01Frame.png" />
                     </section>
                 </main>
@@ -53,57 +70,50 @@
             </div>
         </div>
         <div class="invites">
-            <section class="invTrasitionHeader">
-                <h1>INVITES ACTIVE ATTENTION</h1>
+            <header class="invTrasitionHeader">
+                <h1>INVITES</h1><h1> ACTIVE ATTENTION</h1>
                 <h6>THATS WHY WE INVENT, AND BUILD DIGITAL CAMPAIGNS</h6>
-            </section>
-            <section class=" invContentBody">
-                <header id="invHeader1">Complexity should be secret</header>
-                <p id="invcontent1">We know you have a story to tell. You want the world to embrace your incredible idea, produts, and services. Trouble is, your not sure about the best way to get your message across. No problem. We do.</p>
-            </section>
-            <br />
-            <br />
-            <br />
-            <div class="clearfix">
-                <section id="invDiv1">
-                    <img src="img/12.png" />
-                    <br />
-                    <h2 class="invBoxHeader">HANDMADE LAYOUTS</h2>
-                    <img src="img/smallWhiteLine1.png" />
-                    <p>
-                        Handmade layouts are awsome. They will aid your business. Customers will be more thatn happy to use your produts which will be more visible when used in a handmade layout.
-                    </p>
+            </header>
+            <main class=" invContentBody">
+                <h1>Complexity should be secret</h1>
+                <p>We know you have a story to tell. You want the world to embrace your incredible idea, produts, and services. Trouble is, your not sure about the best way to get your message across. No problem. We do.</p>
+                <br /><br />
+                <section class=" invContent">
+                    <section id="invDiv1">
+                        <img class="smicon" src="img/12.png" />
+                        <br />
+                        <h2 class="invBoxHeader">HANDMADE LAYOUTS</h2>
+                        <p>
+                            Handmade layouts are awsome. They will aid your business. Customers will be more thatn happy to use your produts which will be more visible when used in a handmade layout.
+                        </p>
+                    </section>
+                    <section id="invDiv2">
+                        <img class="smicon" src="img/mortarboard.png" />
+                        <br />
+                        <h2 class="invBoxHeader">CREATIVE DESIGNS</h2>
+                        <p>
+                            Creative designs are great. They will aid your business. Customers will be more thatn happy to use your produts which will be more visible when used in a creatve design.
+                        </p>
+                    </section>
+                    <section id="invDiv4">
+                        <img class="smicon" src="img/tools.png" />
+                        <br />
+                        <h2 class="invBoxHeader">100% SUPPORT</h2>
+                        <p>
+                            100% customer support are incredible. They will aid your business. Customers will be more than happy to use your produts which will be more reliable when customer support is given.
+                        </p>
+                    </section>
                 </section>
-                <section id="invDiv2">
-                    <img src="img/mortarboard.png" />
-                    <br />
-                    <h2 class="invBoxHeader">CREATIVE DESIGNS</h2>
-                    <img src="img/smallWhiteLine1.png" />
-                    <p>
-                        Creative designs are great. They will aid your business. Customers will be more thatn happy to use your produts which will be more visible when used in a creatve design.
-                    </p>
-                </section>
-                <section id="invDiv4">
-                    <img src="img/tools.png" />
-                    <br />
-                    <h2 class="invBoxHeader">100% SUPPORT</h2>
-                    <img src="img/smallWhiteLine1.png" />
-                    <p>
-                        100% customer support are incredible. They will aid your business. Customers will be more than happy to use your produts which will be more reliable when customer support is given.
-                    </p>
-                </section>
-            </div>
+            </main>
         </div>
         <div class="unity">
-            <section class="uHeading">
+            <header>
                 <h1>WE LOVE OUR CLIENTS</h1>
                 <p>We take pride in delivering itellegent Designs and Engaging Experences for all our clients all over the world.</p>
-                <section id="playbutton">
-                    <!--<img class="imgcl" src="img/roundButton.png" />-->
-                    <img src="img/roundButton.png" style="width: auto; height: auto; object-fit: contain" />
-                </section>
-            </section>
-            <section class="Transition2">
+
+                <img src="img/roundButton.png" />
+            </header>
+            <section class="frame2Parent">
                 <img src="img/02Frame.png" />
             </section>
         </div>
