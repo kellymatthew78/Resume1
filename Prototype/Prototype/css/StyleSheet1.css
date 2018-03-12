@@ -404,8 +404,33 @@ img {
         float: left;
     }
 
+
+    .frame3Parent #hContent1 {
+        margin-left: -23em;
+        margin-right: 5em;
+        position: relative;
+        display: inline-block;
+        width: 300px;
+        top: 1em;
+        line-height: 1em;
+        text-align: right;
+    }
+
+
+    .frame3Parent #hContent1 h1 {
+        color: yellow;
+        font-size: 40px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    }
+
+    .frame3Parent #hContent1 p {
+        color: white;
+        font-size: 16px;
+    }
+    
     .frame3Parent table {
-        float: right;
+        /*float: right;*/
+        display: inline-block;
         width: auto;
         height: auto;
         padding: 7px;
@@ -413,7 +438,6 @@ img {
         position: relative;
         margin-top: 15%;
         line-height: 3em;
-        
     }
 
         .frame3Parent table img {
@@ -428,42 +452,75 @@ img {
     background-repeat: no-repeat;
     /*background-size: 100% 100%;*/
     background-size: cover;
-    /*color: white;*/
+    height: 110em;
     text-align: center;
     padding: 20px 20px;
+    position: relative;
+    top: -15em;
 }
 
-.globalco h1{
-    padding-top: 20em;
-}
+    .globalco h1 {
+        padding-top: 25em;
+        font-family: 'Abraham Lincoln';
+        font-size: 45px;
+    }
 
-.globalco h4{
-    /*padding-top:16em;*/
-}
+    .globalco h4{
+        /*padding-top:16em;*/
+    }
 
+
+/*Sixth section (Customer) */
 #Transition3 {
     /*border: 5px solid blue;*/
 }
 
-/*Sixth section (Customer) */
+    #Transition3 #t3-imgline {
+        height: 100px;
+    }
+
+#gl-allCustomers {
+   /*border: 5px solid blue;*/ /*testing only */
+    height: 20em;
+    padding-left: 25%;
+}
+
+.custimg {
+    width: 100px;
+    height: 100px;
+}
+
+
 .glcustomer {
     /*border: 5px solid blue;*/
-    background-color:antiquewhite;
+    background-color: white;
     width: 200px;
-    height: 250px;
+    height: 300px;
     text-align: center;
     padding: 10px;
     float: left;
     margin-right: 25px;
-}
 
-.glcustomer p{
-    font-size:10px;
+}
+    .glcustomer p{
+      font-size:10px;
     }
 
-.custimg {
-        width: 100px;
-        height: 100px;
+.glcustomer-select {
+    /*border: 5px solid blue;*/
+    background-color: rebeccapurple;
+    color: white;
+    width: 200px;
+    height: 300px;
+    text-align: center;
+    padding: 10px;
+    float: left;
+    margin-right: 25px;
+    box-shadow: 7px 7px 5px 1px #605F5F;
+}
+
+    .glcustomer-select p {
+        font-size: 10px;
     }
 
 
