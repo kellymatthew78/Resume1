@@ -22,7 +22,7 @@ img {
     object-fit: contain;
 }
 
-.smicon{
+.smicon {
     height: 30px;
     width: 30px;
 }
@@ -67,25 +67,26 @@ img {
 
 /*top navigation section of the homepage 2-parts*/
 .homeNav {
-    
 }
 
 /*part 1 of top navigation section (Unity)*/
-    .hnSection1 {
+.hnSection1 {
     padding-top: 3%;
     display: flex;
     align-items: center;
     justify-content: center
     /*border: 5px solid blue;*/
 }
-      #hnSection1 {
+
+#hnSection1 {
     padding-top: 1%;
     display: flex;
     align-items: center;
     justify-content: center
     /*border: 5px solid blue;*/
 }
-      .hnSection1 h2 {
+
+.hnSection1 h2 {
     padding: 5px;
     border-style: solid;
     border-width: 3px;
@@ -96,21 +97,20 @@ img {
 }
 
 /*part 2 of top navigation section (NavBar)*/
-    .hnSection2 {
+.hnSection2 {
     padding-left: 35%;
     padding-top: 2em;
     /*border: 5px solid blue;*/
 }
 
-      .hnSection2 ul {
+    .hnSection2 ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
         overflow: hidden;
-        
     }
-   
-      .hnSection2 li a {
+
+    .hnSection2 li a {
         display: block;
         color: white;
         text-align: center;
@@ -118,15 +118,15 @@ img {
         text-decoration: none;
     }
 
-      li a:hover:not(.active) {
-        /*background-color: white;*/
-        opacity: 0.5;
-        color: yellow;
+li a:hover:not(.active) {
+    /*background-color: white;*/
+    opacity: 0.5;
+    color: yellow;
 }
 
-      .active {
-         background-color: greenyellow;
-       }
+.active {
+    background-color: greenyellow;
+}
 
 
 /*homepage content section 4 parts*/
@@ -137,17 +137,17 @@ img {
 }
 
 /*part 1 of content (Header)*/
-    .hcSection1 {
+.hcSection1 {
     color: gold;
 }
 
 /*part 2 of content (Body)*/
-    .hcSection2 {
-   padding: 0 20%;
+.hcSection2 {
+    padding: 0 20%;
 }
 
 /*part 3 of content (Scroll Nav)*/
-    .hcSection3 {
+.hcSection3 {
 }
 
 /*part 4 of content (Bottom White Box Border)*/
@@ -163,8 +163,8 @@ img {
         margin-right: auto;
         position: relative;
         top: 23em;
-    } 
-    
+    }
+
 /*side content of the homepage*/
 .sidePane {
     float: right;
@@ -179,18 +179,18 @@ img {
 
 
 /*side content of the homepage phone section*/
-    .hsPhone {
-        float: right;
-        transform: rotate(-180deg);
-        position: relative;
-         /*border: 5px solid red;*/
-    }
+.hsPhone {
+    float: right;
+    transform: rotate(-180deg);
+    position: relative;
+    /*border: 5px solid red;*/
+}
 
-    #phoneimg {
-        position: absolute;
-        right: -150px;
-        height: 200px;
-    }
+#phoneimg {
+    position: absolute;
+    right: -150px;
+    height: 200px;
+}
 
 /*side content of the homepage social media section*/
 .hsMedia {
@@ -219,7 +219,7 @@ img {
     height: 50em;
     text-align: center;
     padding: 20px 20px;
-   /* border: 3px solid blue; /*testing purpose*/
+    /* border: 3px solid blue; /*testing purpose*/
 }
 
 .invTrasitionHeader {
@@ -234,8 +234,8 @@ img {
         font-size: 33px;
         line-height: 5px;
         text-align: left;
-        
     }
+
     .invTrasitionHeader h6 {
         font-family: 'Abraham Lincoln';
         line-height: 5px;
@@ -277,12 +277,12 @@ img {
     margin-left: 5em;
 }
 
-    .invContent p{
-    text-align: left;
-   width: 15em;
-}
+    .invContent p {
+        text-align: left;
+        width: 15em;
+    }
 
-    .invBoxHeader {
+.invBoxHeader {
     color: yellow;
     font-size: 20px;
 }
@@ -299,21 +299,21 @@ img {
     line-height: 1em;
 }
 
-    #invDiv1 {
+#invDiv1 {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     float: left;
 }
 
-    #invDiv2 {
+#invDiv2 {
     float: left;
 }
 
-    #sinvDiv3 {
+#sinvDiv3 {
     float: left;
 }
 
-    #invDiv4 {
+#invDiv4 {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     float: left;
@@ -331,7 +331,7 @@ img {
     font-family: 'Abraham Lincoln';
 }
 
-/*Unity header section with image */
+    /*Unity header section with image */
 
     .unity header {
         width: 40em;
@@ -344,15 +344,14 @@ img {
         margin-right: 30%;
     }
 
-    .unity img{
+    .unity img {
         height: 200px;
         width: 200px;
-
     }
 
 /*Transition into 4th section */
 .frame2Parent {
-    border: 3px solid red; /*testing purpose*/
+    /*border: 3px solid red;*/ /*testing purpose*/
 }
 
     .frame2Parent img {
@@ -363,14 +362,13 @@ img {
         margin-right: auto;
         position: relative;
         top: -2em;
-    } 
+    }
 
 /*Fourth section (honor) */
 .honor {
     background-color: white;
     height: 800px;
     padding: 15em 5em;
-    /*margin-top: 20px;*/
 }
 
 #hTrasitionHeader {
@@ -380,12 +378,12 @@ img {
     top: -30%;
     left: 40%;
     text-align: right;
-    /*border: 1px solid blue;*/
+    /*border: 1px solid blue;*/ /*testing only */
 }
 
     #hTrasitionHeader h1 {
         font-size: 40px;
-        font-family:'Abraham Lincoln';
+        font-family: 'Abraham Lincoln';
     }
 
 .frame3Parent {
@@ -417,17 +415,17 @@ img {
     }
 
 
-    .frame3Parent #hContent1 h1 {
-        color: yellow;
-        font-size: 40px;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
-    }
+        .frame3Parent #hContent1 h1 {
+            color: yellow;
+            font-size: 40px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+        }
 
-    .frame3Parent #hContent1 p {
-        color: white;
-        font-size: 16px;
-    }
-    
+        .frame3Parent #hContent1 p {
+            color: white;
+            font-size: 16px;
+        }
+
     .frame3Parent table {
         /*float: right;*/
         display: inline-block;
@@ -465,14 +463,14 @@ img {
         font-size: 45px;
     }
 
-    .globalco h4{
+    .globalco h4 {
         /*padding-top:16em;*/
     }
 
 
 /*Sixth section (Customer) */
 #Transition3 {
-    /*border: 5px solid blue;*/
+    /*border: 5px solid blue;*/ /*testing only */
 }
 
     #Transition3 #t3-imgline {
@@ -480,7 +478,7 @@ img {
     }
 
 #gl-allCustomers {
-   /*border: 5px solid blue;*/ /*testing only */
+    /*border: 5px solid blue;*/ /*testing only */
     height: 20em;
     padding-left: 25%;
 }
@@ -500,10 +498,10 @@ img {
     padding: 10px;
     float: left;
     margin-right: 25px;
-
 }
-    .glcustomer p{
-      font-size:10px;
+
+    .glcustomer p {
+        font-size: 10px;
     }
 
 .glcustomer-select {
@@ -526,115 +524,122 @@ img {
 
 /*Seventh section (Footer) */
 .pfooter {
-    /*border: 5px solid blue;*/
+    /*border: 5px solid blue;*/ /*testing only */
     background-color: #212121;
     color: white;
-    /*height: 500px;*/
     text-align: center;
     padding: 10px;
+    position: relative;
+    bottom: 15em;
 }
 
-#parent {
-    /*width: 615px;*/
-    /*background-color: #212121;*/
-    /*color: white;*/
-    /*border: solid 1px #aaa;*/
-    font-size: small;
-    letter-spacing: 1px;
-    white-space: nowrap;
-    line-height: 20px;
-    overflow: hidden;
-}
+    .pfooter #parent {
+        /*border: solid 1px #aaa;*/ /*testing only*/
+        font-size: small;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        line-height: 20px;
+        overflow: hidden;
+    }
 
-.parent {
-    /*width: 615px;*/
-    /*background-color: #212121;*/
-    /*color: white;*/
-    /*border: solid 1px #aaa;*/
-    font-size: small;
-    letter-spacing: 1px;
-    white-space: nowrap;
-    line-height: 20px;
-    overflow: hidden;
-}
+    .pfooter .parent {
+        border: solid 1px #aaa; /*testing only*/
+        font-size: small;
+        line-height: 20px;
+        overflow: hidden;
+        padding: 5px;
+        vertical-align: top;
+    }
 
-.child {
-    width: 250px;
-    height: 35px;
-    /*border: solid 1px #ccc;*/
-    display: inline-block;
-    vertical-align: auto;
-}
+    .pfooter .child {
+        /*border: solid 1px #ccc;*/ /*testing only*/
+        width: 250px;
+        height: 35px;
+        display: inline-block;
+        vertical-align: auto;
+    }
 
-#pfS1 {
-    border: 2px solid red;
-    width: 120px;
-}
+    .pfooter .child2 {
+        /*border: solid 1px #ccc;*/ /*testing only*/
+        width: 275px;
+        display: inline-block;
+        vertical-align: auto;
+    }
 
-#pfS2 {
-    border: 2px solid blue;
-    width: 300px;
-    float: right;
-}
+    .pfooter #pfS1 {
+        border: 2px solid red; /*testing only*/
+        position: relative;
+        bottom: -5em;
+    }
 
-#pfS3 {
-    border: 2px solid green;
-    width: 280px;
-    float: right;
-}
+    .pfooter #pfS2 {
+        border: 2px solid blue; /*testing only*/
+    }
 
-#pfS4 {
-    border: 2px solid yellow;
-    width: 280px;
-    float: right;
-}
+    .pfooter #pfS3 {
+        border: 2px solid green; /*testing only*/
+    }
+
+    .pfooter #pfS4 {
+        border: 2px solid yellow; /*testing only*/
+        position: relative;
+        bottom: 10em;
+    }
+
+        .pfooter #pfS4 table {
+            text-align: left;
+            
+        }
 
 
-#unityborder {
-    border-style: solid;
-    border-color: white;
-    border-width: 1px;
-}
+    .pfooter #unityborder {
+        border-style: solid;
+        border-color: white;
+        border-width: 1px;
+    }
 
-.socialico {
-    width: 20px;
-    height: 20px;
-    opacity: 0.5;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
-}
+    .pfooter .socialico {
+        width: 20px;
+        height: 20px;
+        opacity: 0.5;
+        filter: alpha(opacity=50); /* For IE8 and earlier */
+    }
 
-.pfooter img:hover {
-    opacity: 1.0;
-    filter: alpha(opacity=100); /* For IE8 and earlier */
-}
+    .pfooter img:hover {
+        opacity: 1.0;
+        filter: alpha(opacity=100); /* For IE8 and earlier */
+    }
 
-.smico {
-    width: 16px;
-    height: 16px;
-}
+    .pfooter .smico {
+        width: 16px;
+        height: 16px;
+        padding: 5px;
+    }
 
-.smico2 {
-    width: 50px;
-    height: 50px;
-}
+    .pfooter .smico2 {
+        width: 50px;
+        height: 50px;
+    }
 
-.pfooter p {
-    font-size: xx-small;
-}
+    .pfooter p {
+        font-size: xx-small;
+    }
 
-.ptext {
-    color: mediumpurple;
-    font-size: xx-small;
-}
+    .pfooter .ptext {
+        color: mediumpurple;
+        font-size: xx-small;
+    }
 
-.pfblog {
-    text-align: left;
-    width: 280px;
-}
+    .pfooter .pfblog {
+        text-align: left;
+        line-height: 3px;
+        font-size: xx-small;
+        /*width: 280px;*/
+    }
 
-.pfblogdt {
-    float: right;
-}
+    .pfooter .pfblogdt {
+        float: right;
+    }
 
 /*-------------------------------------------testing code css line 1-----------------------------------------------------*/
 
