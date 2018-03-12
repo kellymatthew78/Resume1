@@ -377,27 +377,49 @@ img {
     width: 15em;
     height: 8em;
     position: relative;
-    top: -20%;
-    left: 35%;
+    top: -30%;
+    left: 40%;
     text-align: right;
     /*border: 1px solid blue;*/
 }
+
+    #hTrasitionHeader h1 {
+        font-size: 40px;
+        font-family:'Abraham Lincoln';
+    }
 
 .frame3Parent {
     /*float: right;*/
     /*border: 3px solid lightgrey; /*testing purpose*/
 }
 
-    #frame3img {
-        height: 50em;
-        width: 65em;
+    .frame3Parent img {
+        height: 45em;
+        width: 55em;
         display: block;
         margin-left: auto;
         margin-right: auto;
         position: relative;
         top: 10%;
         float: left;
-    } 
+    }
+
+    .frame3Parent table {
+        float: right;
+        width: auto;
+        height: auto;
+        padding: 7px;
+        border-style: none;
+        position: relative;
+        margin-top: 15%;
+        line-height: 3em;
+        
+    }
+
+        .frame3Parent table img {
+            height: 30px;
+            width: 30px;
+        }
 
 
 /*Fifth section (Global) */
