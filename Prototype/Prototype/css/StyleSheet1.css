@@ -36,7 +36,6 @@ img {
     width: 100%;
 }
 
-
 /*Fullpage*/
 .wrapper {
     padding: 0px 200px;
@@ -66,9 +65,6 @@ img {
 }
 
 /*top navigation section of the homepage 2-parts*/
-.homeNav {
-}
-
 /*part 1 of top navigation section (Unity)*/
 .hnSection1 {
     padding-top: 3%;
@@ -128,7 +124,6 @@ li a:hover:not(.active) {
     background-color: greenyellow;
 }
 
-
 /*homepage content section 4 parts*/
 .homeContent {
     padding-top: 25%;
@@ -139,11 +134,15 @@ li a:hover:not(.active) {
 /*part 1 of content (Header)*/
 .hcSection1 {
     color: gold;
+    font-family: 'Abraham Lincoln';
+    font-size: 5em;
 }
 
 /*part 2 of content (Body)*/
 .hcSection2 {
     padding: 0 20%;
+    font-family: 'Abraham Lincoln';
+    font-size: 2em;
 }
 
 /*part 3 of content (Scroll Nav)*/
@@ -176,7 +175,6 @@ li a:hover:not(.active) {
     right: 13em;
     /*border: 3px solid yellow; /*testing purpose*/
 }
-
 
 /*side content of the homepage phone section*/
 .hsPhone {
@@ -216,7 +214,7 @@ li a:hover:not(.active) {
 
 .invites {
     background-color: #694fca;
-    height: 50em;
+    height: 65em;
     text-align: center;
     padding: 20px 20px;
     /* border: 3px solid blue; /*testing purpose*/
@@ -225,13 +223,13 @@ li a:hover:not(.active) {
 .invTrasitionHeader {
     color: white;
     position: relative;
-    top: 5em;
-    left: 29em;
+    top: 3em;
+    left: 30em;
 }
 
     .invTrasitionHeader h1 {
         font-family: 'Abraham Lincoln';
-        font-size: 33px;
+        font-size: 3em;
         line-height: 5px;
         text-align: left;
     }
@@ -239,9 +237,9 @@ li a:hover:not(.active) {
     .invTrasitionHeader h6 {
         font-family: 'Abraham Lincoln';
         line-height: 5px;
+        font-size: 20px;
         text-align: left;
     }
-
 
 /*Invites Content */
 .invContentBody {
@@ -251,7 +249,7 @@ li a:hover:not(.active) {
 
     .invContentBody h1 {
         font-family: 'Abraham Lincoln';
-        font-size: 3em;
+        font-size: 4em;
         /*line-height: 5px;*/
         text-align: left;
         width: 300px;
@@ -260,26 +258,24 @@ li a:hover:not(.active) {
     }
 
     .invContentBody p {
-        font-family: 'Abraham Lincoln';
-        font-size: medium;
-        text-align: left;
+        font-family: 'GothamBlack';
+        font-size: 21px;
         width: 600px;
         float: right;
         text-align: left;
-        height: 1em;
         margin-right: 20%;
+        line-height: 1em;
     }
-
 
 .invContent {
     text-align: left;
-    margin-top: 5em;
+    margin-top: 8em;
     margin-left: 5em;
 }
 
     .invContent p {
         text-align: left;
-        width: 15em;
+        width: 11em;
     }
 
 .invBoxHeader {
@@ -342,7 +338,13 @@ li a:hover:not(.active) {
         text-align: center;
         margin-left: auto;
         margin-right: 30%;
+        position: relative;
+        top: -5em;
     }
+
+        .unity header h1 {
+            font-size: 5em;
+        }
 
     .unity img {
         height: 200px;
@@ -382,8 +384,16 @@ li a:hover:not(.active) {
 }
 
     #hTrasitionHeader h1 {
-        font-size: 40px;
+        font-size: 4em;
+        line-height: 1em;
         font-family: 'Abraham Lincoln';
+    }
+
+    #hTrasitionHeader h6 {
+        font-size: 1em;
+        line-height: 1em;
+        position: relative;
+        bottom: 1em;
     }
 
 .frame3Parent {
@@ -402,7 +412,6 @@ li a:hover:not(.active) {
         float: left;
     }
 
-
     .frame3Parent #hContent1 {
         margin-left: -23em;
         margin-right: 5em;
@@ -413,7 +422,6 @@ li a:hover:not(.active) {
         line-height: 1em;
         text-align: right;
     }
-
 
         .frame3Parent #hContent1 h1 {
             color: yellow;
@@ -443,7 +451,6 @@ li a:hover:not(.active) {
             width: 30px;
         }
 
-
 /*Fifth section (Global) */
 .globalco {
     background-image: url('../img/bg_snowforrest.png');
@@ -467,7 +474,6 @@ li a:hover:not(.active) {
         /*padding-top:16em;*/
     }
 
-
 /*Sixth section (Customer) */
 #Transition3 {
     /*border: 5px solid blue;*/ /*testing only */
@@ -487,7 +493,6 @@ li a:hover:not(.active) {
     width: 100px;
     height: 100px;
 }
-
 
 .glcustomer {
     /*border: 5px solid blue;*/
@@ -521,7 +526,6 @@ li a:hover:not(.active) {
         font-size: 10px;
     }
 
-
 /*Seventh section (Footer) */
 .pfooter {
     /*border: 5px solid blue;*/ /*testing only */
@@ -543,7 +547,7 @@ li a:hover:not(.active) {
     }
 
     .pfooter .parent {
-        border: solid 1px #aaa; /*testing only*/
+        /*border: solid 1px #aaa;*/ /*testing only*/
         font-size: small;
         line-height: 20px;
         overflow: hidden;
@@ -567,21 +571,21 @@ li a:hover:not(.active) {
     }
 
     .pfooter #pfS1 {
-        border: 2px solid red; /*testing only*/
+        /*border: 2px solid red;*/ /*testing only*/
         position: relative;
         bottom: -5em;
     }
 
     .pfooter #pfS2 {
-        border: 2px solid blue; /*testing only*/
+        /*border: 2px solid blue;*/ /*testing only*/
     }
 
     .pfooter #pfS3 {
-        border: 2px solid green; /*testing only*/
+        /*border: 2px solid green;*/ /*testing only*/
     }
 
     .pfooter #pfS4 {
-        border: 2px solid yellow; /*testing only*/
+        /*border: 2px solid yellow;*/ /*testing only*/
         position: relative;
         bottom: 10em;
     }
@@ -590,7 +594,6 @@ li a:hover:not(.active) {
             text-align: left;
             
         }
-
 
     .pfooter #unityborder {
         border-style: solid;
@@ -641,8 +644,3 @@ li a:hover:not(.active) {
         float: right;
     }
 
-/*-------------------------------------------testing code css line 1-----------------------------------------------------*/
-
-
-
-/*-------------------------------------------testing code css line 2-------------------------------------------------*/
