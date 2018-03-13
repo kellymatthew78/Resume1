@@ -131,6 +131,11 @@ li a:hover:not(.active) {
     /*border: 3px solid yellow; /*testing purpose*/
 }
 
+    .homeContent img {
+        width: 50px;
+        height: 50px;
+    }
+
 /*part 1 of content (Header)*/
 .hcSection1 {
     color: gold;
@@ -146,8 +151,11 @@ li a:hover:not(.active) {
 }
 
 /*part 3 of content (Scroll Nav)*/
-.hcSection3 {
-}
+
+/*.hcSection3 {
+    width: 10px;
+    height: 10px;
+}*/
 
 /*part 4 of content (Bottom White Box Border)*/
 .frame1Parent {
@@ -410,6 +418,7 @@ li a:hover:not(.active) {
         position: relative;
         top: 10%;
         float: left;
+        z-index: 2;
     }
 
     .frame3Parent #hContent1 {
@@ -421,6 +430,7 @@ li a:hover:not(.active) {
         top: 1em;
         line-height: 1em;
         text-align: right;
+        z-index: 3;
     }
 
         .frame3Parent #hContent1 h1 {
@@ -643,4 +653,3 @@ li a:hover:not(.active) {
     .pfooter .pfblogdt {
         float: right;
     }
-
