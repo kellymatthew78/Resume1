@@ -38,15 +38,16 @@ img {
 
 /*Fullpage*/
 .wrapper {
-    padding: 0px 200px;
+    /*/border: 3px solid blue; /*testing purpose*/
+    width: 1500px;
+    margin: 0 auto;
 }
 
 /*First section (Homepage)*/
 .home {
     background-image: url(../img/background1_kissing.png);
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    /*background-size: cover;*/
+    background-size: cover;
     height: 100%;
     color: white;
     text-align: center;
@@ -66,15 +67,7 @@ img {
 
 /*top navigation section of the homepage 2-parts*/
 /*part 1 of top navigation section (Unity)*/
-.hnSection1 {
-    padding-top: 3%;
-    display: flex;
-    align-items: center;
-    justify-content: center
-    /*border: 5px solid blue;*/
-}
-
-#hnSection1 {
+#homeNav-Section1 {
     padding-top: 1%;
     display: flex;
     align-items: center;
@@ -82,31 +75,39 @@ img {
     /*border: 5px solid blue;*/
 }
 
-.hnSection1 h2 {
-    padding: 5px;
-    border-style: solid;
-    border-width: 3px;
-    border-color: white;
-    width: 100px;
-    margin: auto;
+.homeNav-Section1 {
+    padding-top: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center
     /*border: 5px solid blue;*/
 }
 
+    .homeNav-Section1 h2 {
+        padding: 5px;
+        border-style: solid;
+        border-width: 3px;
+        border-color: white;
+        width: 100px;
+        margin: auto;
+        /*border: 5px solid blue;*/
+    }
+
 /*part 2 of top navigation section (NavBar)*/
-.hnSection2 {
+.homeNav-Section2 {
     padding-left: 35%;
     padding-top: 2em;
     /*border: 5px solid blue;*/
 }
 
-    .hnSection2 ul {
+    .homeNav-Section2 ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
         overflow: hidden;
     }
 
-    .hnSection2 li a {
+    .homeNav-Section2 li a {
         display: block;
         color: white;
         text-align: center;
@@ -137,14 +138,14 @@ li a:hover:not(.active) {
     }
 
 /*part 1 of content (Header)*/
-.hcSection1 {
+.homeContent-Section1 {
     color: gold;
     font-family: 'Abraham Lincoln';
     font-size: 5em;
 }
 
 /*part 2 of content (Body)*/
-.hcSection2 {
+.homeContent-Section2 {
     padding: 0 20%;
     font-family: 'Abraham Lincoln';
     font-size: 2em;
@@ -185,7 +186,7 @@ li a:hover:not(.active) {
 }
 
 /*side content of the homepage phone section*/
-.hsPhone {
+.sidePane-Phone {
     float: right;
     transform: rotate(-180deg);
     position: relative;
@@ -199,18 +200,18 @@ li a:hover:not(.active) {
 }
 
 /*side content of the homepage social media section*/
-.hsMedia {
+.sidePane-SocialMedia {
     width: 100%;
 }
 
-    .hsMedia ul {
+    .sidePane-SocialMedia ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
         overflow: hidden;
     }
 
-    .hsMedia li a {
+    .sidePane-SocialMedia li a {
         display: block;
         color: white;
         text-align: center;
@@ -219,88 +220,98 @@ li a:hover:not(.active) {
     }
 
 /*Second section (Invites) */
-
+/*Total wrapper for invites section */
 .invites {
     background-color: #694fca;
+    font-family: 'Abraham Lincoln';
     height: 65em;
     text-align: center;
     padding: 20px 20px;
-    /* border: 3px solid blue; /*testing purpose*/
+    border: 3px solid blue; /*testing purpose*/
 }
 
-.invTrasitionHeader {
+/*text within the transition image*/
+.invites-TrasitionHeader {
     color: white;
-    position: relative;
-    top: 3em;
-    left: 30em;
+    width: 30%;
+    margin-left: 31%;
+   /* border: 3px solid lightblue; /*testing purpose*/
 }
 
-    .invTrasitionHeader h1 {
-        font-family: 'Abraham Lincoln';
+    .invites-TrasitionHeader h1 {
         font-size: 3em;
         line-height: 5px;
         text-align: left;
+        /* border: 3px solid blue; /*testing purpose*/
     }
 
-    .invTrasitionHeader h6 {
-        font-family: 'Abraham Lincoln';
+    .invites-TrasitionHeader h6 {
         line-height: 5px;
         font-size: 20px;
         text-align: left;
+        /* border: 3px solid blue; /*testing purpose*/
     }
 
 /*Invites Content */
-.invContentBody {
-    padding-top: 10em;
+.invites-ContentBody {
+    padding-top: 9em;
     color: white;
+    border: 3px solid blue; /*testing purpose*/
 }
 
-    .invContentBody h1 {
-        font-family: 'Abraham Lincoln';
+    .invites-ContentBody h1 {
         font-size: 4em;
         /*line-height: 5px;*/
         text-align: left;
         width: 300px;
         height: 1em;
         margin-left: 20%;
+        border: 3px solid red; /*testing purpose*/
     }
 
-    .invContentBody p {
+    .invites-ContentBody .invText {
+        margin-left: 41%;
+    }
+
+    .invites-ContentBody p {
         font-family: 'GothamBlack';
         font-size: 21px;
         width: 600px;
-        float: right;
         text-align: left;
-        margin-right: 20%;
         line-height: 1em;
+        border: 3px solid red; /*testing purpose*/
     }
 
-.invContent {
+.invites-Content {
     text-align: left;
     margin-top: 8em;
     margin-left: 5em;
+    height: 325px;
+    border: 3px solid purple; /*testing purpose*/
 }
 
-    .invContent p {
+    .invites-Content p {
         text-align: left;
         width: 11em;
+        border: 3px solid blue; /*testing purpose*/
     }
 
 .invBoxHeader {
     color: yellow;
     font-size: 20px;
+    border: 3px solid blue; /*testing purpose*/
 }
 
 #invDiv1, #invDiv2, #invDiv3, #invDiv4 {
     width: 25%;
     height: 350px;
     border: 1px hidden #000;
-    /*border: 1px solid blue;*/ /*testing purpose*/
     box-sizing: border-box;
     text-align: left;
     padding: 30px 30px;
     font-size: 15px;
     line-height: 1em;
+    border: 1px solid green; /*testing purpose*/
 }
 
 #invDiv1 {
@@ -493,7 +504,7 @@ li a:hover:not(.active) {
         height: 100px;
     }
 
-#gl-allCustomers {
+.gl-allCustomers {
     /*border: 5px solid blue;*/ /*testing only */
     height: 20em;
     padding-left: 25%;
@@ -519,6 +530,11 @@ li a:hover:not(.active) {
         font-size: 10px;
     }
 
+    .glcustomer img {
+        width: 100px;
+        height: 100px;
+    }
+
 .glcustomer-select {
     /*border: 5px solid blue;*/
     background-color: rebeccapurple;
@@ -534,6 +550,10 @@ li a:hover:not(.active) {
 
     .glcustomer-select p {
         font-size: 10px;
+    }
+    .glcustomer-select img {
+        width: 100px;
+        height: 100px;
     }
 
 /*Seventh section (Footer) */
