@@ -151,13 +151,6 @@ li a:hover:not(.active) {
     font-size: 2em;
 }
 
-/*part 3 of content (Scroll Nav)*/
-
-/*.hcSection3 {
-    width: 10px;
-    height: 10px;
-}*/
-
 /*part 4 of content (Bottom White Box Border)*/
 .frame1Parent {
     /*border: 3px solid lightgrey; /*testing purpose*/
@@ -227,7 +220,7 @@ li a:hover:not(.active) {
     height: 65em;
     text-align: center;
     padding: 20px 20px;
-    border: 3px solid blue; /*testing purpose*/
+    /* border: 3px solid blue; /*testing purpose*/
 }
 
 /*text within the transition image*/
@@ -256,7 +249,7 @@ li a:hover:not(.active) {
 .invites-ContentBody {
     padding-top: 9em;
     color: white;
-    border: 3px solid blue; /*testing purpose*/
+    /*border: 3px solid blue; /*testing purpose*/
 }
 
     .invites-ContentBody h1 {
@@ -266,7 +259,7 @@ li a:hover:not(.active) {
         width: 300px;
         height: 1em;
         margin-left: 20%;
-        border: 3px solid red; /*testing purpose*/
+        /* border: 3px solid red; /*testing purpose*/
     }
 
     .invites-ContentBody .invText {
@@ -279,7 +272,7 @@ li a:hover:not(.active) {
         width: 600px;
         text-align: left;
         line-height: 1em;
-        border: 3px solid red; /*testing purpose*/
+        /*border: 3px solid red; /*testing purpose*/
     }
 
 .invites-Content {
@@ -287,19 +280,19 @@ li a:hover:not(.active) {
     margin-top: 8em;
     margin-left: 5em;
     height: 325px;
-    border: 3px solid purple; /*testing purpose*/
+    /*border: 3px solid purple; /*testing purpose*/
 }
 
     .invites-Content p {
         text-align: left;
         width: 11em;
-        border: 3px solid blue; /*testing purpose*/
+        /* border: 3px solid blue; /*testing purpose*/
     }
 
 .invBoxHeader {
     color: yellow;
     font-size: 20px;
-    border: 3px solid blue; /*testing purpose*/
+    /*border: 3px solid blue; /*testing purpose*/
 }
 
 #invDiv1, #invDiv2, #invDiv3, #invDiv4 {
@@ -311,7 +304,7 @@ li a:hover:not(.active) {
     padding: 30px 30px;
     font-size: 15px;
     line-height: 1em;
-    border: 1px solid green; /*testing purpose*/
+    /*border: 1px solid green; /*testing purpose*/
 }
 
 #invDiv1 {
@@ -390,25 +383,24 @@ li a:hover:not(.active) {
     background-color: white;
     height: 800px;
     padding: 15em 5em;
+    /*border: 2px solid blue;  /*testing only */
 }
 
-#hTrasitionHeader {
-    width: 15em;
-    height: 8em;
-    position: relative;
-    top: -30%;
-    left: 40%;
+.hTrasitionHeader {
+    width: 30%;
+    margin-left: 32%;
+    margin-top: -20%;
     text-align: right;
-    /*border: 1px solid blue;*/ /*testing only */
+    /* border: 2px solid green; /*testing only */
 }
 
-    #hTrasitionHeader h1 {
+    .hTrasitionHeader h1 {
         font-size: 4em;
-        line-height: 1em;
+        line-height: 20px;
         font-family: 'Abraham Lincoln';
     }
 
-    #hTrasitionHeader h6 {
+    .hTrasitionHeader h6 {
         font-size: 1em;
         line-height: 1em;
         position: relative;
@@ -424,34 +416,31 @@ li a:hover:not(.active) {
         height: 45em;
         width: 55em;
         display: block;
-        margin-left: auto;
-        margin-right: auto;
-        position: relative;
-        top: 10%;
+        margin-top: 15%;
         float: left;
         z-index: 2;
+        /* border: 3px solid lightgrey; /*testing purpose*/
     }
 
-    .frame3Parent #hContent1 {
-        margin-left: -23em;
-        margin-right: 5em;
-        position: relative;
-        display: inline-block;
-        width: 300px;
-        top: 1em;
+    .frame3Parent .hContent1 {
+        width: 90%;
         line-height: 1em;
         text-align: right;
         z-index: 3;
+        position: relative;
+        right: 32%;
+        top: 28em;
+        /* border: 3px solid lightgreen; /*testing purpose*/
     }
 
-        .frame3Parent #hContent1 h1 {
+        .frame3Parent .hContent1 h1 {
             color: yellow;
             font-size: 40px;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
         }
 
-        .frame3Parent #hContent1 p {
-            color: white;
+        .frame3Parent .hContent1 p {
+            color: black;
             font-size: 16px;
         }
 
