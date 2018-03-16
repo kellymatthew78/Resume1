@@ -53,7 +53,6 @@
             </footer>
         </div>
          <input id="Button2" type="button" value="Set Up" onclick="jsSetup()" />
-        <input id="Button1" type="button" value="Rest" onclick="clear_session()" />
     </form>
 </body>
 </html>

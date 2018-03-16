@@ -7,8 +7,8 @@ var vDays = 30 - d.getDate();
 
 
 function jsSetup() {
-    document.getElementById("lblamount").innerHTML = vDRemaining;
-    document.getElementById("lblDays").innerHTML = vDays; 
+    document.getElementById("lblamount").innerHTML = 5000;
+    document.getElementById("lblDays").innerHTML = vDays;
     document.getElementById("lblPeople").innerHTML = 0;
     clear_session();
 }
@@ -24,9 +24,15 @@ function clickCounter() {
 
         if (sessionStorage.donation) {
             vDonation = Number(sessionStorage.donation);
-            vDonation = vDonation + Number(document.getElementById("txtDonate").value);
-            sessionStorage.donation = vDonation;
-            vDRemaining = vGoal - vDonation;
+
+            if (vGoal < vDonation) {
+                vDRemaining = 0;
+            } else {
+                vDonation = vDonation + Number(document.getElementById("txtDonate").value);
+                sessionStorage.donation = vDonation;
+                vDRemaining = vGoal - vDonation;
+            }
+
         } else {
             vDonation = Number(document.getElementById("txtDonate").value);
             sessionStorage.donation = vDonation;
@@ -37,6 +43,7 @@ function clickCounter() {
     } else {
         document.getElementById("lblPeople").innerHTML = "0";
     }
+    SetPercentage();
 }
 
 function clear_session() {
@@ -50,4 +57,11 @@ function set_session() {
 
 function pageReload() {
     location.reload();
+}
+
+function SetPercentage() {
+    var x = 0;
+    x = (vDonation * 100) / vGoal;
+    if (x > 100) { x = 100; }
+    document.getElementById("barline").style.width = x + "%";
 }
