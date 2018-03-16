@@ -4,29 +4,42 @@
     <meta charset="utf-8" />
     <title>Pop-Challenge</title>
     <link href="css/StyleSheet.css" rel="stylesheet" />
+
+    <script src="//use.typekit.net/rzv2mwh.js"></script>
+    <script>try { Typekit.load(); } catch (e) { }</script>
 </head>
 <body>
-    <div class="wrapper">
-        <header>
-            <h1>Recreate this using HTML &amp CSS</h1>
-        </header>
-        <!--<div class="top-notification">
-            <span class="donation-remainder">$167</span><span class="donation-txt">still needed for this project</span>
-        </div>-->
-        <div class="top-notification">
-            <span class="donation-remainder">$167</span><span class="donation-txt">still needed for this project</span>
+    <div class="container">
+        <h1>Recreate this using HTML &amp; CSS</h1>
+        <!--<img src="https://s3.amazonaws.com/f.cl.ly/items/2z3C3Z0L2Q0R282p1V0z/Image%202014-12-19%20at%2010.07.09%20AM.png" width="303" />-->
+        <img src="img/Image 2014-12-19 at 10.07.09 AM.png" width="303" />
+
+        <!--Your HTML goes here-->
+
+        <div class="speech-bubble">
+            <h5>$167 still needed for this project</h5>
         </div>
         <div class="content">
-            <span class="content-time">Only 3 days left</span><span class="content-txt">to fund this project</span>
-            <p>Join the <span class="people">42</span> other doners who have already supported this project. every dollar helps.</p>
-            <section class="donation">
-                <input id="Text1" type="text" value="$50" /> &nbsp;&nbsp;
-                <input id="Button1" type="button" value="Give Now" />
-            </section>
+            <div class="baseline">
+                <section class="barline"></section>
+            </div>
+            <br />
+            <p>
+                <span class="snotice1">Only 3 days left</span> to fund this project
+            </p>
+            <p>
+                Join the <b>42</b> other doners who have already supported this project. Every dollar helps.
+            </p>
+            <div class="donation">
+                <input id="txtDonate" class="inputs" type="text" value="$50" />
+                <input id="btnGive" class="inputs" type="button" value="Give Now" /><br />
+                <span class="why"><a href="#">Why give $50</a></span>
+            </div>
         </div>
-        <div class="buttonsection">
-
-        </div>
+        <footer>
+            <input id="btnSave" class="inputs" type="button" value="Save for Later" />
+            <input id="btnTell" class="inputs" type="button" value="Tell your Friends" />
+        </footer>
     </div>
 </body>
 </html>

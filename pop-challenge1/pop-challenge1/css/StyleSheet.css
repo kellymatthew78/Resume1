@@ -1,5 +1,5 @@
 ﻿/* Global resets */
-.wrapper {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -37,8 +37,13 @@ h1 {
 
 .speech-bubble {
     position: relative;
-    background: #00aabb;
-    border-radius: .4em;
+    background-color: #2a2b2d;
+    border-radius: 0.4em;
+    color: white;
+    height: 3em;
+    width: 17em;
+    margin: 0 auto;
+    /*padding-top: 1em;*/
 }
 
     .speech-bubble:after {
@@ -46,12 +51,90 @@ h1 {
         position: absolute;
         bottom: 0;
         left: 50%;
-        width: 0;
         height: 0;
         border: 20px solid transparent;
-        border-top-color: #00aabb;
+        border-top-color: #2a2b2d;
         border-bottom: 0;
         border-left: 0;
-        margin-left: -10px;
         margin-bottom: -20px;
+    }
+
+.content {
+    border: 1px solid grey;
+    width: 17em;
+    margin: 0 auto;
+    margin-top: 3%;
+}
+
+    .content p {
+        font-size: 13px;
+        padding-top: 11px;
+        width: 20em;
+        margin: auto;
+        float: none;
+    }
+
+    .content #lblPeople {
+        
+
+    }
+    
+.baseline {
+        background-color: grey;
+        width: 100%;
+        /*float: left;*/
+        height: 10px;
+        margin: 0 auto;
+    }
+.barline {
+    background-color: #EF5F3C;
+    width: 85%;
+    float: left;
+    height: 10px;
+    margin: 0 auto;
+    /* border: 1px solid red; /*testing only*/
+}
+
+.snotice1 {
+    color: #EF5F3C
+}
+
+.donation {
+    width: 17em;
+    margin: 0 auto;
+}
+
+    .donation .inputs {
+        width: 7em;
+        height: 3em;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    .donation #btnGive {
+        background-color: forestgreen;
+        color: white;
+    }
+
+    .donation .why {
+        font-style: italic;
+        font-size: 14px;
+        text-align: right;
+        padding-right: 10em;
+    }
+        .donation .why a {
+            text-decoration: none
+        }
+
+footer {
+    width: 17em;
+    margin: 0 auto;
+    margin-top: 1em;
+}
+
+    footer .inputs {
+        width: 9em;
+        height: 2em;
+        margin-top: 10px;
+        margin-bottom: 5px;
     }
