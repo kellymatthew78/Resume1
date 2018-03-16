@@ -43,7 +43,7 @@
                 </p>
                 <div class="donation">
                     <input id="txtDonate" class="inputs" type="text" value="$50" />
-                    <input id="btnGive" class="inputs" type="button" value="Give Now" /><br />
+                    <input id="btnGive" class="inputs" type="button" value="Give Now" onclick="clickCounter()" /><br />
                     <span class="why"><a href="javascript:void(0)">Why give $50</a></span>
                 </div>
             </div>
@@ -52,6 +52,8 @@
                 <input id="btnTell" class="inputs" type="button" value="Tell your Friends" />
             </footer>
         </div>
+         <input id="Button2" type="button" value="Set Up" onclick="jsSetup()" />
+        <input id="Button1" type="button" value="Rest" onclick="clear_session()" />
     </form>
 </body>
 </html>
