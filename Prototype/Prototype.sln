@@ -25,6 +25,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Prototype", "Prototype\", "
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D450D39-9A7B-4557-9A9B-50210798AB2D}"
+	ProjectSection(SolutionItems) = preProject
+		BSIndex.html = BSIndex.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

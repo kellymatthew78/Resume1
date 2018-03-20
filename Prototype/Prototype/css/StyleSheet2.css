@@ -1,0 +1,17 @@
+﻿/*General Global Styling*/
+body {
+    background-color: black;
+}
+
+#container-fluid{
+    border-color:red;
+
+}
+
+#row {
+    border-color: green;
+}
+
+#col {
+    border-color: blue;
+}
