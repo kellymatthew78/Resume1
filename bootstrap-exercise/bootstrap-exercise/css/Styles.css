@@ -1,0 +1,52 @@
+﻿body {
+    background-color: black;
+
+}
+
+#smicon {
+    height: 1em;
+}
+
+
+/*p {
+    font-family: 'Open Sans', sans-serif;
+}*/
+
+.wrapper{
+   border:1px solid red;
+}
+
+header {
+    border: 1px solid blue; /*testing only*/
+}
+    header img {
+        height: 1em;
+       
+    }
+
+    header .headerLogo img {
+        height: 75%;
+        margin: 0 auto;
+        background-color: white;
+        border: 1px solid blue; /*testing only*/
+    }
+
+    header .topHeader {
+        border: 1px solid grey; /*testing only*/
+    }
+
+    header .smedia img {
+        height: 1em;
+        display: inline-block;
+        /*padding: 5px;*/
+        background-color: white;
+        border: 1px solid green; /*testing only*/
+    }
+
+#content {
+    border: 1px solid green;
+}
+
+footer {
+    border: 1px solid grey;
+}
