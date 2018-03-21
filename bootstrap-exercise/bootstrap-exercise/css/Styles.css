@@ -1,6 +1,5 @@
 ﻿body {
     background-color: black;
-
 }
 
 #smicon {
@@ -12,40 +11,67 @@
     font-family: 'Open Sans', sans-serif;
 }*/
 
-.wrapper{
-   border:1px solid red;
+.wrapper {
+    border: 1px solid red;
 }
 
 header {
     border: 1px solid blue; /*testing only*/
 }
+
     header img {
         height: 1em;
-       
+    }
+
+    header .headerLogo {
+        background-color: white;
+        /*border: 1px solid blue; /*testing only*/
     }
 
     header .headerLogo img {
-        height: 75%;
-        margin: 0 auto;
-        background-color: white;
+        height: 70%;
+        /*margin: 0 auto;*/
+        /*background-color: white;*/
         border: 1px solid blue; /*testing only*/
     }
 
+    header .headerContent {
+        /*padding-left: 5%;*/
+    }
+
     header .topHeader {
+        
         border: 1px solid grey; /*testing only*/
     }
 
+        header .topHeader .thContent {
+            border: 1px solid green; /*testing only*/
+        }
+
+            header .topHeader .thContent a {
+                display: inline-block;
+            }
+
+            header .topHeader .thContent img {
+                display: inline-block;
+                background-color: white;
+                opacity: 0.5;
+                filter: alpha(opacity=50); /* For IE8 and earlier */
+            }
+
+                header .topHeader .thContent img:hover {
+                    opacity: 1.0;
+                    filter: alpha(opacity=100); /* For IE8 and earlier */
+                }
+
     header .smedia img {
         height: 1em;
-        display: inline-block;
+        /*display: inline-block;*/
         /*padding: 5px;*/
         background-color: white;
         border: 1px solid green; /*testing only*/
     }
 
-#content {
-    border: 1px solid green;
-}
 
 footer {
     border: 1px solid grey;

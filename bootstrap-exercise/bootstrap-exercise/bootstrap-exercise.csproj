@@ -78,6 +78,7 @@
     <Content Include="About_Us.html" />
     <Content Include="Contact.html" />
     <Content Include="css\bootstrap.css" />
+    <Content Include="css\Bootstrap4.css" />
     <Content Include="css\Styles.css" />
     <Content Include="Gallery.html" />
     <Content Include="img\ico_cr_facebook.png" />
@@ -92,6 +93,9 @@
     <Content Include="img\ico_search.png" />
     <Content Include="img\NorthSea_Logo.png" />
     <Content Include="index.html" />
+    <Content Include="jsp\bootstrap.min.js" />
+    <Content Include="jsp\jquery.min.js" />
+    <Content Include="jsp\popper.min.js" />
     <Content Include="News-Detail.html" />
     <Content Include="News.html" />
     <Content Include="Products.html" />
@@ -102,7 +106,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="css\fonts\" />
-    <Folder Include="jsp\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
