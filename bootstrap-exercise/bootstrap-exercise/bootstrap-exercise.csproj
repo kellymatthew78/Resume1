@@ -77,7 +77,6 @@
   <ItemGroup>
     <Content Include="About_Us.html" />
     <Content Include="Contact.html" />
-    <Content Include="css\bootstrap.css" />
     <Content Include="css\Bootstrap4.css" />
     <Content Include="css\Styles.css" />
     <Content Include="Gallery.html" />
@@ -99,6 +98,7 @@
     <Content Include="jsp\fontawesome-all.js" />
     <Content Include="jsp\jquery.min.js" />
     <Content Include="jsp\popper.min.js" />
+    <Content Include="jsp\projectBS.js" />
     <Content Include="News-Detail.html" />
     <Content Include="News.html" />
     <Content Include="Products.html" />
