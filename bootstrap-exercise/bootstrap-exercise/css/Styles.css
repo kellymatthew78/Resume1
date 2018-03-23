@@ -118,6 +118,13 @@ main{
        
     }
 
+    main .hotelDetails{
+        background-color: white;
+        text-align: center;
+    }
+
+    
+
 
     footer {
         border: 1px solid grey;
