@@ -46,7 +46,16 @@ header {
 
         header .topHeader .thContent {
             border: 1px solid green; /*testing only*/
+            color: blue;
         }
+
+            header .topHeader .thContent span {
+              
+            }
+
+            header .topHeader .thContent i {
+                color: white;
+            }
 
             header .topHeader .thContent a {
                 display: inline-block;
@@ -72,7 +81,44 @@ header {
         border: 1px solid green; /*testing only*/
     }
 
+main{
 
-footer {
-    border: 1px solid grey;
 }
+
+    main .carousel .infoCarouselContent{
+        padding-bottom: 5em;
+    }
+
+    main .carousel .infoCarouselContent p {
+        text-align: left;
+        line-height: 1em;
+        font-size: 3em;
+        color: white;
+    }
+    main .carousel .infoCarouselContent p span{
+        text-transform: uppercase;
+    }
+
+    main .carousel-control-prev,
+    .carousel-control-next {
+        padding-top: 10em;
+    }
+
+    main .card {
+        text-align: center;
+        width: 70%;
+    }
+
+    main .card.myWeather {
+        background-color: #d69f0c;
+        color: white;
+    }
+
+    main .card .myGallery i{
+       
+    }
+
+
+    footer {
+        border: 1px solid grey;
+    }

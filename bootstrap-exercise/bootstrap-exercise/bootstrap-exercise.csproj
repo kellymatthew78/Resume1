@@ -81,6 +81,7 @@
     <Content Include="css\Bootstrap4.css" />
     <Content Include="css\Styles.css" />
     <Content Include="Gallery.html" />
+    <Content Include="img\Clear_Sun.png" />
     <Content Include="img\ico_cr_facebook.png" />
     <Content Include="img\ico_cr_googlp.png" />
     <Content Include="img\ico_cr_instagram.png" />
@@ -92,13 +93,16 @@
     <Content Include="img\ico_phone.png" />
     <Content Include="img\ico_search.png" />
     <Content Include="img\NorthSea_Logo.png" />
+    <Content Include="img\Şekil 1 kopya.png" />
     <Content Include="index.html" />
     <Content Include="jsp\bootstrap.min.js" />
+    <Content Include="jsp\fontawesome-all.js" />
     <Content Include="jsp\jquery.min.js" />
     <Content Include="jsp\popper.min.js" />
     <Content Include="News-Detail.html" />
     <Content Include="News.html" />
     <Content Include="Products.html" />
+    <Content Include="Test2.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
