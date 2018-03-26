@@ -91,6 +91,9 @@
     <Content Include="img\ico_email.png" />
     <Content Include="img\ico_phone.png" />
     <Content Include="img\ico_search.png" />
+    <Content Include="img\news1.png" />
+    <Content Include="img\news2.png" />
+    <Content Include="img\news3.png" />
     <Content Include="img\NorthSea_Logo.png" />
     <Content Include="img\Şekil 1 kopya.png" />
     <Content Include="index.html" />
