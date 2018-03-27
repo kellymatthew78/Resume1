@@ -81,6 +81,16 @@
     <Content Include="css\Styles.css" />
     <Content Include="Gallery.html" />
     <Content Include="img\Clear_Sun.png" />
+    <Content Include="img\gallery\acity.png" />
+    <Content Include="img\gallery\room1.png" />
+    <Content Include="img\gallery\room2.png" />
+    <Content Include="img\gallery\room3.png" />
+    <Content Include="img\gallery\room4.png" />
+    <Content Include="img\gallery\room5.png" />
+    <Content Include="img\gallery\room6.png" />
+    <Content Include="img\gallery\room7.png" />
+    <Content Include="img\gallery\room8.png" />
+    <Content Include="img\gallery\room9.png" />
     <Content Include="img\ico_cr_facebook.png" />
     <Content Include="img\ico_cr_googlp.png" />
     <Content Include="img\ico_cr_instagram.png" />

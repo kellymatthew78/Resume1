@@ -124,11 +124,13 @@ main {
         main .card.profile {
             width: 18rem;
         }
-        main .card.profile img{
-            width: 35%;
-        }
+
+            main .card.profile img {
+                width: 35%;
+            }
+
             main .card.profile a {
-               display:inline;
+                display: inline;
             }
 
     main .hotelDetails {
@@ -136,6 +138,18 @@ main {
         text-align: center;
     }
 
+    main .btn-toolbar .btn {
+        margin-right: 10px;
+        width: 5em;
+    }
+
+        main .btn-toolbar .btn:last-child {
+            margin-right: 0;
+        }
+
+    main .thumbnail img {
+        width: 75%;
+    }
     /*main styling form about use page*/
     main .breadcrumb {
         background-color: transparent;
@@ -180,9 +194,10 @@ footer {
         font-size: 3em;
     }
 
-    footer .bottomFooter{
+    footer .bottomFooter {
         margin-top: 1em;
     }
+
     footer .row.bottomFooter small {
         color: white;
         opacity: .5;
