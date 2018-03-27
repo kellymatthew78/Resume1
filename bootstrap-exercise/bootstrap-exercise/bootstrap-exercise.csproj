@@ -95,6 +95,10 @@
     <Content Include="img\news2.png" />
     <Content Include="img\news3.png" />
     <Content Include="img\NorthSea_Logo.png" />
+    <Content Include="img\people\amber.png" />
+    <Content Include="img\people\dave.png" />
+    <Content Include="img\people\john.png" />
+    <Content Include="img\people\Oscer.png" />
     <Content Include="img\Şekil 1 kopya.png" />
     <Content Include="index.html" />
     <Content Include="jsp\bootstrap.min.js" />

@@ -121,9 +121,24 @@ main {
         main .card .myGallery i {
         }
 
+        main .card.profile {
+            width: 18rem;
+        }
+        main .card.profile img{
+            width: 35%;
+        }
+            main .card.profile a {
+               display:inline;
+            }
+
     main .hotelDetails {
         background-color: white;
         text-align: center;
+    }
+
+    /*main styling form about use page*/
+    main .breadcrumb {
+        background-color: transparent;
     }
 
 
