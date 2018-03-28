@@ -155,6 +155,31 @@ main {
         background-color: transparent;
     }
 
+    /*main #newsCarousel2 .carousel-caption {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: left;
+        padding: 10px;
+        background: rgba(0,0,0,0.6);
+        text-shadow: none;
+    }
+
+    main #newsCarousel2 .list-group {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    main #newsCarousel2 .list-group-item {
+        border-radius: 0px;
+        cursor: pointer;
+    }
+
+    main #newsCarousel2 .list-group .active {
+        background-color: #eee;
+    }*/
+
 
 footer {
     border: 1px solid green;

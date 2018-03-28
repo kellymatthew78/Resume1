@@ -109,6 +109,16 @@
     <Content Include="img\people\dave.png" />
     <Content Include="img\people\john.png" />
     <Content Include="img\people\Oscer.png" />
+    <Content Include="img\products\bhp-logo.png" />
+    <Content Include="img\products\productroom1.png" />
+    <Content Include="img\products\productroom2.png" />
+    <Content Include="img\products\productroom3.png" />
+    <Content Include="img\products\productroom4.png" />
+    <Content Include="img\products\productroom5.png" />
+    <Content Include="img\products\productroom6.png" />
+    <Content Include="img\products\productroom7.png" />
+    <Content Include="img\products\productroom8.png" />
+    <Content Include="img\products\productroom9.png" />
     <Content Include="img\Şekil 1 kopya.png" />
     <Content Include="index.html" />
     <Content Include="jsp\bootstrap.min.js" />
