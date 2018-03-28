@@ -129,6 +129,7 @@
     <Content Include="News-Detail.html" />
     <Content Include="News.html" />
     <Content Include="Products.html" />
+    <Content Include="Services.html" />
     <Content Include="Test2.html" />
     <Content Include="Web.config" />
   </ItemGroup>
