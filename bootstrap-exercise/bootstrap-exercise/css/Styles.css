@@ -6,37 +6,12 @@
     height: 1em;
 }
 
-.carousel-indicators-numbers li {
-    text-indent: 0;
-    margin: 0 2px;
-    width: 30px;
-    height: 30px;
-    border: none;
-    border-radius: 100%;
-    line-height: 30px;
-    color: #fff;
-    background-color: #999;
-    -webkit-transition: all 0.25s ease;
-    transition: all 0.25s ease;
-}
-
-    .carousel-indicators-numbers li.active, .carousel-indicators-numbers li:hover {
-        margin: 0 2px;
-        width: 30px;
-        height: 30px;
-        background-color: #337ab7;
-    }
-
-/*p {
-    font-family: 'Open Sans', sans-serif;
-}*/
-
 .wrapper {
-    border: 1px solid red;
+    /*border: 1px solid red; /*testing only*/
 }
 
 header {
-    border: 1px solid blue; /*testing only*/
+    /* border: 1px solid blue; /*testing only*/
 }
 
     header img {
@@ -60,15 +35,16 @@ header {
     }
 
     header .topHeader {
-        border: 1px solid grey; /*testing only*/
+        /* border: 1px solid grey; /*testing only*/
     }
 
         header .topHeader .thContent {
-            border: 1px solid green; /*testing only*/
-            color: blue;
+            /* border: 1px solid green; /*testing only*/
+            color: ghostwhite;
         }
 
             header .topHeader .thContent span {
+                color: ghostwhite;
             }
 
             header .topHeader .thContent i {
@@ -77,6 +53,7 @@ header {
 
             header .topHeader .thContent a {
                 display: inline-block;
+                color: ghostwhite;
             }
 
             header .topHeader .thContent img {
@@ -96,7 +73,7 @@ header {
         /*display: inline-block;*/
         /*padding: 5px;*/
         background-color: white;
-        border: 1px solid green; /*testing only*/
+        /* border: 1px solid green; /*testing only*/
     }
 
 main {
@@ -176,7 +153,7 @@ main {
     }
 
 footer {
-    border: 1px solid green;
+    /* border: 1px solid green; /* For testing Only */
     background-color: #212529;
     color: white;
 }
@@ -227,21 +204,34 @@ footer {
 
 /*media queries*/
 /* Smaller than standard 960 (devices and browsers) */
-/*@media only screen and (max-width: 959px) {
-}*/
-
+@media only screen and (max-width: 959px) {
+}
 /* Tablet Portrait size to standard 960 (devices and browsers) */
-/*@media only screen and (min-width: 768px) and (max-width: 959px) {
-}*/
-
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+}
 /* All Mobile Sizes (devices and browser) */
-/*@media only screen and (max-width: 767px) {
-}*/
-
+@media only screen and (max-width: 767px) {
+}
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
-/*@media only screen and (min-width: 480px) and (max-width: 767px) {
-}*/
-
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+}
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-/*@media only screen and (max-width: 479px) {
-}*/
+@media only screen and (max-width: 479px) {
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 360px) {
+    .topHeader {
+        display: none;
+    }
+
+    .hotelDetails {
+        text-align: center;
+    }
+
+    .carousel.news-carousel {
+        background-color: white;
+    }
+}
+/* Slim Mobile Portrait Size (devices and browsers) */
+@media only screen and (max-width: 320) {
+}
