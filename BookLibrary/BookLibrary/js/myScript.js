@@ -8,20 +8,20 @@ var storageType = "sessionStorage";
 //Singleton library object
 var Library;
 (function () {
-    var instance;
+    var libraryinstance;
 
     Library = function Library(storagekey) {
-        if (instance) {
-            return instance;
+        if (libraryinstance) {
+            return libraryinstance;
         }
 
-        instance = this;
+        libraryinstance = this;
 
         // all the functionality
         this.Books = [];
         this.storagekey = storagekey;
 
-        return instance;
+        return libraryinstance;
     };
 }());
 
@@ -32,6 +32,7 @@ var Library;
 
 //};
 
+//Book object constructor
 var Book = function (details, callNum, catagory = "") {
     this.details = details;
     this.callNum = callNum;
@@ -303,7 +304,7 @@ Library.prototype.getIndex = function (type, item = "", item2 = "") {
 };
 
 //this is a master search function that will return array of objects from the Library based on the type of search you are performing and the item(s) you are searching for.
-Library.prototype.getBookList = function (type, item = "", item2 = "") {
+Library.prototype.getBookList = function (key, value, value2 = "") {
     try {
         var i = 0;
         var Booklist = [];
@@ -311,38 +312,10 @@ Library.prototype.getBookList = function (type, item = "", item2 = "") {
         document.getElementById("msg").setAttribute("class", "msgclass");
         if (this.Books.length != 0) {
             //console.log("function search is: " + type);
-            switch (type) {
-                case "author":
-                    for (i; i < this.Books.length; i++) {
-                        if (this.Books[i].details.author == author) {
-                            Booklist.push(this.Books[i]);
-                            count++;
-                        }
-                    }
-                    document.getElementById("msg").innerHTML = count + " Book(s) by" + uppercase(item) + " found in this Library.";
-                    return Booklist;
-                    break;
 
-                case "title":
-                    for (i; i < this.Books.length; i++) {
-                        if (this.Books[i].details.title == title) {
-                            Booklist.push(this.Books[i]);
-                            count++;
-                        }
-                    }
-                    document.getElementById("msg").innerHTML = count + " Book(s) named" + uppercase(item) + " found in this Library.";
-                    return Booklist;
-                    break;
+            switch (key) {
 
                 case "titlePart":
-                    for (i; i < this.Books.length; i++) {
-                        title = this.Books[i].details.title.toLowerCase();
-                        //console.log(title.indexOf(item.toLowerCase()));
-                        if (title.indexOf(item.toLowerCase()) !== -1) {
-                            Booklist.push(this.Books[i]);
-                            count++;
-                        }
-                    }
                     //var compare = "";
                     //for (i; i < this.Books.length; i++) {
                     //    compare = this.Books[i].details.title.toLowerCase();
@@ -352,85 +325,62 @@ Library.prototype.getBookList = function (type, item = "", item2 = "") {
                     //        Booklist.push(this.Books[i]);
                     //    }
                     //}
-                    document.getElementById("msg").innerHTML = count + " Book(s) whose name is similar to " + uppercase(item) + " found in this Library.";
-                    return Booklist;
                     break;
-
-                case "authorPart":
-                    //var compare = "";
+                case "authorandtitle":
+                    return this.getSVBookList("authortitle", value, value2)
+                    break;
+                case "titleandauthor":
+                    return this.getSVBookList("authortitle", value, value2)
+                    break;
+                case "lessthanpages":
                     for (i; i < this.Books.length; i++) {
-                        author = this.Books[i].details.author.toLowerCase();
-                        //console.log(author.indexOf(item.toLowerCase()));
-                        if (author.indexOf(item.toLowerCase()) !== -1) {
+                        if (this.Books[i].details.numberOfPages < value) {
                             Booklist.push(this.Books[i]);
                             count++;
                         }
                     }
-                    //for (i; i < this.Books.length; i++) {
-                    //    compare = this.Books[i].details.author.toLowerCase();
-                    //    console.log(compare + "/" + item.toLowerCase());
-                    //    if (compare.includes(item.toLowerCase())) {
-                    //        Booklist.push(this.Books[i]);
-                    //    }
-                    //}
-                    document.getElementById("msg").innerHTML = count + " Book(s) by" + uppercase(item) + " found in this Library.";
-                    return Booklist;
                     break;
-                case "pageLess":
+                case "morethanpages":
                     for (i; i < this.Books.length; i++) {
-                        if (this.Books[i].details.numberOfPages < item) {
+                        if (this.Books[i].details.numberOfPages > value) {
                             Booklist.push(this.Books[i]);
                             count++;
                         }
                     }
-                    document.getElementById("msg").innerHTML = count + " Book(s) found in this Library.";
-                    return Booklist;
-                    break;
-
-                case "pageMore":
-                    for (i; i < this.Books.length; i++) {
-                        if (this.Books[i].details.numberOfPages > item) {
-                            Booklist.push(this.Books[i]);
-                            count++;
-                        }
-                    }
-                    document.getElementById("msg").innerHTML = count + " Book(s) found in this Library.";
-                    return Booklist;
                     break;
 
                 case "beforeDate":
                     for (i; i < this.Books.length; i++) {
-                        if (this.Books[i].details.publishDate < item) {
+                        if (this.Books[i].details.publishDate < value) {
                             Booklist.push(this.Books[i]);
                             count++;
                         }
                     }
-                    document.getElementById("msg").innerHTML = count + " Book(s) found in this Library.";
-                    return Booklist;
                     break;
 
                 case "afterDate":
                     for (i; i < this.Books.length; i++) {
-                        if (this.Books[i].details.publishDate > item) {
+                        if (this.Books[i].details.publishDate > value) {
                             Booklist.push(this.Books[i]);
                             count++;
                         }
                     }
-                    document.getElementById("msg").innerHTML = count + " Book(s) found in this Library.";
-                    return Booklist;
                     break;
 
                 case "callnum":
                     for (i; i < this.Books.length; i++) {
-                        if (this.Books[i].callNum <= item) {
+                        if (this.Books[i].callNum <= value) {
                             Booklist.push(this.Books[i]);
                             count++;
                         }
                     }
-                    document.getElementById("msg").innerHTML = count + " Book(s) found in this Library.";
-                    return Booklist;
                     break;
+                default:
+                    return this.getSVBookList(key, value)
             }
+
+            document.getElementById("msg").innerHTML = "Searching by " + uppercase(key) + " found " + count + " Book(s) in this Library.";
+            return Booklist;
 
         } else {
             return Booklist;
@@ -443,21 +393,31 @@ Library.prototype.getBookList = function (type, item = "", item2 = "") {
 
 };
 
-Library.prototype.getSVBookList = function (key, value) {
+Library.prototype.getSVBookList = function (key, value, value2 = "none") {
     try {
         var i = 0;
         var Booklist = [];
         var count = 0;
         var search = "";
         document.getElementById("msg").setAttribute("class", "msgclass");
-        for (i = 0; i < this.Books.length; i++) {
-            search = this.Books[i].details[key].toLowerCase();
-            if (search.indexOf(value.toLowerCase()) !== -1) {
-                Booklist.push(this.Books[i]);
-                count++;
+        if (key = "authortitle") {
+            for (i = 0; i < this.Books.length; i++) {
+                if ((this.Books[i].details.title.toLowerCase() == value) && (this.Books[i].details.author.toLowerCase() == value2)) {
+                    Booklist.push(this.Books[i]);
+                    count++;
+                }
+            }
+        } else {
+            for (i = 0; i < this.Books.length; i++) {
+                search = this.Books[i].details[key].toLowerCase();
+                if (search.indexOf(value.toLowerCase()) !== -1) {
+                    Booklist.push(this.Books[i]);
+                    count++;
+                }
             }
         }
-        document.getElementById("msg").innerHTML ="Searching by "+ uppercase(key) +" found " +count +" Book(s) in this Library.";
+
+        document.getElementById("msg").innerHTML = "Searching by " + uppercase(key) + " found " + count + " Book(s) in this Library.";
         return Booklist;
     }
     catch (e) {
@@ -607,6 +567,7 @@ function uppercase(str) {
 Library.prototype.fillLib = function () {
     this.Books.length = 0;
     this.Books.push(gIT);
+    this.Books.push(gIT2);
     this.Books.push(gGM);
     this.Books.push(gCatherInTheRye);
     this.Books.push(gNP);
@@ -621,19 +582,19 @@ Library.prototype.fillLib = function () {
 
 //Library Instance
 var gLib = new Library("gLib");
-console.log(gLib);
 
 //Book Instances that contains the properties of each book object.
 var gBL = new Book({ title: "Bool", author: "Jason West", numberOfPages: 250, publishDate: "Feburary 3, 1888" }, generateCallNum());
-var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 800, publishDate: "December 17, 1995" }, generateCallNum());
-var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPages: 1200, publishDate: "Janurary 22, 2002" }, generateCallNum());
+var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "September 15, 1986" }, generateCallNum());
+var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "January 5, 2016" }, generateCallNum());
+var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPages: 1200, publishDate: "August 29, 1996" }, generateCallNum());
 var gGMM = new Book({ title: "The Green Mile", author: "Scott Talbane", numberOfPages: 410, publishDate: "October 7, 1998" }, generateCallNum());
 var gCatherInTheRye = new Book({ title: "Catcher In The Rye", author: "JD Salinger", numberOfPages: 200, publishDate: "December 25, 1987" }, generateCallNum());
 var gNP = new Book({ title: "New Power", author: "Jeremy Heimans", numberOfPages: 873, publishDate: "April 12, 2019" }, generateCallNum());
-var gTTC = new Book({ title: "Dan the Fallower", author: "Jeremy Heimans", numberOfPages: 1250, publishDate: "May 17, 2000" }, generateCallNum());
+var gTTC = new Book({ title: "Dan the Follower", author: "Jeremy Heimans", numberOfPages: 1250, publishDate: "May 17, 2000" }, generateCallNum());
 var gPOW = new Book({ title: "War of Ewwww!", author: "Mary U'Banks", numberOfPages: 210, publishDate: "June 7, 1999" }, generateCallNum());
 var gQOS = new Book({ title: "Kill the Mockingbird", author: "Marko Wines", numberOfPages: 1750, publishDate: "April 12, 2014" }, generateCallNum());
-var gQOW = new Book({ title: "Kill the Other Mockingbird", author: "Marko Wines", numberOfPages: 1650, publishDate: "April 12, 2016" }, generateCallNum());
+var gQOW = new Book({ title: "Kill the Other Mockingbird", author: "Marko Wines", numberOfPages: 1100, publishDate: "April 12, 2016" }, generateCallNum());
 var gQOT = new Book({ title: "Kill the Blue Mockingbird Cause It Dont Like ME!", author: "Marko Wines", numberOfPages: 1650, publishDate: "April 12, 2018" }, generateCallNum());
 
 //Array collection of Book Instances
