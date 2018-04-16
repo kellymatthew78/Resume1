@@ -1,0 +1,234 @@
+﻿body {
+    background-color: black;
+}
+
+#smicon {
+    height: 1em;
+}
+
+.wrapper {
+    /*border: 1px solid red; /*testing only*/
+}
+
+header {
+    /* border: 1px solid blue; /*testing only*/
+}
+
+    header img {
+        height: 1em;
+    }
+
+    header .headerLogo {
+        background-color: white;
+        /*border: 1px solid blue; /*testing only*/
+    }
+
+        header .headerLogo img {
+            height: 70%;
+            margin-left: 6rem;
+            margin-top: 1rem;
+            /*border: 1px solid blue; /*testing only*/
+        }
+
+    header .topHeader {
+        /* border: 1px solid grey; /*testing only*/
+    }
+
+        header .topHeader .thContent {
+            /* border: 1px solid green; /*testing only*/
+            color: ghostwhite;
+        }
+
+            header .topHeader .thContent span {
+                color: ghostwhite;
+            }
+
+            header .topHeader .thContent i {
+                color: white;
+            }
+
+            header .topHeader .thContent a {
+                display: inline-block;
+                color: ghostwhite;
+            }
+
+            header .topHeader .thContent img {
+                display: inline-block;
+                background-color: white;
+                opacity: 0.5;
+                filter: alpha(opacity=50); /* For IE8 and earlier */
+            }
+
+                header .topHeader .thContent img:hover {
+                    opacity: 1.0;
+                    filter: alpha(opacity=100); /* For IE8 and earlier */
+                }
+
+    header .smedia img {
+        height: 1em;
+        background-color: white;
+        /* border: 1px solid green; /*testing only*/
+    }
+
+main {
+    background-color: white;
+}
+
+    main .carousel .infoCarouselContent {
+        padding-bottom: 5em;
+    }
+
+        main .carousel .infoCarouselContent p {
+            text-align: left;
+            line-height: 1em;
+            font-size: 3em;
+            color: white;
+        }
+
+            main .carousel .infoCarouselContent p span {
+                text-transform: uppercase;
+            }
+
+    main .carousel-control-prev,
+    .carousel-control-next {
+        padding-top: 10em;
+    }
+
+    main .card {
+        text-align: center;
+        width: 70%;
+    }
+
+        main .card.myWeather {
+            background-color: #d69f0c;
+            color: white;
+        }
+
+        main .card.myGalleryCard {
+            border: 10px solid dimgrey;
+            height: 23em;
+        }
+
+        main .card.profile {
+            width: 18rem;
+        }
+
+            main .card.profile img {
+                width: 35%;
+            }
+
+            main .card.profile a {
+                display: inline;
+            }
+
+    main .hotelDetails {
+        background-color: white;
+        text-align: center;
+    }
+
+    main .btn-toolbar .btn {
+        margin-right: 10px;
+        width: 5em;
+    }
+
+        main .btn-toolbar .btn:last-child {
+            margin-right: 0;
+        }
+
+    main .thumbnail img {
+        width: 75%;
+    }
+    /*main styling form about use page*/
+    main .breadcrumb {
+        background-color: transparent;
+    }
+
+footer {
+    /* border: 1px solid green; /* For testing Only */
+    background-color: #212529;
+    color: white;
+}
+
+    footer .card {
+        background-color: #212529;
+        opacity: .5;
+    }
+
+        footer .card .list-group .list-group-item {
+            background-color: #212529;
+        }
+
+        footer .card .list-group a {
+            color: white;
+        }
+
+    footer .footerLogoHead, .footerLogoTail {
+        font-family: 'Cinzel Decorative', cursive;
+        line-height: 3px;
+    }
+
+    footer .footerLogoHead {
+        font-size: 3em;
+        color: gold;
+    }
+
+    footer .footerLogoTail {
+        font-size: 3em;
+    }
+
+    footer .footerLogoSub {
+        font-family: 'PT Serif', serif;
+        font-size: 3em;
+    }
+
+    footer .bottomFooter {
+        margin-top: 1em;
+    }
+
+    footer .row.bottomFooter small {
+        color: white;
+        opacity: .5;
+        padding-top: 1em;
+    }
+
+
+
+/*media queries*/
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {
+}
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+}
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {
+
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 360px) {
+    .topHeader {
+        display: none;
+    }
+
+    .hotelDetails {
+        text-align: center;
+    }
+
+    .carousel.news-carousel {
+        background-color: white;
+    }
+
+    main .card.myGalleryCard {
+        border: 10px solid dimgrey;
+        /*height: 23em;*/
+    }
+}
+/* Slim Mobile Portrait Size (devices and browsers) */
+@media only screen and (max-width: 320) {
+}

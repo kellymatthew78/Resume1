@@ -1,0 +1,664 @@
+﻿/*General Global Styling*/
+body {
+    background-color: black;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+
+li {
+    float: left;
+}
+
+img {
+    object-fit: contain;
+}
+
+.smicon {
+    height: 30px;
+    width: 30px;
+}
+
+.smimgline {
+    height: 30px;
+}
+
+.imgcontainer1 {
+    position: relative;
+    width: 100%;
+}
+
+/*Fullpage*/
+.wrapper {
+    /*/border: 3px solid blue; /*testing purpose*/
+    width: 1500px;
+    margin: 0 auto;
+}
+
+/*First section (Homepage)*/
+.home {
+    background-image: url(../img/background1_kissing.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    color: white;
+    text-align: center;
+    width: 100%;
+    /*/border: 3px solid blue; /*testing purpose*/
+}
+
+/*main content of the homepage*/
+.homePane {
+    float: left;
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /*border: 3px solid green; /*testing purpose*/
+}
+
+/*top navigation section of the homepage 2-parts*/
+/*part 1 of top navigation section (Unity)*/
+#homeNav-Section1 {
+    padding-top: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center
+    /*border: 5px solid blue;*/
+}
+
+.homeNav-Section1 {
+    padding-top: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center
+    /*border: 5px solid blue;*/
+}
+
+    .homeNav-Section1 h2 {
+        padding: 5px;
+        border-style: solid;
+        border-width: 3px;
+        border-color: white;
+        width: 100px;
+        margin: auto;
+        /*border: 5px solid blue;*/
+    }
+
+/*part 2 of top navigation section (NavBar)*/
+.homeNav-Section2 {
+    padding-left: 35%;
+    padding-top: 2em;
+    /*border: 5px solid blue;*/
+}
+
+    .homeNav-Section2 ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .homeNav-Section2 li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 15px 15px;
+        text-decoration: none;
+    }
+
+li a:hover:not(.active) {
+    /*background-color: white;*/
+    opacity: 0.5;
+    color: yellow;
+}
+
+.active {
+    background-color: greenyellow;
+}
+
+/*homepage content section 4 parts*/
+.homeContent {
+    padding-top: 25%;
+    text-align: center;
+    /*border: 3px solid yellow; /*testing purpose*/
+}
+
+    .homeContent img {
+        width: 50px;
+        height: 50px;
+    }
+
+/*part 1 of content (Header)*/
+.homeContent-Section1 {
+    color: gold;
+    font-family: 'Abraham Lincoln';
+    font-size: 5em;
+}
+
+/*part 2 of content (Body)*/
+.homeContent-Section2 {
+    padding: 0 20%;
+    font-family: 'Abraham Lincoln';
+    font-size: 2em;
+}
+
+/*part 4 of content (Bottom White Box Border)*/
+.frame1Parent {
+    /*border: 3px solid lightgrey; /*testing purpose*/
+}
+
+    .frame1Parent img {
+        height: 40em;
+        width: 55em;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        top: 23em;
+    }
+
+/*side content of the homepage*/
+.sidePane {
+    float: right;
+    writing-mode: vertical-lr;
+    width: 3em;
+    height: 600px;
+    transform: rotate(-180deg);
+    position: absolute;
+    right: 13em;
+    /*border: 3px solid yellow; /*testing purpose*/
+}
+
+/*side content of the homepage phone section*/
+.sidePane-Phone {
+    float: right;
+    transform: rotate(-180deg);
+    position: relative;
+    /*border: 5px solid red;*/
+}
+
+#phoneimg {
+    position: absolute;
+    right: -150px;
+    height: 200px;
+}
+
+/*side content of the homepage social media section*/
+.sidePane-SocialMedia {
+    width: 100%;
+}
+
+    .sidePane-SocialMedia ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .sidePane-SocialMedia li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 15px 15px;
+        text-decoration: none;
+    }
+
+/*Second section (Invites) */
+/*Total wrapper for invites section */
+.invites {
+    background-color: #694fca;
+    font-family: 'Abraham Lincoln';
+    height: 65em;
+    text-align: center;
+    padding: 20px 20px;
+    /* border: 3px solid blue; /*testing purpose*/
+}
+
+/*text within the transition image*/
+.invites-TrasitionHeader {
+    color: white;
+    width: 30%;
+    margin-left: 31%;
+   /* border: 3px solid lightblue; /*testing purpose*/
+}
+
+    .invites-TrasitionHeader h1 {
+        font-size: 3em;
+        line-height: 5px;
+        text-align: left;
+        /* border: 3px solid blue; /*testing purpose*/
+    }
+
+    .invites-TrasitionHeader h6 {
+        line-height: 5px;
+        font-size: 20px;
+        text-align: left;
+        /* border: 3px solid blue; /*testing purpose*/
+    }
+
+/*Invites Content */
+.invites-ContentBody {
+    padding-top: 9em;
+    color: white;
+    /*border: 3px solid blue; /*testing purpose*/
+}
+
+    .invites-ContentBody h1 {
+        font-size: 4em;
+        /*line-height: 5px;*/
+        text-align: left;
+        width: 300px;
+        height: 1em;
+        margin-left: 20%;
+        /* border: 3px solid red; /*testing purpose*/
+    }
+
+    .invites-ContentBody .invText {
+        margin-left: 41%;
+    }
+
+    .invites-ContentBody p {
+        font-family: 'GothamBlack';
+        font-size: 21px;
+        width: 600px;
+        text-align: left;
+        line-height: 1em;
+        /*border: 3px solid red; /*testing purpose*/
+    }
+
+.invites-Content {
+    text-align: left;
+    margin-top: 8em;
+    margin-left: 5em;
+    height: 325px;
+    /*border: 3px solid purple; /*testing purpose*/
+}
+
+    .invites-Content p {
+        text-align: left;
+        width: 11em;
+        /* border: 3px solid blue; /*testing purpose*/
+    }
+
+.invBoxHeader {
+    color: yellow;
+    font-size: 20px;
+    /*border: 3px solid blue; /*testing purpose*/
+}
+
+#invDiv1, #invDiv2, #invDiv3, #invDiv4 {
+    width: 25%;
+    height: 350px;
+    border: 1px hidden #000;
+    box-sizing: border-box;
+    text-align: left;
+    padding: 30px 30px;
+    font-size: 15px;
+    line-height: 1em;
+    /*border: 1px solid green; /*testing purpose*/
+}
+
+#invDiv1 {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    float: left;
+}
+
+#invDiv2 {
+    float: left;
+}
+
+#sinvDiv3 {
+    float: left;
+}
+
+#invDiv4 {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    float: left;
+}
+
+/*Third section (Unity) */
+
+.unity {
+    background-image: url('../img/WeAreUnity.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 800px;
+    color: white;
+    text-align: center;
+    font-family: 'Abraham Lincoln';
+}
+
+    /*Unity header section with image */
+
+    .unity header {
+        width: 40em;
+        height: 30em;
+        padding-top: 9em;
+        padding-left: 10em;
+        color: black;
+        text-align: center;
+        margin-left: auto;
+        margin-right: 30%;
+        position: relative;
+        top: -5em;
+    }
+
+        .unity header h1 {
+            font-size: 5em;
+        }
+
+    .unity img {
+        height: 200px;
+        width: 200px;
+    }
+
+/*Transition into 4th section */
+.frame2Parent {
+    /*border: 3px solid red;*/ /*testing purpose*/
+}
+
+    .frame2Parent img {
+        height: 35em;
+        width: 55em;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        top: -2em;
+    }
+
+/*Fourth section (honor) */
+.honor {
+    background-color: white;
+    height: 800px;
+    padding: 15em 5em;
+    /*border: 2px solid blue;  /*testing only */
+}
+
+.hTrasitionHeader {
+    width: 30%;
+    margin-left: 32%;
+    margin-top: -20%;
+    text-align: right;
+    /* border: 2px solid green; /*testing only */
+}
+
+    .hTrasitionHeader h1 {
+        font-size: 4em;
+        line-height: 20px;
+        font-family: 'Abraham Lincoln';
+    }
+
+    .hTrasitionHeader h6 {
+        font-size: 1em;
+        line-height: 1em;
+        position: relative;
+        bottom: 1em;
+    }
+
+.frame3Parent {
+    /*float: right;*/
+    /*border: 3px solid lightgrey; /*testing purpose*/
+}
+
+    .frame3Parent img {
+        height: 45em;
+        width: 55em;
+        display: block;
+        margin-top: 15%;
+        float: left;
+        z-index: 2;
+        /* border: 3px solid lightgrey; /*testing purpose*/
+    }
+
+    .frame3Parent .hContent1 {
+        width: 90%;
+        line-height: 1em;
+        text-align: right;
+        z-index: 3;
+        position: relative;
+        right: 32%;
+        top: 28em;
+        /* border: 3px solid lightgreen; /*testing purpose*/
+    }
+
+        .frame3Parent .hContent1 h1 {
+            color: yellow;
+            font-size: 40px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+        }
+
+        .frame3Parent .hContent1 p {
+            color: black;
+            font-size: 16px;
+        }
+
+    .frame3Parent table {
+        /*float: right;*/
+        display: inline-block;
+        width: auto;
+        height: auto;
+        padding: 7px;
+        border-style: none;
+        position: relative;
+        margin-top: 15%;
+        line-height: 3em;
+    }
+
+        .frame3Parent table img {
+            height: 30px;
+            width: 30px;
+        }
+
+/*Fifth section (Global) */
+.globalco {
+    background-image: url('../img/bg_snowforrest.png');
+    background-repeat: no-repeat;
+    /*background-size: 100% 100%;*/
+    background-size: cover;
+    height: 110em;
+    text-align: center;
+    padding: 20px 20px;
+    position: relative;
+    top: -15em;
+}
+
+    .globalco h1 {
+        padding-top: 25em;
+        font-family: 'Abraham Lincoln';
+        font-size: 45px;
+    }
+
+    .globalco h4 {
+        /*padding-top:16em;*/
+    }
+
+/*Sixth section (Customer) */
+#Transition3 {
+    /*border: 5px solid blue;*/ /*testing only */
+}
+
+    #Transition3 #t3-imgline {
+        height: 100px;
+    }
+
+.gl-allCustomers {
+    /*border: 5px solid blue;*/ /*testing only */
+    height: 20em;
+    padding-left: 25%;
+}
+
+.custimg {
+    width: 100px;
+    height: 100px;
+}
+
+.glcustomer {
+    /*border: 5px solid blue;*/
+    background-color: white;
+    width: 200px;
+    height: 300px;
+    text-align: center;
+    padding: 10px;
+    float: left;
+    margin-right: 25px;
+}
+
+    .glcustomer p {
+        font-size: 10px;
+    }
+
+    .glcustomer img {
+        width: 100px;
+        height: 100px;
+    }
+
+.glcustomer-select {
+    /*border: 5px solid blue;*/
+    background-color: rebeccapurple;
+    color: white;
+    width: 200px;
+    height: 300px;
+    text-align: center;
+    padding: 10px;
+    float: left;
+    margin-right: 25px;
+    box-shadow: 7px 7px 5px 1px #605F5F;
+}
+
+    .glcustomer-select p {
+        font-size: 10px;
+    }
+    .glcustomer-select img {
+        width: 100px;
+        height: 100px;
+    }
+
+/*Seventh section (Footer) */
+.pfooter {
+    /*border: 5px solid blue;*/ /*testing only */
+    background-color: #212121;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 15em;
+}
+
+    .pfooter #parent {
+        /*border: solid 1px #aaa;*/ /*testing only*/
+        font-size: small;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        line-height: 20px;
+        overflow: hidden;
+    }
+
+    .pfooter .parent {
+        /*border: solid 1px #aaa;*/ /*testing only*/
+        font-size: small;
+        line-height: 20px;
+        overflow: hidden;
+        padding: 5px;
+        vertical-align: top;
+    }
+
+    .pfooter .child {
+        /*border: solid 1px #ccc;*/ /*testing only*/
+        width: 250px;
+        height: 35px;
+        display: inline-block;
+        vertical-align: auto;
+    }
+
+    .pfooter .child2 {
+        /*border: solid 1px #ccc;*/ /*testing only*/
+        width: 275px;
+        display: inline-block;
+        vertical-align: auto;
+    }
+
+    .pfooter #pfS1 {
+        /*border: 2px solid red;*/ /*testing only*/
+        position: relative;
+        bottom: -5em;
+    }
+
+    .pfooter #pfS2 {
+        /*border: 2px solid blue;*/ /*testing only*/
+    }
+
+    .pfooter #pfS3 {
+        /*border: 2px solid green;*/ /*testing only*/
+    }
+
+    .pfooter #pfS4 {
+        /*border: 2px solid yellow;*/ /*testing only*/
+        position: relative;
+        bottom: 10em;
+    }
+
+        .pfooter #pfS4 table {
+            text-align: left;
+            
+        }
+
+    .pfooter #unityborder {
+        border-style: solid;
+        border-color: white;
+        border-width: 1px;
+    }
+
+    .pfooter .socialico {
+        width: 20px;
+        height: 20px;
+        opacity: 0.5;
+        filter: alpha(opacity=50); /* For IE8 and earlier */
+    }
+
+    .pfooter img:hover {
+        opacity: 1.0;
+        filter: alpha(opacity=100); /* For IE8 and earlier */
+    }
+
+    .pfooter .smico {
+        width: 16px;
+        height: 16px;
+        padding: 5px;
+    }
+
+    .pfooter .smico2 {
+        width: 50px;
+        height: 50px;
+    }
+
+    .pfooter p {
+        font-size: xx-small;
+    }
+
+    .pfooter .ptext {
+        color: mediumpurple;
+        font-size: xx-small;
+    }
+
+    .pfooter .pfblog {
+        text-align: left;
+        line-height: 3px;
+        font-size: xx-small;
+        /*width: 280px;*/
+    }
+
+    .pfooter .pfblogdt {
+        float: right;
+    }
