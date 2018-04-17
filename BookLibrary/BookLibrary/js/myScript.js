@@ -40,6 +40,9 @@ var Book = function (details, callNum, catagory = "") {
 
 }
 
+
+
+
 //this will check to see if Book title by an author exists in Library. If not will add it. This function sets a message. because it is used by other functions and may be repeated the repeat var is used so the message is not set if used by another function.
 Library.prototype.addBook = function (Book, repeat = false) {
     try {

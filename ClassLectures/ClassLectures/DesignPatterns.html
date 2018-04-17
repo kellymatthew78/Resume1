@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>JavaScript Design Patterns</title>
+    <script defer src="js/designpattern.js"></script>
+</head>
+<body>
+    <h1>JavaScript Design Patterns</h1>
+    <br />
+    <h2>Closures</h2>
+    <p>Javascript closures are any function that contains an inner function, that references a variable in the parent function. The common implementation is to use the closure pattern to create a private, inaccessible variable environment.</p>
+    <input id="Button1" type="button" value="Fire Clousure Function" onclick="myClosure()" /><span id="closure"></span>
+    <hr />
+    <h2>Immediate Functions</h2>
+    <p id="immfunct">Immediate Functions are functions that are invoked as soon as they are defined (ImmediatelyInvoked Function Expression or IIFE). This can also be done for anonymous functions. This paragraph changes color due to an immdiate function!</p>
+    <hr />
+
+    <h2>Module</h2>
+    <p>The module pattern in javascript is a way of creating objects to be used. There are many advanced topics having to do with the module pattern, but the most basic is referred to as ‘revealer’. With the revealer pattern, you’re returning (or revealing) properties or functions that interact with private, unaccessible properties or functions.</p>
+    <br />
+    <input id="Button2" type="button" value="Fire Module Function" onclick="ViewStoreItems()" /><br />
+    <span id="modStoreSales"></span><br />
+    <span id="modStorePublic"></span><br />
+    <span id="modStorePrivate"></span><br />
+    <hr />
+
+    <h2>Factory</h2>
+    <p>The factory pattern is used for the creation of objects. It allows us to create a generic interface for creating different types of objects. This is very useful for the creation of very complex objects; objects that depend on dynamic factors or application settings.</p>
+
+    <hr />
+
+    <h2>Observer and Pub Sub</h2>
+    <p>Publisher/subscriber is usually referred to as an observer pattern, but there are other flavors as well. An observer pattern is any in which an object can publish updates to a collection of observing objects. It’s a one-to-many relationship where the dependants of an object are notified of state changes.</p>
+    <p>Pub/sub is the most common way to implement this pattern. Specifically, pub/sub differs from any other observer pattern in that a third party maintains the publishers and subscribers rather than the publisher itself. It can be easily achieved using jQuery or one of the other dedicated libraries.</p>
+</body>
+</html>
