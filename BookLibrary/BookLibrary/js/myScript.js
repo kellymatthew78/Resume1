@@ -40,9 +40,6 @@ var Book = function (details, callNum, catagory = "") {
 
 }
 
-
-
-
 //this will check to see if Book title by an author exists in Library. If not will add it. This function sets a message. because it is used by other functions and may be repeated the repeat var is used so the message is not set if used by another function.
 Library.prototype.addBook = function (Book, repeat = false) {
     try {
@@ -566,6 +563,46 @@ function uppercase(str) {
     return newarray1.join(' ');
 }
 
+function LoadBookList() {
+    //alert("Just Testing!!!");
+    //check if storage has value
+    //clear table
+    $("#tblBKList").find("tr:not(:first)").remove();
+    var text = "";
+    var Bookarr = [];
+    var i = 0;
+
+    if (storageType == 'localStorage') {
+        text = localStorage.getItem(window.Library().storagekey);
+    } else if (storageType == 'sessionStorage') {
+        text = sessionStorage.getItem(window.Library().storagekey);
+    }
+    Bookarr = JSON.parse(text);
+    //console.log(Bookarr);
+    var tr;
+    var x = "";
+    for (var i = 0; i < Bookarr.length; i++) {
+        x = Bookarr[i].callNum;
+        tr = $('<tr/>');
+        //<a href='#' id='link'>Click me!</a>
+        tr.append("<td><a href='javascript: void (0)' class='bookdetail' id='CN"+ x  + "'>" + x + "</a></td>");
+        tr.append("<td>" + Bookarr[i].details.title + "</td>");
+        tr.append("<td>" + Bookarr[i].details.author + "</td>");
+        tr.append("<td>" + Bookarr[i].details.numberOfPages + "</td>");
+        tr.append("<td>" + Bookarr[i].details.publishDate + "</td>");
+        tr.append("<td>" + Bookarr[i].catagory + "</td>");
+        $('table').first().append(tr);
+    }  
+}
+
+
+
+function displayBookDetailbyCallNum(callNum) {
+    var BookArr = window.Library().getBookList("callnum", callNum)
+    console.log(BookArr.length);
+    console.log(BookArr);
+    return BookArr.length; 
+}
 //for testing. this function will fill the Library
 Library.prototype.fillLib = function () {
     this.Books.length = 0;
@@ -583,22 +620,57 @@ Library.prototype.fillLib = function () {
     return this.Books.length;
 };
 
+
+//JQUERY---------------------------------------------------------------------------------------------------------------------------
+$(document).ready(function () {
+
+    //event handler for load library button
+
+    //This button will create a default library, fill it with books and then save those books to browser storage.
+    $("#creatLibrary").on("click", function () {
+        //alert("button fired!");
+        var gLib = new Library("gLib");
+        gLib.fillLib();
+        gLib.saveLibrary();
+        console.log(gLib);
+    });
+
+    $("#loadLibrary").on("click", function () {
+        LoadBookList();
+    });
+
+   //captures the click event of dynamic link button
+    $('#tblBKList').click(function (e) {
+        var selected_id = $(e.target).attr("id"); // or e.target.id
+        alert(selected_id + "2nd run");
+    });
+
+    //$('#bookdetail').on("click", function () {
+    //    alert("firing");
+    //    var bookid = $(this).prop('id');
+    //    console.log(bookid);
+    //    //displayBookDetailbyCallNum(bookid);
+    //});
+
+
+});
+
 //Library Instance
-var gLib = new Library("gLib");
+//var gLib = new Library("gLib");
 
 //Book Instances that contains the properties of each book object.
-var gBL = new Book({ title: "Bool", author: "Jason West", numberOfPages: 250, publishDate: "Feburary 3, 1888" }, generateCallNum());
-var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "September 15, 1986" }, generateCallNum());
-var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "January 5, 2016" }, generateCallNum());
-var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPages: 1200, publishDate: "August 29, 1996" }, generateCallNum());
-var gGMM = new Book({ title: "The Green Mile", author: "Scott Talbane", numberOfPages: 410, publishDate: "October 7, 1998" }, generateCallNum());
-var gCatherInTheRye = new Book({ title: "Catcher In The Rye", author: "JD Salinger", numberOfPages: 200, publishDate: "December 25, 1987" }, generateCallNum());
-var gNP = new Book({ title: "New Power", author: "Jeremy Heimans", numberOfPages: 873, publishDate: "April 12, 2019" }, generateCallNum());
-var gTTC = new Book({ title: "Dan the Follower", author: "Jeremy Heimans", numberOfPages: 1250, publishDate: "May 17, 2000" }, generateCallNum());
-var gPOW = new Book({ title: "War of Ewwww!", author: "Mary U'Banks", numberOfPages: 210, publishDate: "June 7, 1999" }, generateCallNum());
-var gQOS = new Book({ title: "Kill the Mockingbird", author: "Marko Wines", numberOfPages: 1750, publishDate: "April 12, 2014" }, generateCallNum());
-var gQOW = new Book({ title: "Kill the Other Mockingbird", author: "Marko Wines", numberOfPages: 1100, publishDate: "April 12, 2016" }, generateCallNum());
-var gQOT = new Book({ title: "Kill the Blue Mockingbird Cause It Dont Like ME!", author: "Marko Wines", numberOfPages: 1650, publishDate: "April 12, 2018" }, generateCallNum());
+var gBL = new Book({ title: "Bool", author: "Jason West", numberOfPages: 250, publishDate: "Feburary 3, 1888" }, generateCallNum(), "Western");
+var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "September 15, 1986" }, generateCallNum(), "Horror");
+var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "January 5, 2016" }, generateCallNum(), "Horror");
+var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPages: 1200, publishDate: "August 29, 1996" }, generateCallNum(), "Horror");
+var gGMM = new Book({ title: "The Green Mile", author: "Scott Talbane", numberOfPages: 410, publishDate: "October 7, 1998" }, generateCallNum(), "Drama");
+var gCatherInTheRye = new Book({ title: "Catcher In The Rye", author: "JD Salinger", numberOfPages: 200, publishDate: "December 25, 1987" }, generateCallNum(), "Drama");
+var gNP = new Book({ title: "New Power", author: "Jeremy Heimans", numberOfPages: 873, publishDate: "April 12, 2019" }, generateCallNum(), "Thriller");
+var gTTC = new Book({ title: "Dan the Follower", author: "Jeremy Heimans", numberOfPages: 1250, publishDate: "May 17, 2000" }, generateCallNum(), "Drama");
+var gPOW = new Book({ title: "War of Ewwww!", author: "Mary U'Banks", numberOfPages: 210, publishDate: "June 7, 1999" }, generateCallNum(), "Comedy");
+var gQOS = new Book({ title: "Kill the Mockingbird", author: "Marko Wines", numberOfPages: 1750, publishDate: "April 12, 2014" }, generateCallNum(), "Drama");
+var gQOW = new Book({ title: "Kill the Other Mockingbird", author: "Marko Wines", numberOfPages: 1100, publishDate: "April 12, 2016" }, generateCallNum(), "Drama");
+var gQOT = new Book({ title: "Kill the Blue Mockingbird Cause It Dont Like ME!", author: "Marko Wines", numberOfPages: 1650, publishDate: "April 12, 2018" }, generateCallNum(), "Drama");
 
 //Array collection of Book Instances
 var gBookArray1 = [gIT, gGM, gCatherInTheRye];
@@ -606,6 +678,6 @@ var gBookArray2 = [gNP, gTTC, gPOW];
 var gBookArray3 = [];
 
 //testing auto loads Library
-gLib.fillLib();
+//gLib.fillLib();
 
 //--------------------------------------------------------------------------------------------------------------------------
