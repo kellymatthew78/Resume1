@@ -24,7 +24,7 @@
             </nav>
             <h3 class="text-muted">My Library</h3>
         </div>
-
+        <div class="row"><div class="col"><h4 id="msg"></h4></div></div>
         <div class="jumbotron">
             <h1>Welcome All To The Library</h1>
             <p class="lead">This is a small community library that is used by members to share books that they have. It can be used to checkout as well as donate various books to this library. </p>
@@ -70,13 +70,15 @@
                 <section class="card-wrapper ">
                     <div id="cdBookInfo" class="card border-0" onclick="flip()">
                         <div class="front">
-                            <img id="cbBookImg" class="card-img-top img-responsive" src="img/bookimg/IT_old.jpg" alt="Book Image">
+                            <img id="cbBookImg" class="card-img-top img-responsive" src="img/bookimg/524_IT.jpg" alt="Book Image">
                             <div class="card-body">
                                 <h4 id="cardtitle" class="">Card title</h4>
+                                <small id="cardAuthor" class="">Written By: The Dude</small>
                                 <hr>
-                                <p id="cardsummery" class="card-text">Welcome to Derry, Maine. It’s a small city, a place as hauntingly familiar as your own hometown. Only in Derry the haunting is real.</p>
+                                <p id="cardPlot" class="card-text">Welcome to Derry, Maine. It’s a small city, a place as hauntingly familiar as your own hometown. Only in Derry the haunting is real.</p>
                                 <a class="link-text">
                                     <h5>Summary<i class="fa fa-angle-double-right"></i></h5>
+                                    <h5 id="cdBookInfo_close">Close<i class="fa fa-angle-double-right"></i></h5>
                                 </a>
                             </div>
                         </div>
@@ -90,47 +92,6 @@
                         </div>
                     </div>
                 </section>
-                <!--<div class="card-wrapper w-75" onclick="cardFlip()">
-                <div id="cdBookInfo" class="card-rotating effect__click h-100 w-100">
-
-                    <!--Front Side-->
-                <!--<div class="card front">
-                    <!-- Image-->
-                <!--<div class="view overlay mx-auto">
-                    <img id="cbBookImg" class="card-img-top img-responsive" src="img/bookimg/IT_old.jpg" alt="Book Image">
-                    <a>
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>-->
-                <!--Content-->
-                <!--<div class="card-body">
-                        <a class="rotate-btn float-right" data-card="cdBookInfo"><i class="fa fa-share-alt fa-lg"></i></a>
-                        <h4 id="cardtitle" class="">Card title</h4>
-                        <hr>
-                        <p id="cardsummery" class="card-text">Welcome to Derry, Maine. It’s a small city, a place as hauntingly familiar as your own hometown. Only in Derry the haunting is real.</p>
-                        <a class="link-text">
-                            <h5>Read more <i class="fa fa-angle-double-right"></i></h5>
-                        </a>
-                    </div>
-
-                </div>-->
-                <!--Front Side-->
-                <!--Back Side-->
-                <!--<div class="card back">-->
-                <!-- Content -->
-                <!--<div class="content text-center">
-
-                    <h4 class="card-title font-weight-bold my-4">Book Summery <i class="fas fa-book" data-card="card-2"></i></h4>
-
-                    <small></small>
-                    <hr>
-                    <p>Welcome to Derry, Maine. It’s a small city, a place as hauntingly familiar as your own hometown. Only in Derry the haunting is real.</p>
-                    <p>They were seven teenagers when they first stumbled upon the horror. Now they are grown-up men and women who have gone out into the big world to gain success and happiness. But the promise they made twenty-eight years ago calls them reunite in the same place where, as teenagers, they battled an evil creature that preyed on the city’s children. Now, children are being murdered again and their repressed memories of that terrifying summer return as they prepare to once again battle the monster lurking in Derry’s sewers.</p>
-
-                </div>-->
-                <!--</div>-->
-                <!--Back Side-->
-                <!--</div>-->
             </div>
             <!-- Rotating card -->
             <!--</div>-->

@@ -41,6 +41,38 @@ var Book = function (details, callNum, catagory = "", bookcover = "") {
 
 }
 
+//bolierplate
+Library.prototype.x = function () {
+    try {
+
+        return false
+    }
+    catch (e) {
+        return e;
+    }
+};
+
+Library.prototype.int = function () {
+    try {
+
+
+        this._bindEvents()
+        return false
+    }
+    catch (e) {
+        return e;
+    }
+};
+
+Library.prototype._bindEvents = function () {
+    try {
+        //this.$btn.on("click",)
+        return false
+    }
+    catch (e) {
+        return e;
+    }
+};
 //this will check to see if Book title by an author exists in Library. If not will add it. This function sets a message. because it is used by other functions and may be repeated the repeat var is used so the message is not set if used by another function.
 Library.prototype.addBook = function (Book, repeat = false) {
     try {
@@ -305,7 +337,7 @@ Library.prototype.getIndex = function (type, item = "", item2 = "") {
 };
 
 //this is a master search function that will return array of objects from the Library based on the type of search you are performing and the item(s) you are searching for.
-Library.prototype.getBookList = function (key, value, value2 = "") {
+Library.prototype.getBookList = function (key, value, value2 = "", displaymsg = true) {
     try {
         var i = 0;
         var Booklist = [];
@@ -370,9 +402,10 @@ Library.prototype.getBookList = function (key, value, value2 = "") {
 
                 case "callnum":
                     for (i; i < this.Books.length; i++) {
-                        if (this.Books[i].callNum <= value) {
+                        if (this.Books[i].callNum == value) {
                             Booklist.push(this.Books[i]);
                             count++;
+                            break;
                         }
                     }
                     break;
@@ -380,7 +413,7 @@ Library.prototype.getBookList = function (key, value, value2 = "") {
                     return this.getSVBookList(key, value)
             }
 
-            document.getElementById("msg").innerHTML = "Searching by " + uppercase(key) + " found " + count + " Book(s) in this Library.";
+            if (displaymsg) { document.getElementById("msg").innerHTML = "Searching by " + uppercase(key) + " found " + count + " Book(s) in this Library."; }
             return Booklist;
 
         } else {
@@ -503,7 +536,7 @@ function generateCallNum() {
 }
 
 //resets Library and clears local and session storage
-function resetTotalLibrary(vLibrary, newKey = "LibraryKey") {
+function resetTotalLibrary(vLibrary, createNew = true, newKey = "LibraryKey") {
     try {
 
         localStorage.removeItem(vLibrary.storagekey);
@@ -511,7 +544,8 @@ function resetTotalLibrary(vLibrary, newKey = "LibraryKey") {
         sessionStorage.removeItem(vLibrary.storagekey);
         sessionStorage.removeItem("libStorageAvilible");
         vLibrary.Books.length = 0;
-        vLibrary = new Library(newKey);
+        if (createNew) { vLibrary = new Library(newKey); };
+       
         return true;
     }
     catch (e) {
@@ -586,7 +620,7 @@ function LoadBookList() {
         x = Bookarr[i].callNum;
         tr = $('<tr/>');
         //<a href='#' id='link'>Click me!</a>
-        tr.append("<td><a href='javascript: void (0)' class='bookdetail' id='CN" + x + "'>" + x + "</a></td>");
+        tr.append("<td><a href='javascript: void (0)' class='bookdetail' id='" + x + "'>" + x + "</a></td>");
         tr.append("<td>" + Bookarr[i].details.title + "</td>");
         tr.append("<td>" + Bookarr[i].details.author + "</td>");
         tr.append("<td>" + Bookarr[i].details.numberOfPages + "</td>");
@@ -599,13 +633,23 @@ function LoadBookList() {
 
 
 function displayBookDetailbyCallNum(callNum) {
-    //var BookArr = window.Library().getBookList("callnum", callNum)
-    $("cdBookInfo").data("BookArr", window.Library().getBookList("callnum", callNum));
-    $("#cardtitle").text($("cdBookInfo").data("BookArr").details.title);
-    console.log(BookArr.length);
+    console.log(callNum);
+    var BookArr = [];
+    BookArr = window.Library().getBookList("callnum", callNum)
     console.log(BookArr);
+    if (BookArr.length > 0) {
+        //$("cdBookInfo").data("BookArr", BookArr);
+        //$("#cardtitle").text($("cdBookInfo").data("BookArr").details.title);
+        //$("#cardAuthor").text($("cdBookInfo").data("BookArr").details.author);
+        //$("#cardPlot").text($("cdBookInfo").data("BookArr").details.title);
+        document.getElementById("cbBookImg").src = BookArr[0].bookcover;
+        document.getElementById("cardtitle").innerHTML = BookArr[0].details.author;
+        document.getElementById("cardAuthor").innerHTML = "Written by: " + BookArr[0].details.title;
+        //document.getElementById("cardPlot").innerHTML = BookArr[0].review.plot;
+        //document.getElementById("cardSummary").innerHTML = BookArr[0].review.summary;
+    }
+    //$("cdBookInfo").toggle();
     return BookArr.length;
-
 }
 
 function flip() {
@@ -635,7 +679,9 @@ Library.prototype.fillLib = function () {
 $(document).ready(function () {
 
     //event handler for load library button
-
+    $("div").on("click", function () {
+        document.getElementById("msg").innerHTML = "";
+    })
     //This button will create a default library, fill it with books and then save those books to browser storage.
     $("#creatLibrary").on("click", function () {
         //alert("button fired!");
@@ -654,7 +700,10 @@ $(document).ready(function () {
         //alert(selected_id + "2nd run");
         var bookid = $(e.target).attr("id"); // or e.target.id
         displayBookDetailbyCallNum(bookid);
+    });
 
+    $("#cdBookInfo_close").on("click", function () {
+        //$("cdBookInfo").toggle();
     });
 });
 
@@ -663,8 +712,8 @@ $(document).ready(function () {
 
 //Book Instances that contains the properties of each book object.
 var gBL = new Book({ title: "Bool", author: "Jason West", numberOfPages: 250, publishDate: "Feburary 3, 1888" }, 147, "Western");
-var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "September 15, 1986" }, 524, "Horror",);
-var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "January 5, 2016" }, 534, "Horror");
+var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "September 15, 1986" }, 524, "Horror", "img/bookimg/524_IT.jpg" );
+var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "January 5, 2016" }, 534, "Horror", "img/bookimg/534_IT.jpg");
 var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPages: 1200, publishDate: "August 29, 1996" }, 516, "Horror");
 var gGMM = new Book({ title: "The Green Mile", author: "Scott Talbane", numberOfPages: 410, publishDate: "October 7, 1998" }, 710, "Drama");
 var gCatherInTheRye = new Book({ title: "Catcher In The Rye", author: "JD Salinger", numberOfPages: 200, publishDate: "December 25, 1987" }, 734, "Drama");
