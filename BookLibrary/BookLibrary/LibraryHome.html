@@ -6,15 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Book Library</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/myStyle.css" rel="stylesheet" />
+
 </head>
 <body>
     <div class="container-fluid">
@@ -32,7 +28,7 @@
         <div class="jumbotron">
             <h1>Welcome All To The Library</h1>
             <p class="lead">This is a small community library that is used by members to share books that they have. It can be used to checkout as well as donate various books to this library. </p>
-            
+
             <p>
                 <a id="creatLibrary" class="btn btn-lg btn-success" href="#" role="button">Create Library</a>
                 <a id="loadLibrary" class="btn btn-lg btn-success" href="#" role="button">Load Library</a>
@@ -50,7 +46,7 @@
                     <thead>
                         <tr>
                             <th>Call#</th>
-                            <th>Title</th> 
+                            <th>Title</th>
                             <th>Author</th>
                             <th>Page #</th>
                             <th>Publish Date</th>
@@ -68,18 +64,82 @@
                         </tr>
                     </tbody>
                 </table>
-
             </div>
+            <div class="col-lg-4">
+                <!-- Rotating card -->
+                <section class="card-wrapper ">
+                    <div id="cdBookInfo" class="card border-0" onclick="flip()">
+                        <div class="front">
+                            <img id="cbBookImg" class="card-img-top img-responsive" src="img/bookimg/IT_old.jpg" alt="Book Image">
+                            <div class="card-body">
+                                <h4 id="cardtitle" class="">Card title</h4>
+                                <hr>
+                                <p id="cardsummery" class="card-text">Welcome to Derry, Maine. It’s a small city, a place as hauntingly familiar as your own hometown. Only in Derry the haunting is real.</p>
+                                <a class="link-text">
+                                    <h5>Summary<i class="fa fa-angle-double-right"></i></h5>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <h4 class="card-title font-weight-bold my-4">Book Summery <i class="fas fa-book" data-card="cdBookInfo"></i></h4>
 
+                            <small></small>
+                            <hr>
+                            <p>Welcome to Derry, Maine. It’s a small city, a place as hauntingly familiar as your own hometown. Only in Derry the haunting is real.</p>
+                            <p>They were seven teenagers when they first stumbled upon the horror. Now they are grown-up men and women who have gone out into the big world to gain success and happiness. But the promise they made twenty-eight years ago calls them reunite in the same place where, as teenagers, they battled an evil creature that preyed on the city’s children. Now, children are being murdered again and their repressed memories of that terrifying summer return as they prepare to once again battle the monster lurking in Derry’s sewers.</p>
+                        </div>
+                    </div>
+                </section>
+                <!--<div class="card-wrapper w-75" onclick="cardFlip()">
+                <div id="cdBookInfo" class="card-rotating effect__click h-100 w-100">
+
+                    <!--Front Side-->
+                <!--<div class="card front">
+                    <!-- Image-->
+                <!--<div class="view overlay mx-auto">
+                    <img id="cbBookImg" class="card-img-top img-responsive" src="img/bookimg/IT_old.jpg" alt="Book Image">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>-->
+                <!--Content-->
+                <!--<div class="card-body">
+                        <a class="rotate-btn float-right" data-card="cdBookInfo"><i class="fa fa-share-alt fa-lg"></i></a>
+                        <h4 id="cardtitle" class="">Card title</h4>
+                        <hr>
+                        <p id="cardsummery" class="card-text">Welcome to Derry, Maine. It’s a small city, a place as hauntingly familiar as your own hometown. Only in Derry the haunting is real.</p>
+                        <a class="link-text">
+                            <h5>Read more <i class="fa fa-angle-double-right"></i></h5>
+                        </a>
+                    </div>
+
+                </div>-->
+                <!--Front Side-->
+                <!--Back Side-->
+                <!--<div class="card back">-->
+                <!-- Content -->
+                <!--<div class="content text-center">
+
+                    <h4 class="card-title font-weight-bold my-4">Book Summery <i class="fas fa-book" data-card="card-2"></i></h4>
+
+                    <small></small>
+                    <hr>
+                    <p>Welcome to Derry, Maine. It’s a small city, a place as hauntingly familiar as your own hometown. Only in Derry the haunting is real.</p>
+                    <p>They were seven teenagers when they first stumbled upon the horror. Now they are grown-up men and women who have gone out into the big world to gain success and happiness. But the promise they made twenty-eight years ago calls them reunite in the same place where, as teenagers, they battled an evil creature that preyed on the city’s children. Now, children are being murdered again and their repressed memories of that terrifying summer return as they prepare to once again battle the monster lurking in Derry’s sewers.</p>
+
+                </div>-->
+                <!--</div>-->
+                <!--Back Side-->
+                <!--</div>-->
+            </div>
+            <!-- Rotating card -->
+            <!--</div>-->
         </div>
-
         <footer class="footer">
             <p>© 2018 Matthew Kelly</p>
         </footer>
-
     </div>
-
-    <!-- jQuery and necessary Bootstrap's files) -->
+    <!-- jQuery and necessary Bootstrap's files plus any CDN) -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>

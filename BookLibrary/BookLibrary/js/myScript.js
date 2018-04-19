@@ -33,10 +33,11 @@ var Library;
 //};
 
 //Book object constructor
-var Book = function (details, callNum, catagory = "") {
+var Book = function (details, callNum, catagory = "", bookcover = "") {
     this.details = details;
     this.callNum = callNum;
     this.catagory = catagory;
+    this.bookcover = bookcover;
 
 }
 
@@ -585,24 +586,33 @@ function LoadBookList() {
         x = Bookarr[i].callNum;
         tr = $('<tr/>');
         //<a href='#' id='link'>Click me!</a>
-        tr.append("<td><a href='javascript: void (0)' class='bookdetail' id='CN"+ x  + "'>" + x + "</a></td>");
+        tr.append("<td><a href='javascript: void (0)' class='bookdetail' id='CN" + x + "'>" + x + "</a></td>");
         tr.append("<td>" + Bookarr[i].details.title + "</td>");
         tr.append("<td>" + Bookarr[i].details.author + "</td>");
         tr.append("<td>" + Bookarr[i].details.numberOfPages + "</td>");
         tr.append("<td>" + Bookarr[i].details.publishDate + "</td>");
         tr.append("<td>" + Bookarr[i].catagory + "</td>");
         $('table').first().append(tr);
-    }  
+    }
 }
 
 
 
 function displayBookDetailbyCallNum(callNum) {
-    var BookArr = window.Library().getBookList("callnum", callNum)
+    //var BookArr = window.Library().getBookList("callnum", callNum)
+    $("cdBookInfo").data("BookArr", window.Library().getBookList("callnum", callNum));
+    $("#cardtitle").text($("cdBookInfo").data("BookArr").details.title);
     console.log(BookArr.length);
     console.log(BookArr);
-    return BookArr.length; 
+    return BookArr.length;
+
 }
+
+function flip() {
+    $('.card').toggleClass('flipped');
+}
+
+
 //for testing. this function will fill the Library
 Library.prototype.fillLib = function () {
     this.Books.length = 0;
@@ -639,38 +649,31 @@ $(document).ready(function () {
         LoadBookList();
     });
 
-   //captures the click event of dynamic link button
+    //captures the click event of dynamic link button
     $('#tblBKList').click(function (e) {
-        var selected_id = $(e.target).attr("id"); // or e.target.id
-        alert(selected_id + "2nd run");
+        //alert(selected_id + "2nd run");
+        var bookid = $(e.target).attr("id"); // or e.target.id
+        displayBookDetailbyCallNum(bookid);
+
     });
-
-    //$('#bookdetail').on("click", function () {
-    //    alert("firing");
-    //    var bookid = $(this).prop('id');
-    //    console.log(bookid);
-    //    //displayBookDetailbyCallNum(bookid);
-    //});
-
-
 });
 
 //Library Instance
 //var gLib = new Library("gLib");
 
 //Book Instances that contains the properties of each book object.
-var gBL = new Book({ title: "Bool", author: "Jason West", numberOfPages: 250, publishDate: "Feburary 3, 1888" }, generateCallNum(), "Western");
-var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "September 15, 1986" }, generateCallNum(), "Horror");
-var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "January 5, 2016" }, generateCallNum(), "Horror");
-var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPages: 1200, publishDate: "August 29, 1996" }, generateCallNum(), "Horror");
-var gGMM = new Book({ title: "The Green Mile", author: "Scott Talbane", numberOfPages: 410, publishDate: "October 7, 1998" }, generateCallNum(), "Drama");
-var gCatherInTheRye = new Book({ title: "Catcher In The Rye", author: "JD Salinger", numberOfPages: 200, publishDate: "December 25, 1987" }, generateCallNum(), "Drama");
-var gNP = new Book({ title: "New Power", author: "Jeremy Heimans", numberOfPages: 873, publishDate: "April 12, 2019" }, generateCallNum(), "Thriller");
-var gTTC = new Book({ title: "Dan the Follower", author: "Jeremy Heimans", numberOfPages: 1250, publishDate: "May 17, 2000" }, generateCallNum(), "Drama");
-var gPOW = new Book({ title: "War of Ewwww!", author: "Mary U'Banks", numberOfPages: 210, publishDate: "June 7, 1999" }, generateCallNum(), "Comedy");
-var gQOS = new Book({ title: "Kill the Mockingbird", author: "Marko Wines", numberOfPages: 1750, publishDate: "April 12, 2014" }, generateCallNum(), "Drama");
-var gQOW = new Book({ title: "Kill the Other Mockingbird", author: "Marko Wines", numberOfPages: 1100, publishDate: "April 12, 2016" }, generateCallNum(), "Drama");
-var gQOT = new Book({ title: "Kill the Blue Mockingbird Cause It Dont Like ME!", author: "Marko Wines", numberOfPages: 1650, publishDate: "April 12, 2018" }, generateCallNum(), "Drama");
+var gBL = new Book({ title: "Bool", author: "Jason West", numberOfPages: 250, publishDate: "Feburary 3, 1888" }, 147, "Western");
+var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "September 15, 1986" }, 524, "Horror",);
+var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "January 5, 2016" }, 534, "Horror");
+var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPages: 1200, publishDate: "August 29, 1996" }, 516, "Horror");
+var gGMM = new Book({ title: "The Green Mile", author: "Scott Talbane", numberOfPages: 410, publishDate: "October 7, 1998" }, 710, "Drama");
+var gCatherInTheRye = new Book({ title: "Catcher In The Rye", author: "JD Salinger", numberOfPages: 200, publishDate: "December 25, 1987" }, 734, "Drama");
+var gNP = new Book({ title: "New Power", author: "Jeremy Heimans", numberOfPages: 873, publishDate: "April 12, 2019" }, 310, "Thriller");
+var gTTC = new Book({ title: "Dan the Follower", author: "Jeremy Heimans", numberOfPages: 1250, publishDate: "May 17, 2000" }, 756, "Drama");
+var gPOW = new Book({ title: "War of Ewwww!", author: "Mary U'Banks", numberOfPages: 210, publishDate: "June 7, 1999" }, 888, "Comedy");
+var gQOS = new Book({ title: "Kill the Mockingbird", author: "Marko Wines", numberOfPages: 1750, publishDate: "April 12, 2014" }, 790, "Drama");
+var gQOW = new Book({ title: "Kill the Other Mockingbird", author: "Marko Wines", numberOfPages: 1100, publishDate: "April 12, 2016" }, 791, "Drama");
+var gQOT = new Book({ title: "Kill the Blue Mockingbird Cause It Dont Like ME!", author: "Marko Wines", numberOfPages: 1650, publishDate: "April 12, 2018" }, 792, "Drama");
 
 //Array collection of Book Instances
 var gBookArray1 = [gIT, gGM, gCatherInTheRye];
