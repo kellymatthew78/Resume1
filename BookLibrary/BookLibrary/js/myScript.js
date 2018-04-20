@@ -1,7 +1,9 @@
 // JavaScript source code
+//var bookImgPath = encodeURI("C:\\Public\\Images\\BookLibrary\\");
+var bookImgPath = encodeURI("file:///C:/Public/Images/BookLibrary/");
 var storageAvilible = false;
-var storageType = "sessionStorage";
-//var storageType = "localStorage";
+//var storageType = "sessionStorage";
+var storageType = "localStorage";
 //var storageType = "None";
 
 
@@ -37,7 +39,7 @@ var Book = function (details, callNum, catagory = "", bookcover = "") {
     this.details = details;
     this.callNum = callNum;
     this.catagory = catagory;
-    this.bookcover = bookcover;
+    this.bookcover = bookImgPath + bookcover;
 
 }
 
@@ -496,6 +498,42 @@ Library.prototype.saveLibrary = function () {
     }
 }
 
+Library.prototype.saveSearch = function (results) {
+    try {
+        if (storageAvilible == true) {
+            if (storageType == 'localStorage') {
+                localStorage.setItem("searchResults", JSON.stringify(results));
+                return localStorage.hasOwnProperty("searchResults");
+            } else if (storageType == 'sessionStorage') {
+                sessionStorage.setItem("searchResults", JSON.stringify(results));
+                return sessionStorage.hasOwnProperty("searchResults");
+            }
+        } else {
+            if (storageAvailable(storageType)) {
+                if (storageType == 'localStorage') {
+                    localStorage.setItem("searchResults", JSON.stringify(results));
+                    return localStorage.hasOwnProperty("searchResults");
+                } else if (storageType == 'sessionStorage') {
+                    sessionStorage.setItem("searchResults", JSON.stringify(results));
+                    return sessionStorage.hasOwnProperty("searchResults");
+                }
+            }
+            else {
+                document.getElementById("msg").innerHTML = "Window storage is not avilible!";
+                document.getElementById("msg").setAttribute("class", "errclass");
+                return false;
+            }
+
+        }
+
+    }
+    catch (e) {
+        document.getElementById("msg").innerHTML = e;
+        document.getElementById("msg").setAttribute("class", "errclass");
+    }
+}
+
+
 //updates Library from local or session storage
 Library.prototype.updateLibraryfromStorage = function () {
     try {
@@ -541,11 +579,13 @@ function resetTotalLibrary(vLibrary, createNew = true, newKey = "LibraryKey") {
 
         localStorage.removeItem(vLibrary.storagekey);
         localStorage.removeItem("libStorageAvilible");
+        localStorage.removeItem("searchResults");
         sessionStorage.removeItem(vLibrary.storagekey);
         sessionStorage.removeItem("libStorageAvilible");
+        sessionStorage.removeItem("searchResults");
         vLibrary.Books.length = 0;
         if (createNew) { vLibrary = new Library(newKey); };
-       
+
         return true;
     }
     catch (e) {
@@ -598,20 +638,50 @@ function uppercase(str) {
     return newarray1.join(' ');
 }
 
-function LoadBookList() {
-    //alert("Just Testing!!!");
-    //check if storage has value
-    //clear table
-    $("#tblBKList").find("tr:not(:first)").remove();
-    var text = "";
+function LoadBookList(search = false) {
+    try {
+        document.getElementById("msg").setAttribute("class", "msgclass");
+        var text = "";
+        var lHeading = "This is a listing of the current books in your selected library...";
+        var lSearch = "Library Listing";
+
+        if (search) {
+            if (storageType == 'localStorage') {
+                text = localStorage.getItem("searchResults");
+            } else if (storageType == 'sessionStorage') {
+                text = sessionStorage.getItem("searchResults");
+            }
+            document.getElementById("searchHeader").innerHTML = "Search Results";
+            document.getElementById("libHeading").innerHTML = "This is a listing of the results from your search within the library...";;
+        } else {
+            if (storageType == 'localStorage') {
+                text = localStorage.getItem(window.Library().storagekey);
+            } else if (storageType == 'sessionStorage') {
+                text = sessionStorage.getItem(window.Library().storagekey);
+            }
+        }
+        //console.log(text);
+
+        if (text == "None" || text == undefined) {
+            document.getElementById("searchHeader").innerHTML = lSearch;
+            document.getElementById("libHeading").innerHTML = "No books were found in stored library. Default test book was looked for appearance. Once you add a book to the library, this listing will repopulate...";
+        } else { fillListing2(text) };
+    }
+    catch (e) {
+        document.getElementById("msg").innerHTML = e;
+        document.getElementById("msg").setAttribute("class", "errclass");
+    }
+
+}
+
+function fillListing(text) {
     var Bookarr = [];
     var i = 0;
 
-    if (storageType == 'localStorage') {
-        text = localStorage.getItem(window.Library().storagekey);
-    } else if (storageType == 'sessionStorage') {
-        text = sessionStorage.getItem(window.Library().storagekey);
-    }
+    //check if storage has value
+    //clear table
+    $("#tblBKList").find("tr:not(:first)").remove();
+
     Bookarr = JSON.parse(text);
     //console.log(Bookarr);
     var tr;
@@ -619,34 +689,62 @@ function LoadBookList() {
     for (var i = 0; i < Bookarr.length; i++) {
         x = Bookarr[i].callNum;
         tr = $('<tr/>');
-        //<a href='#' id='link'>Click me!</a>
         tr.append("<td><a href='javascript: void (0)' class='bookdetail' id='" + x + "'>" + x + "</a></td>");
         tr.append("<td>" + Bookarr[i].details.title + "</td>");
         tr.append("<td>" + Bookarr[i].details.author + "</td>");
         tr.append("<td>" + Bookarr[i].details.numberOfPages + "</td>");
         tr.append("<td>" + Bookarr[i].details.publishDate + "</td>");
         tr.append("<td>" + Bookarr[i].catagory + "</td>");
+        tr.append("<td><a href='javascript: void (0)' class='bookremove' id=RM'" + x + "'>Remove</a></td>");
+        tr.append("<td><a href='javascript: void (0)' class='bookremove' id=ED'" + x + "'>Edit</a></td>");
         $('table').first().append(tr);
     }
+
 }
 
+function fillListing2(text) {
+    var Bookarr = [];
+    var i = 0;
 
+    //check if storage has value
+    //clear table
+    $("#tblBKList").find("tr:not(:first)").remove();
+
+    Bookarr = JSON.parse(text);
+    console.log("Parsed Array");
+    console.log(Bookarr);
+    var table = $('#tblBKList').DataTable();
+    for (var i = 0; i < Bookarr.length; i++) {
+        x = Bookarr[i].callNum;
+        table.row.add({
+            "Call#": "<td><a href='javascript: void (0)' class='bookdetail' id='" + x + "'>" + x + "</a></td>",
+            "Title": Bookarr[i].details.title,
+            "Author": Bookarr[i].details.author,
+            "Page #": Bookarr[i].details.numberOfPages,
+            "Publish Date": Bookarr[i].details.publishDate,
+            "Catagory": Bookarr[i].catagory
+        }).draw();
+    }
+}
 
 function displayBookDetailbyCallNum(callNum) {
     console.log(callNum);
     var BookArr = [];
     BookArr = window.Library().getBookList("callnum", callNum)
     console.log(BookArr);
+
     if (BookArr.length > 0) {
-        //$("cdBookInfo").data("BookArr", BookArr);
-        //$("#cardtitle").text($("cdBookInfo").data("BookArr").details.title);
-        //$("#cardAuthor").text($("cdBookInfo").data("BookArr").details.author);
-        //$("#cardPlot").text($("cdBookInfo").data("BookArr").details.title);
-        document.getElementById("cbBookImg").src = BookArr[0].bookcover;
-        document.getElementById("cardtitle").innerHTML = BookArr[0].details.author;
-        document.getElementById("cardAuthor").innerHTML = "Written by: " + BookArr[0].details.title;
+        $('#cbBookImg').attr('src', decodeURI(BookArr[0].bookcover));
+        //document.getElementById("cbBookImg").src = BookArr[0].bookcover;
+        document.getElementById("cardtitle").innerHTML = BookArr[0].details.title;
+        document.getElementById("cardAuthor").innerHTML = "Written by: " + BookArr[0].details.author;
         //document.getElementById("cardPlot").innerHTML = BookArr[0].review.plot;
         //document.getElementById("cardSummary").innerHTML = BookArr[0].review.summary;
+
+        //$('#cardtitle').text = BookArr[0].details.title;
+        //$('#cardAuthor').text = BookArr[0].details.author;
+        console.log(BookArr[0].bookcover);
+        console.log(decodeURI(BookArr[0].bookcover));
     }
     //$("cdBookInfo").toggle();
     return BookArr.length;
@@ -674,6 +772,72 @@ Library.prototype.fillLib = function () {
     return this.Books.length;
 };
 
+function loadLibrary() {
+
+    //tests to see if object has been created
+    var key = window.Library().storagekey;
+    console.log(key);
+    //base object has not been created
+    //debugger;
+    if (key === "null") {
+        //creates library object
+        var gLib = new Library("gLib");
+        console.log(gLib);
+        gLib.fillLib();
+        gLib.saveLibrary();
+        LoadBookList();
+    } else { LoadBookList(); }
+}
+
+
+
+
+
+
+//function loadLibrary() {
+
+//    //tests to see if object has been created
+//    var key = window.Library().storagekey;
+
+//    //base object has not been created
+//    //debugger;
+//    if (key == "undefined") {
+//        //creates library object
+//        var gLib = new Library("gLib");
+//        //sees if client storage holds object in mem if so loads it into the new object then fills listing
+//        if (localStorage.hasOwnProperty("gLib")) {
+//            window.Library.updateLibraryfromStorage();
+//            LoadBookList();
+//        } else {
+//            //fills empty object with test data if selected (to be removed for production), saves in mem, loads listing
+//            if (confirm("Load Test Library")) {
+//                window.Library.fillLib();
+//                window.Library.saveLibrary();
+//                LoadBookList();
+//            } else {
+//                LoadBookList();
+//            }
+//        }
+//    } else {
+//        if (localStorage.hasOwnProperty(key)) {
+//            LoadBookList();
+//        } else {
+//            if (confirm("Load Test Library")) {
+//                window.Library.fillLib();
+//                window.Library.saveLibrary();
+//                LoadBookList();
+//                LoadBookList();
+//            } else {
+//                LoadBookList();
+//            }
+//        }
+//    }
+
+
+
+
+
+//}
 
 //JQUERY---------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function () {
@@ -682,6 +846,7 @@ $(document).ready(function () {
     $("div").on("click", function () {
         document.getElementById("msg").innerHTML = "";
     })
+
     //This button will create a default library, fill it with books and then save those books to browser storage.
     $("#creatLibrary").on("click", function () {
         //alert("button fired!");
@@ -712,8 +877,8 @@ $(document).ready(function () {
 
 //Book Instances that contains the properties of each book object.
 var gBL = new Book({ title: "Bool", author: "Jason West", numberOfPages: 250, publishDate: "Feburary 3, 1888" }, 147, "Western");
-var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "September 15, 1986" }, 524, "Horror", "img/bookimg/524_IT.jpg" );
-var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "January 5, 2016" }, 534, "Horror", "img/bookimg/534_IT.jpg");
+var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "September 15, 1986" }, 524, "Horror", "524_IT.jpg");
+var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "January 5, 2016" }, 534, "Horror", "534_IT.jpg");
 var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPages: 1200, publishDate: "August 29, 1996" }, 516, "Horror");
 var gGMM = new Book({ title: "The Green Mile", author: "Scott Talbane", numberOfPages: 410, publishDate: "October 7, 1998" }, 710, "Drama");
 var gCatherInTheRye = new Book({ title: "Catcher In The Rye", author: "JD Salinger", numberOfPages: 200, publishDate: "December 25, 1987" }, 734, "Drama");
@@ -731,5 +896,6 @@ var gBookArray3 = [];
 
 //testing auto loads Library
 //gLib.fillLib();
+//loadLibrary();
 
 //--------------------------------------------------------------------------------------------------------------------------

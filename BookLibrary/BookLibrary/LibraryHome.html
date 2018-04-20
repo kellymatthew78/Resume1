@@ -11,6 +11,12 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/myStyle.css" rel="stylesheet" />
 
+    <!--CDN-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/b-1.5.1/fh-3.1.3/r-2.2.1/sc-1.4.4/sl-1.2.5/datatables.min.css" />
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/b-1.5.1/fh-3.1.3/r-2.2.1/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
+
+
 </head>
 <body>
     <div class="container-fluid">
@@ -24,7 +30,6 @@
             </nav>
             <h3 class="text-muted">My Library</h3>
         </div>
-        <div class="row"><div class="col"><h4 id="msg"></h4></div></div>
         <div class="jumbotron">
             <h1>Welcome All To The Library</h1>
             <p class="lead">This is a small community library that is used by members to share books that they have. It can be used to checkout as well as donate various books to this library. </p>
@@ -35,14 +40,70 @@
 
             </p>
         </div>
-        <div class="col"><div class="row"><p class="text-warning msg"></p></div></div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="navbar navbar-default navbar-fixed-top shadow">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Administration</a>
+                        <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">More</a></li>
+                            <li><a href="#">Options</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="navbar-form pull-right hidden-sm hidden-xs">
+                            <div class="input-group">
+                                <input type="text" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="errormsg" class="col"><div class="row"><p class="text-warning msg"></p></div></div>
+        <br />
+
         <div class="row booklist">
             <div class="col-lg-6">
-                <h4>Library Listing</h4>
-                <p>This is a listing of the current books in your selected library...</p>
+                <h4 id="searchHeader">Library Listing</h4>
+                <p id="libHeading">This is a listing of the current books in your selected library...</p>
 
-                <h4></h4>
+                <h5 id="msg"></h5>
                 <table id="tblBKList" class="table table-striped table-bordered nowrap" data-show-columns="true" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Call#</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Page #</th>
+                            <th>Publish Date</th>
+                            <th>Catagory</th>
+                        </tr>
+                    </thead>
+                </table>
+                <!--<table id="tblBKList" class="table table-striped table-bordered nowrap" data-show-columns="true" style="width:100%">
                     <thead>
                         <tr>
                             <th>Call#</th>
@@ -63,14 +124,15 @@
                             <td>Drama</td>
                         </tr>
                     </tbody>
-                </table>
+                </table>-->
+                <button type="button" class="btn btn-outline-success">Add Book</button>
             </div>
             <div class="col-lg-4">
                 <!-- Rotating card -->
                 <section class="card-wrapper ">
                     <div id="cdBookInfo" class="card border-0" onclick="flip()">
                         <div class="front">
-                            <img id="cbBookImg" class="card-img-top img-responsive" src="img/bookimg/524_IT.jpg" alt="Book Image">
+                            <img id="cbBookImg" class="card-img-top img-responsive" src="file:///C:/Public/Images/BookLibrary/524_IT.jpg" alt="Book Image">
                             <div class="card-body">
                                 <h4 id="cardtitle" class="">Card title</h4>
                                 <small id="cardAuthor" class="">Written By: The Dude</small>
