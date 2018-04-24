@@ -105,6 +105,17 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\jquery.dataTables.min.css" />
     <Content Include="css\myStyle.css" />
+    <Content Include="img\bookImg\IT_new.jpg" />
+    <Content Include="img\bookImg\IT_old.jpg" />
+    <Content Include="img\bookImg\jBook.jpg" />
+    <Content Include="img\bookImg\JD_CITR.jpg" />
+    <Content Include="img\bookImg\JH_NewPower.jpg" />
+    <Content Include="img\bookImg\RF_Follower.jpg" />
+    <Content Include="img\bookImg\SK_GreenMile.jpg" />
+    <Content Include="img\bookImg\ST_GreenMile.jpg" />
+    <Content Include="img\bookImg\TKMMB1.jpg" />
+    <Content Include="img\bookImg\TKMMB2.jpg" />
+    <Content Include="img\bookImg\TKMMB3.jpg" />
     <Content Include="index.html" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\fontawesome-all.js" />
@@ -216,9 +227,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="img\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,6 +1,7 @@
 // JavaScript source code
 //var bookImgPath = encodeURI("C:\\Public\\Images\\BookLibrary\\");
-var bookImgPath = encodeURI("file:///C:/Public/Images/BookLibrary/");
+//var bookImgPath = encodeURI("file:///C:/Public/Images/BookLibrary/");
+var bookImgPath = encodeURI("../img/bookImg/");
 var storageAvilible = false;
 //var storageType = "sessionStorage";
 var storageType = "localStorage";
@@ -105,7 +106,7 @@ Library.prototype.addBook = function (Book, repeat = false) {
 };
 
 //this will check to see if Book title and author exists in Library as comparied to an array of Book objects. Only if the Book was not found will it be added. 
-Library.prototype.addBookArray = function (BookArray) {
+Library.prototype.addBookArray = function (BookArray, msg = true) {
     try {
         var imp_title, imp_author, index, success;
         var i = 0;
@@ -121,8 +122,11 @@ Library.prototype.addBookArray = function (BookArray) {
                 Booksadded = Booksadded + 1;
             }
         }
-        document.getElementById("msg").innerHTML = Booksadded + ": Book(s) have been added to your Library.";
-        document.getElementById("msg").setAttribute("class", "msgclass");
+        if (msg) {
+            document.getElementById("msg").innerHTML = Booksadded + ": Book(s) have been added to your Library.";
+            document.getElementById("msg").setAttribute("class", "msgclass");
+        }
+
         return Booksadded;
     }
     catch (e) {
@@ -161,8 +165,8 @@ Library.prototype.removeBookbyCallNum = function (callnum) {
             callnum = callnum.substr(2);
         }
         console.log(callnum);
-        var index = this.getIndex("callnum", callnum)
-        console.log(index)
+        var index = this.getIndex("callnum", callnum, "", false)
+        //console.log(index)
         if (index == -1) {
             document.getElementById("msg").innerHTML = "This Book was not found in your Library!";
             document.getElementById("msg").setAttribute("class", "msgclass");
@@ -237,6 +241,23 @@ Library.prototype.random = function () {
     document.getElementById("msg").setAttribute("class", "msgclass");
     return ranBook;
 }
+
+Library.prototype.checkcallNum = function () {
+    try {
+        var index = -1;
+        var callNum = 0;
+
+        do {
+            callNum = generateCallNum();
+            index = this.getIndex("callnum", callNum, "", false)
+        }
+        while (!index == -1);
+        return callNum
+    }
+    catch (e) {
+        return e;
+    }
+};
 
 //this will retrive a collection of Books from the Library by title.
 Library.prototype.getBooksByTitle = function (title, msg = true) {
@@ -603,7 +624,7 @@ Library.prototype.saveSearch = function (results) {
 }
 
 //updates Library from local or session storage
-Library.prototype.updateLibraryfromStorage = function () {
+Library.prototype.updateLibraryfromStorage = function (msg = true) {
     try {
         var text = "";
         var Bookarr = [];
@@ -615,7 +636,7 @@ Library.prototype.updateLibraryfromStorage = function () {
             text = sessionStorage.getItem(this.storagekey);
         }
         Bookarr = JSON.parse(text);
-        return this.addBookArray(Bookarr);
+        return this.addBookArray(Bookarr, msg);
     }
     catch (e) {
         document.getElementById("msg").innerHTML = e;
@@ -651,6 +672,43 @@ Library.prototype.fillLib = function () {
     this.Books.push(gQOT);
     return this.Books.length;
 };
+
+function formAddBooks() {
+    try {
+        var count = 0;
+        if (validateBookEntry()) {
+            var ntitle = $("#txtTitle").val();
+            var nauthor = $("#txtAuthor").val();
+            var nnumberOfPages = $("#txtPageNum").val();
+            var npublishDate = $("#txtPubDate").val();
+            var callNum = this.Library().checkcallNum();
+            var catagory = $('#dlCategory option:selected').val();
+            var bookcover = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
+
+            var nbook = new Book({ title: ntitle, author: nauthor, numberOfPages: nnumberOfPages, publishDate: npublishDate }, callNum, catagory, bookcover);
+            console.log(nbook);
+            if (this.Library().addBook(nbook, true)) {
+                count++;
+                this.Library().saveLibrary();
+                LoadBookList();
+                document.getElementById("addbookmsg").innerHTML = count + " book(s) has been added to library.";
+                $("#txtTitle").val('');
+                $("#txtAuthor").val('');
+                $("#txtPageNum").val('');
+                $("#txtPubDate").val('');
+                $('#dlCategory option:selected').val('');
+                $('input[type=file]').val('')
+                $("#txtTitle").focus();
+            }
+        }
+    }
+    catch (e) {
+        document.getElementById("msg").innerHTML = e;
+        document.getElementById("msg").setAttribute("class", "errclass");
+    }
+
+
+}
 
 function removeAuthors(author) {
     try {
@@ -877,23 +935,27 @@ function fillAUListing(Authorarr) {
 }
 
 function displayBookDetailbyCallNum(callNum) {
-    console.log(callNum);
+    //console.log(callNum);
     var BookArr = [];
     BookArr = window.Library().getBookList("callnum", callNum, "", false)
-    console.log(BookArr);
+    //console.log(BookArr);
 
     if (BookArr.length > 0) {
         $('#cbBookImg').attr('src', decodeURI(BookArr[0].bookcover));
         document.getElementById("cardtitle").innerHTML = BookArr[0].details.title;
         document.getElementById("cardAuthor").innerHTML = "Written by: " + BookArr[0].details.author;
-        console.log(BookArr[0].bookcover);
-        console.log(decodeURI(BookArr[0].bookcover));
+        //console.log(BookArr[0].bookcover);
+        //console.log(decodeURI(BookArr[0].bookcover));
     }
     return BookArr.length;
 }
 
 function flip() {
     $('.card').toggleClass('flipped');
+}
+
+function validateBookEntry() {
+    return true;
 }
 
 function loadLibrary() {
@@ -970,6 +1032,11 @@ function removeDuplicatesFromBookListings(array1, array2) {
 }
 //JQUERY---------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function () {
+    if (localStorage.hasOwnProperty("gLib")) {
+        var gLib = new Library("gLib");
+        gLib.updateLibraryfromStorage(false);
+        LoadBookList();
+    }
 
     //Global event handler for load library button
     $("div").on("click", function () {
@@ -985,6 +1052,7 @@ $(document).ready(function () {
         var gLib = new Library("gLib");
         gLib.fillLib();
         gLib.saveLibrary();
+        loadLibrary();
     });
 
     $("#loadLibrary").on("click", function () {
@@ -995,7 +1063,6 @@ $(document).ready(function () {
     $('#tblBKList').click(function (e) {
         //alert(selected_id + "2nd run");
         var bookid = $(e.target).attr("id"); // or e.target.id
-        console.log(bookid.startsWith("RM"));
         if (bookid.startsWith("RM")) {
             deleteFromLibrary(bookid);
         } else if (bookid.startsWith("ED")) {
@@ -1048,13 +1115,15 @@ $(document).ready(function () {
         $('#txtremoveallauthors').focus();
     });
     $("#btnRemoveAllAuthor").on("click", function () {
-        console.log("btnRemoveAllAuthor clicked");
+        //console.log("btnRemoveAllAuthor clicked");
         var text = document.getElementById("txtremoveallauthors").value;
-        //console.log(text);
         removeAuthors(text);
     });
 
-
+    $("#btnAddBook").on("click", function () {
+        console.log("btnAddBook clicked");
+        formAddBooks();
+    });
 });
 
 //Library Instance
@@ -1062,17 +1131,17 @@ $(document).ready(function () {
 
 //Book Instances that contains the properties of each book object.
 var gBL = new Book({ title: "Bool", author: "Jason West", numberOfPages: 250, publishDate: "Feburary 3, 1888" }, 147, "Western");
-var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "September 15, 1986" }, 524, "Horror", "524_IT.jpg");
-var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "January 5, 2016" }, 534, "Horror", "534_IT.jpg");
-var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPages: 1200, publishDate: "August 29, 1996" }, 516, "Horror");
-var gGMM = new Book({ title: "The Green Mile", author: "Scott Talbane", numberOfPages: 410, publishDate: "October 7, 1998" }, 710, "Drama");
-var gCatherInTheRye = new Book({ title: "Catcher In The Rye", author: "JD Salinger", numberOfPages: 200, publishDate: "December 25, 1987" }, 734, "Drama");
-var gNP = new Book({ title: "New Power", author: "Jeremy Heimans", numberOfPages: 873, publishDate: "April 12, 2019" }, 310, "Thriller");
-var gTTC = new Book({ title: "Dan the Follower", author: "Jeremy King", numberOfPages: 1250, publishDate: "May 17, 2000" }, 756, "Drama");
-var gPOW = new Book({ title: "War of Ewwww!", author: "Mary U'Banks", numberOfPages: 210, publishDate: "June 7, 1999" }, 888, "Comedy");
-var gQOS = new Book({ title: "Kill the Mockingbird", author: "Marko Wines", numberOfPages: 1750, publishDate: "April 12, 2014" }, 790, "Drama");
-var gQOW = new Book({ title: "Kill the Other Mockingbird", author: "Marko Wines", numberOfPages: 1100, publishDate: "April 12, 2016" }, 791, "Drama");
-var gQOT = new Book({ title: "Kill the Blue Mockingbird Cause It Dont Like ME!", author: "Marko Wines", numberOfPages: 1650, publishDate: "April 12, 2018" }, 792, "Drama");
+var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "September 15, 1986" }, 524, "Horror", "IT_old.jpg");
+var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "January 5, 2016" }, 534, "Horror", "IT_new.jpg");
+var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPages: 1200, publishDate: "August 29, 1996" }, 516, "Horror", "SK_GreenMile.jpg");
+var gGMM = new Book({ title: "The Green Mile", author: "Scott Talbane", numberOfPages: 410, publishDate: "October 7, 1998" }, 710, "Drama", "ST_GreenMile.jpg");
+var gCatherInTheRye = new Book({ title: "Catcher In The Rye", author: "JD Salinger", numberOfPages: 200, publishDate: "December 25, 1987" }, 734, "Drama", "JD_CITR.jpg");
+var gNP = new Book({ title: "New Power", author: "Jeremy Heimans", numberOfPages: 873, publishDate: "April 12, 2019" }, 310, "Thriller", "JH_NewPower.jpg");
+var gTTC = new Book({ title: "The Follower", author: "Rick Fuller King", numberOfPages: 1250, publishDate: "May 17, 2000" }, 756, "Drama", "RF_Follower.jpg");
+var gPOW = new Book({ title: "War of Ewwww!", author: "Mary U'Banks", numberOfPages: 210, publishDate: "June 7, 1999" }, 888, "Comedy", "jBook.jpg");
+var gQOS = new Book({ title: "Kill the Mockingbird", author: "Marko Wines", numberOfPages: 1750, publishDate: "April 12, 2014" }, 790, "Drama", "TKMMB1.jpg");
+var gQOW = new Book({ title: "Kill the Other Mockingbird", author: "Marko Wines", numberOfPages: 1100, publishDate: "April 12, 2016" }, 791, "Drama", "TKMMB2.jpg");
+var gQOT = new Book({ title: "Kill the Blue Mockingbird Cause It Dont Like ME!", author: "Marko Wines", numberOfPages: 1650, publishDate: "April 12, 2018" }, 792, "Drama", "TKMMB3.jpg");
 
 //Array collection of Book Instances
 var gBookArray1 = [gIT, gGM, gCatherInTheRye];
@@ -1080,9 +1149,9 @@ var gBookArray2 = [gNP, gTTC, gPOW];
 var gBookArray3 = [];
 
 //testing auto loads Library
-var gLib = new Library("gLib");
-gLib.fillLib();
-gLib.saveLibrary();
-loadLibrary();
+//var gLib = new Library("gLib");
+//gLib.fillLib();
+//gLib.saveLibrary();
+//loadLibrary();
 
 //--------------------------------------------------------------------------------------------------------------------------
