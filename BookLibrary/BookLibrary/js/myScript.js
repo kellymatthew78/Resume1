@@ -313,7 +313,6 @@ Library.prototype.getBooksByTitleAuthor = function (title, author, msg = true) {
     return Booklist;
 };
 
-
 //this will retrive a collection of authors from the Library.
 Library.prototype.getAuthors = function () {
     var i = 0;
@@ -603,7 +602,6 @@ Library.prototype.saveSearch = function (results) {
     }
 }
 
-
 //updates Library from local or session storage
 Library.prototype.updateLibraryfromStorage = function () {
     try {
@@ -638,11 +636,72 @@ Library.prototype.clearLibrary = function (LibraryKey = "LibraryKey") {
     return this.Books.length = 0;
 }
 
+//for testing. this function will fill the Library
+Library.prototype.fillLib = function () {
+    this.Books.length = 0;
+    this.Books.push(gIT);
+    this.Books.push(gIT2);
+    this.Books.push(gGM);
+    this.Books.push(gCatherInTheRye);
+    this.Books.push(gNP);
+    this.Books.push(gTTC);
+    this.Books.push(gPOW);
+    this.Books.push(gQOS);
+    this.Books.push(gQOW);
+    this.Books.push(gQOT);
+    return this.Books.length;
+};
+
+function removeAuthors(author) {
+    try {
+        var options = {
+            'show': 'false'
+        }
+        if (confirm("You are about to remove all books written by this author. Do you wish to continue!")) {
+            $('#removeAuthors').modal('toggle');
+            this.Library().removeBookbyAuthor(author);
+            this.Library().saveLibrary();
+            LoadBookList();
+            return true;
+        }
+    }
+    catch (e) {
+        document.getElementById("msg").innerHTML = e;
+        document.getElementById("msg").setAttribute("class", "errclass");
+    }
+
+}
+
+function displayListing(listing) {
+    switch (listing) {
+        case "book":
+            $("#tblBKList").show();
+            $("#cdBookInfo").show();
+            $("#tblAUList").hide();
+            break;
+        case "author":
+            $("#tblBKList").hide();
+            $("#cdBookInfo").hide();
+            $("#tblAUList").show();
+    }
+    return true;
+}
+
+function showAuthorListing() {
+    //opens book listing and details card hides author listing
+    displayListing("author");
+    var Authorarr = this.Library().getAuthors();
+    //console.log(Authorarr);
+    fillAUListing(Authorarr);
+    return true;
+}
+
 function deleteFromLibrary(bookid) {
     console.log("deleteFromLibrary running");
     this.Library().removeBookbyCallNum(bookid);
     this.Library().saveLibrary();
     LoadBookList();
+    return true;
 }
 //automatically creates a callnumber for Library use. testing case only.
 function generateCallNum() {
@@ -741,11 +800,14 @@ function LoadBookList(search = false) {
         if (text == "None" || text == undefined) {
             document.getElementById("searchHeader").innerHTML = lSearch;
             document.getElementById("libHeading").innerHTML = "No books were found in stored library. Default test book was looked for appearance. Once you add a book to the library, this listing will repopulate...";
+            return false;
         } else {
             var Bookarr = [];
             Bookarr = JSON.parse(text);
-            fillListing(Bookarr)
+            fillListing(Bookarr);
+            return true;
         };
+
     }
     catch (e) {
         document.getElementById("msg").innerHTML = e;
@@ -755,34 +817,69 @@ function LoadBookList(search = false) {
 }
 
 function fillListing(Bookarr) {
-    var i = 0;
+    try {
+        var i = 0;
+        var count = 0;
+        //check if storage has value
+        //clear table
+        $("#tblBKList").find("tr:not(:first)").remove();
 
-    //check if storage has value
-    //clear table
-    $("#tblBKList").find("tr:not(:first)").remove();
-
-    var tr;
-    var x = "";
-    for (var i = 0; i < Bookarr.length; i++) {
-        x = Bookarr[i].callNum;
-        tr = $('<tr/>');
-        tr.append("<td><a href='javascript: void (0)' class='bookdetail' id='" + x + "'>" + x + "</a></td>");
-        tr.append("<td>" + Bookarr[i].details.title + "</td>");
-        tr.append("<td>" + Bookarr[i].details.author + "</td>");
-        tr.append("<td>" + Bookarr[i].details.numberOfPages + "</td>");
-        tr.append("<td>" + Bookarr[i].details.publishDate + "</td>");
-        tr.append("<td>" + Bookarr[i].catagory + "</td>");
-        tr.append("<td><a href='javascript: void (0)' class='bookremove' id=RM" + x + ">Remove</a></td>");
-        tr.append("<td><a href='javascript: void (0)' class='bookremove' id=ED" + x + ">Edit</a></td>");
-        $('table').first().append(tr);
+        var tr;
+        var x = "";
+        for (var i = 0; i < Bookarr.length; i++) {
+            x = Bookarr[i].callNum;
+            tr = $('<tr/>');
+            tr.append("<td><a href='javascript: void (0)' class='bookdetail' id='" + x + "'>" + x + "</a></td>");
+            tr.append("<td>" + Bookarr[i].details.title + "</td>");
+            tr.append("<td>" + Bookarr[i].details.author + "</td>");
+            tr.append("<td>" + Bookarr[i].details.numberOfPages + "</td>");
+            tr.append("<td>" + Bookarr[i].details.publishDate + "</td>");
+            tr.append("<td>" + Bookarr[i].catagory + "</td>");
+            tr.append("<td><a href='javascript: void (0)' class='bookremove' id=RM" + x + ">Remove</a></td>");
+            tr.append("<td><a href='javascript: void (0)' class='bookremove' id=ED" + x + ">Edit</a></td>");
+            $('table').first().append(tr);
+            count++;
+        }
+        displayBookDetailbyCallNum(Bookarr[0].callNum);
+        return count;
+    }
+    catch (e) {
+        document.getElementById("msg").innerHTML = e;
+        document.getElementById("msg").setAttribute("class", "errclass");
     }
 
+
+}
+
+function fillAUListing(Authorarr) {
+    try {
+        var i = 0;
+        count = 0;
+        //check if storage has value
+        //clear table
+        $("#tblAUList").find("tr:not(:first)").remove();
+
+        var tr;
+        var x = "";
+        for (var i = 0; i < Authorarr.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + Authorarr[i] + "</td>");
+            console.log(Authorarr[i])
+            $("#tblAUList").append(tr);
+            count++;
+        }
+        return count;
+    }
+    catch (e) {
+        document.getElementById("msg").innerHTML = e;
+        document.getElementById("msg").setAttribute("class", "errclass");
+    }
 }
 
 function displayBookDetailbyCallNum(callNum) {
     console.log(callNum);
     var BookArr = [];
-    BookArr = window.Library().getBookList("callnum", callNum)
+    BookArr = window.Library().getBookList("callnum", callNum, "", false)
     console.log(BookArr);
 
     if (BookArr.length > 0) {
@@ -799,70 +896,72 @@ function flip() {
     $('.card').toggleClass('flipped');
 }
 
-
-//for testing. this function will fill the Library
-Library.prototype.fillLib = function () {
-    this.Books.length = 0;
-    this.Books.push(gIT);
-    this.Books.push(gIT2);
-    this.Books.push(gGM);
-    this.Books.push(gCatherInTheRye);
-    this.Books.push(gNP);
-    this.Books.push(gTTC);
-    this.Books.push(gPOW);
-    this.Books.push(gQOS);
-    this.Books.push(gQOW);
-    this.Books.push(gQOT);
-
-    return this.Books.length;
-};
-
 function loadLibrary() {
+    try {
+        //opens book listing and details card hides author listing
+        displayListing("book");
 
-    //tests to see if object has been created
-    var key = window.Library().storagekey;
-    console.log(key);
-    //base object has not been created
-    //debugger;
-    if (key === "null") {
-        //creates library object
-        var gLib = new Library("gLib");
-        console.log(gLib);
-        gLib.fillLib();
-        gLib.saveLibrary();
-        LoadBookList();
-    } else { LoadBookList(); }
+        //tests to see if object has been created
+        var key = window.Library().storagekey;
+        console.log(key);
+        //base object has not been created
+        //debugger;
+        if (key === "null") {
+            //creates library object
+            var gLib = new Library("gLib");
+            console.log(gLib);
+            gLib.fillLib();
+            gLib.saveLibrary();
+            LoadBookList();
+            return true;
+        } else {
+            LoadBookList();
+            return true;
+        }
+    }
+    catch (e) {
+        document.getElementById("msg").innerHTML = e;
+        document.getElementById("msg").setAttribute("class", "errclass");
+    }
 }
 
 function SearchLibrary() {
-    var sText = document.getElementById("txtSearch").value;
-    var Bookarr = [];
-    var Temparr = [];
-    if (cbTitle.checked) {
-        Temparr = this.Library().getBooksByTitle(sText, false);
-        if (Bookarr.length == 0) {
-            Bookarr = Temparr;
-        } else {
-            Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
+    try {
+        var sText = document.getElementById("txtSearch").value;
+        var Bookarr = [];
+        var Temparr = [];
+        if (cbTitle.checked) {
+            Temparr = this.Library().getBooksByTitle(sText, false);
+            if (Bookarr.length == 0) {
+                Bookarr = Temparr;
+            } else {
+                Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
+            }
         }
-    }
-    if (cbAuthor.checked) {
-        Temparr = this.Library().getBooksByAuthor(sText, false);
-        if (Bookarr.length == 0) {
-            Bookarr = Temparr;
-        } else {
-            Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
+        if (cbAuthor.checked) {
+            Temparr = this.Library().getBooksByAuthor(sText, false);
+            if (Bookarr.length == 0) {
+                Bookarr = Temparr;
+            } else {
+                Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
+            }
         }
-    }
-    if (cbTitleAuthor.checked) {
-        Temparr = this.Library().getBooksByTitleAuthor(sText, false);
-        if (Bookarr.length == 0) {
-            Bookarr = Temparr;
-        } else {
-            Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
+        if (cbTitleAuthor.checked) {
+            Temparr = this.Library().getBooksByTitleAuthor(sText, false);
+            if (Bookarr.length == 0) {
+                Bookarr = Temparr;
+            } else {
+                Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
+            }
         }
+        fillListing(Bookarr);
+        return true;
     }
-    fillListing(Bookarr);
+    catch (e) {
+        document.getElementById("msg").innerHTML = e;
+        document.getElementById("msg").setAttribute("class", "errclass");
+    }
+
 
 }
 
@@ -872,13 +971,14 @@ function removeDuplicatesFromBookListings(array1, array2) {
 //JQUERY---------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function () {
 
-    //event handler for load library button
+    //Global event handler for load library button
     $("div").on("click", function () {
         if ($('#msg').length) {
             //document.getElementById("msg").innerHTML = "";
         }
     })
 
+    //Jumbotron buttons
     //This button will create a default library, fill it with books and then save those books to browser storage.
     $("#creatLibrary").on("click", function () {
         //alert("button fired!");
@@ -888,31 +988,21 @@ $(document).ready(function () {
     });
 
     $("#loadLibrary").on("click", function () {
-        LoadBookList();
+        loadLibrary();
     });
 
-    //captures the click event of dynamic link button
+    //captures the click event of dynamic link button created in tables
     $('#tblBKList').click(function (e) {
         //alert(selected_id + "2nd run");
         var bookid = $(e.target).attr("id"); // or e.target.id
         console.log(bookid.startsWith("RM"));
         if (bookid.startsWith("RM")) {
             deleteFromLibrary(bookid);
-        } else if(bookid.startsWith("ED")){
+        } else if (bookid.startsWith("ED")) {
 
-        }else {
+        } else {
             displayBookDetailbyCallNum(bookid);
         }
-        //switch (bookid) {
-        //    case bookid.startsWith("RM"):
-        //        console.log("1st case fired")
-        //        deleteFromLibrary(bookid);
-        //        break;
-        //    case bookid.startsWith("ED"):
-        //        break;
-        //    default:
-        //         displayBookDetailbyCallNum(bookid);
-        //}
     });
 
     $("#searchLib").on("click", function () {
@@ -942,12 +1032,29 @@ $(document).ready(function () {
         cbTitleAuthor.checked = false;
     });
 
-    $("#rmAllAuthors").on("click", function () {
-        cbAll.checked = false;
-        cbTitleAuthor.checked = false;
+    //Admininstration Navigation buttons
+    $("#Home").on("click", function () {
+        loadLibrary();
     });
 
-    
+    $("#getAuthors").on("click", function () {
+        showAuthorListing();
+    });
+
+    $('#removeAuthors').on('show.bs.modal', function (e) {
+        $("#txtremoveallauthors").val('');
+    });
+    $('#removeAuthors').on('shown.bs.modal', function (e) {
+        $('#txtremoveallauthors').focus();
+    });
+    $("#btnRemoveAllAuthor").on("click", function () {
+        console.log("btnRemoveAllAuthor clicked");
+        var text = document.getElementById("txtremoveallauthors").value;
+        //console.log(text);
+        removeAuthors(text);
+    });
+
+
 });
 
 //Library Instance
