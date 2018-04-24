@@ -154,6 +154,33 @@ Library.prototype.removeBookbyTitle = function (title) {
     }
 };
 
+//this will remove a Book from the Library by its call number.
+Library.prototype.removeBookbyCallNum = function (callnum) {
+    try {
+        if (callnum.startsWith("RM")) {
+            callnum = callnum.substr(2);
+        }
+        console.log(callnum);
+        var index = this.getIndex("callnum", callnum)
+        console.log(index)
+        if (index == -1) {
+            document.getElementById("msg").innerHTML = "This Book was not found in your Library!";
+            document.getElementById("msg").setAttribute("class", "msgclass");
+            return false;
+        }
+        else {
+            this.Books.splice(index, 1);
+            document.getElementById("msg").innerHTML = "1 item has been removed from the Library!";
+            document.getElementById("msg").setAttribute("class", "msgclass");
+            return true;
+        }
+    }
+    catch (e) {
+        document.getElementById("msg").innerHTML = e;
+        document.getElementById("msg").setAttribute("class", "errclass");
+    }
+};
+
 //this will remove all Books from the Library by an author.
 Library.prototype.removeBookbyAuthor = function (author) {
     try {
@@ -212,7 +239,7 @@ Library.prototype.random = function () {
 }
 
 //this will retrive a collection of Books from the Library by title.
-Library.prototype.getBooksByTitle = function (title) {
+Library.prototype.getBooksByTitle = function (title, msg = true) {
     try {
         var i = 0;
         var Booklist = [];
@@ -225,8 +252,11 @@ Library.prototype.getBooksByTitle = function (title) {
                 count++;
             }
         }
-        document.getElementById("msg").innerHTML = "We have found " + count + " Book(s) with the title of: " + uppercase(title);
-        document.getElementById("msg").setAttribute("class", "msgclass");
+        if (msg) {
+            document.getElementById("msg").innerHTML = "We have found " + count + " Book(s) with the title of: " + uppercase(title);
+            document.getElementById("msg").setAttribute("class", "msgclass");
+        }
+
         return Booklist;
     }
     catch (e) {
@@ -236,7 +266,7 @@ Library.prototype.getBooksByTitle = function (title) {
 };
 
 //this will retrive a collection of Books from the Library by author.
-Library.prototype.getBooksByAuthor = function (author) {
+Library.prototype.getBooksByAuthor = function (author, msg = true) {
     var i = 0;
     var Booklist = [];
     var count = 0;
@@ -248,10 +278,41 @@ Library.prototype.getBooksByAuthor = function (author) {
             count++;
         }
     }
-    document.getElementById("msg").innerHTML = "We have found " + count + " book(s) by the author: " + uppercase(author);
-    document.getElementById("msg").setAttribute("class", "msgclass");
+    if (msg) {
+        document.getElementById("msg").innerHTML = "We have found " + count + " book(s) by the author: " + uppercase(author);
+        document.getElementById("msg").setAttribute("class", "msgclass");
+    }
+
     return Booklist;
 };
+
+Library.prototype.getBooksByTitleAuthor = function (title, author, msg = true) {
+    var i = 0;
+    var Booklist = [];
+    var count = 0;
+    //for (i = 0; i < this.Books.length; i++) {
+    //    if ((this.Books[i].details.title.toLowerCase() == title) && (this.Books[i].details.author.toLowerCase() == author)) {
+    //        Booklist.push(this.Books[i]);
+    //        count++;
+    //    }
+    //}
+    for (i; i < this.Books.length; i++) {
+        var bkauthor = this.Books[i].details.author.toLowerCase();
+        var bktitle = this.Books[i].details.title.toLowerCase();
+        //console.log(author.indexOf(item.toLowerCase()));
+        if (bkauthor.indexOf(author.toLowerCase()) !== -1 && bktitle.indexOf(title.toLowerCase()) !== -1) {
+            Booklist.push(this.Books[i]);
+            count++;
+        }
+    }
+    if (msg) {
+        document.getElementById("msg").innerHTML = "We have found " + count + " book(s) by the author: " + uppercase(author);
+        document.getElementById("msg").setAttribute("class", "msgclass");
+    }
+
+    return Booklist;
+};
+
 
 //this will retrive a collection of authors from the Library.
 Library.prototype.getAuthors = function () {
@@ -324,6 +385,15 @@ Library.prototype.getIndex = function (type, item = "", item2 = "") {
                 for (i; i < this.Books.length; i++) {
                     //console.log(this.Books[i].details.author + " / " + item);
                     if ((this.Books[i].details.title.toLowerCase() == item) && (this.Books[i].details.author.toLowerCase() == item2)) {
+                        index = i;
+                        break;
+                    }
+                }
+                break;
+
+            case "callnum":
+                for (i; i < this.Books.length; i++) {
+                    if (this.Books[i].callNum == item) {
                         index = i;
                         break;
                     }
@@ -568,6 +638,12 @@ Library.prototype.clearLibrary = function (LibraryKey = "LibraryKey") {
     return this.Books.length = 0;
 }
 
+function deleteFromLibrary(bookid) {
+    console.log("deleteFromLibrary running");
+    this.Library().removeBookbyCallNum(bookid);
+    this.Library().saveLibrary();
+    LoadBookList();
+}
 //automatically creates a callnumber for Library use. testing case only.
 function generateCallNum() {
     return Math.floor((Math.random() * 1000) + 1);
@@ -652,7 +728,7 @@ function LoadBookList(search = false) {
                 text = sessionStorage.getItem("searchResults");
             }
             document.getElementById("searchHeader").innerHTML = "Search Results";
-            document.getElementById("libHeading").innerHTML = "This is a listing of the results from your search within the library...";;
+            document.getElementById("libHeading").innerHTML = "This is a listing of the results from your search within the library...";
         } else {
             if (storageType == 'localStorage') {
                 text = localStorage.getItem(window.Library().storagekey);
@@ -665,7 +741,11 @@ function LoadBookList(search = false) {
         if (text == "None" || text == undefined) {
             document.getElementById("searchHeader").innerHTML = lSearch;
             document.getElementById("libHeading").innerHTML = "No books were found in stored library. Default test book was looked for appearance. Once you add a book to the library, this listing will repopulate...";
-        } else { fillListing2(text) };
+        } else {
+            var Bookarr = [];
+            Bookarr = JSON.parse(text);
+            fillListing(Bookarr)
+        };
     }
     catch (e) {
         document.getElementById("msg").innerHTML = e;
@@ -674,16 +754,13 @@ function LoadBookList(search = false) {
 
 }
 
-function fillListing(text) {
-    var Bookarr = [];
+function fillListing(Bookarr) {
     var i = 0;
 
     //check if storage has value
     //clear table
     $("#tblBKList").find("tr:not(:first)").remove();
 
-    Bookarr = JSON.parse(text);
-    //console.log(Bookarr);
     var tr;
     var x = "";
     for (var i = 0; i < Bookarr.length; i++) {
@@ -695,36 +772,11 @@ function fillListing(text) {
         tr.append("<td>" + Bookarr[i].details.numberOfPages + "</td>");
         tr.append("<td>" + Bookarr[i].details.publishDate + "</td>");
         tr.append("<td>" + Bookarr[i].catagory + "</td>");
-        tr.append("<td><a href='javascript: void (0)' class='bookremove' id=RM'" + x + "'>Remove</a></td>");
-        tr.append("<td><a href='javascript: void (0)' class='bookremove' id=ED'" + x + "'>Edit</a></td>");
+        tr.append("<td><a href='javascript: void (0)' class='bookremove' id=RM" + x + ">Remove</a></td>");
+        tr.append("<td><a href='javascript: void (0)' class='bookremove' id=ED" + x + ">Edit</a></td>");
         $('table').first().append(tr);
     }
 
-}
-
-function fillListing2(text) {
-    var Bookarr = [];
-    var i = 0;
-
-    //check if storage has value
-    //clear table
-    $("#tblBKList").find("tr:not(:first)").remove();
-
-    Bookarr = JSON.parse(text);
-    console.log("Parsed Array");
-    console.log(Bookarr);
-    var table = $('#tblBKList').DataTable();
-    for (var i = 0; i < Bookarr.length; i++) {
-        x = Bookarr[i].callNum;
-        table.row.add({
-            "Call#": "<td><a href='javascript: void (0)' class='bookdetail' id='" + x + "'>" + x + "</a></td>",
-            "Title": Bookarr[i].details.title,
-            "Author": Bookarr[i].details.author,
-            "Page #": Bookarr[i].details.numberOfPages,
-            "Publish Date": Bookarr[i].details.publishDate,
-            "Catagory": Bookarr[i].catagory
-        }).draw();
-    }
 }
 
 function displayBookDetailbyCallNum(callNum) {
@@ -735,18 +787,11 @@ function displayBookDetailbyCallNum(callNum) {
 
     if (BookArr.length > 0) {
         $('#cbBookImg').attr('src', decodeURI(BookArr[0].bookcover));
-        //document.getElementById("cbBookImg").src = BookArr[0].bookcover;
         document.getElementById("cardtitle").innerHTML = BookArr[0].details.title;
         document.getElementById("cardAuthor").innerHTML = "Written by: " + BookArr[0].details.author;
-        //document.getElementById("cardPlot").innerHTML = BookArr[0].review.plot;
-        //document.getElementById("cardSummary").innerHTML = BookArr[0].review.summary;
-
-        //$('#cardtitle').text = BookArr[0].details.title;
-        //$('#cardAuthor').text = BookArr[0].details.author;
         console.log(BookArr[0].bookcover);
         console.log(decodeURI(BookArr[0].bookcover));
     }
-    //$("cdBookInfo").toggle();
     return BookArr.length;
 }
 
@@ -789,62 +834,49 @@ function loadLibrary() {
     } else { LoadBookList(); }
 }
 
+function SearchLibrary() {
+    var sText = document.getElementById("txtSearch").value;
+    var Bookarr = [];
+    var Temparr = [];
+    if (cbTitle.checked) {
+        Temparr = this.Library().getBooksByTitle(sText, false);
+        if (Bookarr.length == 0) {
+            Bookarr = Temparr;
+        } else {
+            Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
+        }
+    }
+    if (cbAuthor.checked) {
+        Temparr = this.Library().getBooksByAuthor(sText, false);
+        if (Bookarr.length == 0) {
+            Bookarr = Temparr;
+        } else {
+            Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
+        }
+    }
+    if (cbTitleAuthor.checked) {
+        Temparr = this.Library().getBooksByTitleAuthor(sText, false);
+        if (Bookarr.length == 0) {
+            Bookarr = Temparr;
+        } else {
+            Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
+        }
+    }
+    fillListing(Bookarr);
 
+}
 
-
-
-
-//function loadLibrary() {
-
-//    //tests to see if object has been created
-//    var key = window.Library().storagekey;
-
-//    //base object has not been created
-//    //debugger;
-//    if (key == "undefined") {
-//        //creates library object
-//        var gLib = new Library("gLib");
-//        //sees if client storage holds object in mem if so loads it into the new object then fills listing
-//        if (localStorage.hasOwnProperty("gLib")) {
-//            window.Library.updateLibraryfromStorage();
-//            LoadBookList();
-//        } else {
-//            //fills empty object with test data if selected (to be removed for production), saves in mem, loads listing
-//            if (confirm("Load Test Library")) {
-//                window.Library.fillLib();
-//                window.Library.saveLibrary();
-//                LoadBookList();
-//            } else {
-//                LoadBookList();
-//            }
-//        }
-//    } else {
-//        if (localStorage.hasOwnProperty(key)) {
-//            LoadBookList();
-//        } else {
-//            if (confirm("Load Test Library")) {
-//                window.Library.fillLib();
-//                window.Library.saveLibrary();
-//                LoadBookList();
-//                LoadBookList();
-//            } else {
-//                LoadBookList();
-//            }
-//        }
-//    }
-
-
-
-
-
-//}
-
+function removeDuplicatesFromBookListings(array1, array2) {
+    return array1 = array1.filter(val => !array2.includes(val));
+}
 //JQUERY---------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function () {
 
     //event handler for load library button
     $("div").on("click", function () {
-        document.getElementById("msg").innerHTML = "";
+        if ($('#msg').length) {
+            //document.getElementById("msg").innerHTML = "";
+        }
     })
 
     //This button will create a default library, fill it with books and then save those books to browser storage.
@@ -853,7 +885,6 @@ $(document).ready(function () {
         var gLib = new Library("gLib");
         gLib.fillLib();
         gLib.saveLibrary();
-        console.log(gLib);
     });
 
     $("#loadLibrary").on("click", function () {
@@ -864,12 +895,59 @@ $(document).ready(function () {
     $('#tblBKList').click(function (e) {
         //alert(selected_id + "2nd run");
         var bookid = $(e.target).attr("id"); // or e.target.id
-        displayBookDetailbyCallNum(bookid);
+        console.log(bookid.startsWith("RM"));
+        if (bookid.startsWith("RM")) {
+            deleteFromLibrary(bookid);
+        } else if(bookid.startsWith("ED")){
+
+        }else {
+            displayBookDetailbyCallNum(bookid);
+        }
+        //switch (bookid) {
+        //    case bookid.startsWith("RM"):
+        //        console.log("1st case fired")
+        //        deleteFromLibrary(bookid);
+        //        break;
+        //    case bookid.startsWith("ED"):
+        //        break;
+        //    default:
+        //         displayBookDetailbyCallNum(bookid);
+        //}
     });
 
-    $("#cdBookInfo_close").on("click", function () {
+    $("#searchLib").on("click", function () {
         //$("cdBookInfo").toggle();
+        if ($('#searchLib').length) {
+            SearchLibrary();
+        }
     });
+
+    //checkbox group
+    $("#cbAll").on("click", function () {
+        cbTitle.checked = false;
+        cbAuthor.checked = false;
+        cbTitleAuthor.checked = false;
+    });
+    $("#cbTitleAuthor").on("click", function () {
+        cbTitle.checked = false;
+        cbAuthor.checked = false;
+        cbAll.checked = false;
+    });
+    $("#cbTitle").on("click", function () {
+        cbAll.checked = false;
+        cbTitleAuthor.checked = false;
+    });
+    $("#cbAuthor").on("click", function () {
+        cbAll.checked = false;
+        cbTitleAuthor.checked = false;
+    });
+
+    $("#rmAllAuthors").on("click", function () {
+        cbAll.checked = false;
+        cbTitleAuthor.checked = false;
+    });
+
+    
 });
 
 //Library Instance
@@ -883,7 +961,7 @@ var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPa
 var gGMM = new Book({ title: "The Green Mile", author: "Scott Talbane", numberOfPages: 410, publishDate: "October 7, 1998" }, 710, "Drama");
 var gCatherInTheRye = new Book({ title: "Catcher In The Rye", author: "JD Salinger", numberOfPages: 200, publishDate: "December 25, 1987" }, 734, "Drama");
 var gNP = new Book({ title: "New Power", author: "Jeremy Heimans", numberOfPages: 873, publishDate: "April 12, 2019" }, 310, "Thriller");
-var gTTC = new Book({ title: "Dan the Follower", author: "Jeremy Heimans", numberOfPages: 1250, publishDate: "May 17, 2000" }, 756, "Drama");
+var gTTC = new Book({ title: "Dan the Follower", author: "Jeremy King", numberOfPages: 1250, publishDate: "May 17, 2000" }, 756, "Drama");
 var gPOW = new Book({ title: "War of Ewwww!", author: "Mary U'Banks", numberOfPages: 210, publishDate: "June 7, 1999" }, 888, "Comedy");
 var gQOS = new Book({ title: "Kill the Mockingbird", author: "Marko Wines", numberOfPages: 1750, publishDate: "April 12, 2014" }, 790, "Drama");
 var gQOW = new Book({ title: "Kill the Other Mockingbird", author: "Marko Wines", numberOfPages: 1100, publishDate: "April 12, 2016" }, 791, "Drama");
@@ -895,7 +973,9 @@ var gBookArray2 = [gNP, gTTC, gPOW];
 var gBookArray3 = [];
 
 //testing auto loads Library
-//gLib.fillLib();
-//loadLibrary();
+var gLib = new Library("gLib");
+gLib.fillLib();
+gLib.saveLibrary();
+loadLibrary();
 
 //--------------------------------------------------------------------------------------------------------------------------
