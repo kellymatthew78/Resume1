@@ -159,12 +159,12 @@ Library.prototype.removeBookbyTitle = function (title) {
 };
 
 //this will remove a Book from the Library by its call number.
-Library.prototype.removeBookbyCallNum = function (callnum) {
+Library.prototype.removeBookbyCallNum = function (callnum, msg = true) {
     try {
         if (callnum.startsWith("RM")) {
             callnum = callnum.substr(2);
         }
-        console.log(callnum);
+        //console.log(callnum);
         var index = this.getIndex("callnum", callnum, "", false)
         //console.log(index)
         if (index == -1) {
@@ -174,8 +174,10 @@ Library.prototype.removeBookbyCallNum = function (callnum) {
         }
         else {
             this.Books.splice(index, 1);
-            document.getElementById("msg").innerHTML = "1 item has been removed from the Library!";
-            document.getElementById("msg").setAttribute("class", "msgclass");
+            if (msg) {
+                document.getElementById("msg").innerHTML = "1 item has been removed from the Library!";
+                document.getElementById("msg").setAttribute("class", "msgclass");
+            }
             return true;
         }
     }
@@ -235,11 +237,29 @@ Library.prototype.removeBookbyTitleAndAuthor = function (title, author) {
 };
 
 //this will retrive a random Book from the Library.
-Library.prototype.random = function () {
+Library.prototype.random = function (msg = true) {
     var ranBook = this.Books[Math.floor((Math.random() * this.Books.length))];
-    document.getElementById("msg").innerHTML = "We have selected " + ranBook.details.title + " for you.";
-    document.getElementById("msg").setAttribute("class", "msgclass");
+    if (msg) {
+        document.getElementById("msg").innerHTML = "We have selected " + ranBook.details.title + " for you.";
+        document.getElementById("msg").setAttribute("class", "msgclass");
+    }
     return ranBook;
+}
+
+//this will display a random Book from the Library.
+Library.prototype.displayRandomBook = function () {
+    try {
+        var BookArr = this.random(false);
+        $('#rdBookImg').attr('src', decodeURI(BookArr.bookcover));
+        document.getElementById("cardtitle2").innerHTML = BookArr.details.title;
+        document.getElementById("cardAuthor2").innerHTML = "Written by: " + BookArr.details.author;
+
+        $("#randomBook").modal("toggle");
+        return true;
+    }
+    catch (e) {
+        console.log(e);
+    }
 }
 
 Library.prototype.checkcallNum = function () {
@@ -657,6 +677,98 @@ Library.prototype.clearLibrary = function (LibraryKey = "LibraryKey") {
     return this.Books.length = 0;
 }
 
+//Library Sort Methods-------------------------------------------------------
+Library.prototype.sortLibraryList = function (sortType, decend) {
+    try {
+        var BookList = [];
+
+        switch (sortType) {
+            case "title":
+                BookList = this.sortTitle(decend);
+                fillListing(BookList);
+                return true;
+            case "author":
+                BookList = this.sortAuthor(decend);
+                fillListing(BookList);
+                return true;
+            case "page":
+                BookList = this.sortPage(decend);
+                fillListing(BookList);
+                return true;
+            case "pub":
+                BookList = this.sortDate(decend);
+                fillListing(BookList);
+                return true;
+        }
+
+
+    }
+    catch (e) {
+
+    }
+}
+
+Library.prototype.sortAuthor = function (decend = false) {
+    var bookList = this.Books;
+    bookList.sort(function (a, b) {
+        return a.details.author > b.details.author;
+    })
+    if (decend == true) {
+        return bookList.reverse();
+    } else {
+        return bookList;
+    }
+}
+
+Library.prototype.sortTitle = function (decend = false) {
+    var bookList = this.Books;
+    bookList.sort(function (a, b) {
+        return a.details.title > b.details.title;
+    })
+    if (decend == true) {
+        return bookList.reverse();
+    } else {
+        return bookList;
+    }
+}
+
+Library.prototype.sortPage = function (decend = false) {
+    var bookList = this.Books;
+    bookList.sort(function (a, b) {
+        return a.details.numberOfPages > b.details.numberOfPages;
+    })
+    if (decend == true) {
+        return bookList.reverse();
+    } else {
+        return bookList;
+    }
+}
+
+Library.prototype.sortDate = function (decend = false) {
+    var bookList = this.Books;
+    bookList.sort(function (a, b) {
+        return a.details.publishDate > b.details.publishDate;
+    })
+    if (decend == true) {
+        return bookList.reverse();
+    } else {
+        return bookList;
+    }
+}
+
+Library.prototype.sortCallNum = function (decend = false) {
+    var bookList = this.Books;
+    bookList.sort(function (a, b) {
+        return a.callNum > b.callNum;
+    })
+    if (decend == true) {
+        return bookList.reverse();
+    } else {
+        return bookList;
+    }
+}
+
+
 //for testing. this function will fill the Library
 Library.prototype.fillLib = function () {
     this.Books.length = 0;
@@ -672,6 +784,16 @@ Library.prototype.fillLib = function () {
     this.Books.push(gQOT);
     return this.Books.length;
 };
+
+function compare(a, b) {
+    //a<b, return -1
+    //a>b, return 1
+    //a===b, return 0
+
+    if (a < b) { return -1; }
+    if (a > b) { return 1; }
+    if (a === b) { return 0; }
+}
 
 function formAddBooks() {
     try {
@@ -736,11 +858,20 @@ function displayListing(listing) {
             $("#tblBKList").show();
             $("#cdBookInfo").show();
             $("#tblAUList").hide();
+            $("#editCard").hide();
             break;
         case "author":
             $("#tblBKList").hide();
             $("#cdBookInfo").hide();
             $("#tblAUList").show();
+            $("#editCard").hide();
+            break;
+        case "editcard":
+            $("#tblBKList").hide();
+            $("#cdBookInfo").hide();
+            $("#tblAUList").hide();
+            $("#editCard").show();
+            break;
     }
     return true;
 }
@@ -862,6 +993,7 @@ function LoadBookList(search = false) {
         } else {
             var Bookarr = [];
             Bookarr = JSON.parse(text);
+            displayListing("book");
             fillListing(Bookarr);
             return true;
         };
@@ -944,12 +1076,103 @@ function displayBookDetailbyCallNum(callNum) {
         $('#cbBookImg').attr('src', decodeURI(BookArr[0].bookcover));
         document.getElementById("cardtitle").innerHTML = BookArr[0].details.title;
         document.getElementById("cardAuthor").innerHTML = "Written by: " + BookArr[0].details.author;
-        //console.log(BookArr[0].bookcover);
-        //console.log(decodeURI(BookArr[0].bookcover));
     }
     return BookArr.length;
 }
 
+function displayEditBookDetailbyCallNum(callNum) {
+    try {
+        displayListing("editCard");
+        if (callNum.startsWith("ED")) {
+            callNum = callNum.substr(2);
+        }
+        var BookArr = [];
+        BookArr = window.Library().getBookList("callnum", callNum, "", false)
+        clearEditForm();
+        if (BookArr.length > 0) {
+            console.log(BookArr[0].details.publishDate);
+            var date = new Date();
+            date = BookArr[0].details.publishDate;
+            $('#hfCallNum').val(callNum);
+            $('#hfBKcover').val(BookArr[0].bookcover);
+            $('#txtedTitle').val(BookArr[0].details.title);
+            $('#txtedAuthor').val(BookArr[0].details.author);
+            $('#txtedPageNum').val(BookArr[0].details.numberOfPages);
+            $('#txtedPubDate').val(BookArr[0].details.publishDateate);
+            console.log(date);
+            $("#dledCategory").val(BookArr[0].catagory);
+        }
+        return true;
+    }
+    catch (e) {
+        console.log(e);
+    }
+
+}
+
+function EditBookDetailbyCallNum(callNum) {
+    try {
+
+        var ncallNum = $('#hfCallNum').val();
+        var nbkCover = $('#hfBKcover').val();
+        var ntitle = $('#txtedTitle').val();
+        var nauthor = $('#txtedAuthor').val();
+        var nnumPage = $('#txtedPageNum').val();
+        var npub = $('#txtedPubDate').val();
+        var ncat = $("#dledCategory").val();
+        if (window.Library().removeBookbyCallNum(ncallNum, false)) {
+            var nBook = new Book({ title: ntitle, author: nauthor, numberOfPages: nnumPage, publishDate: npub }, ncallNum, ncat, nbkCover);
+            window.Library().addBook(nBook, true);
+            window.Library().saveLibrary();
+            clearEditForm();
+            LoadBookList();
+        }
+        return true;
+    }
+    catch (e) {
+        console.log(e);
+    }
+}
+
+
+
+function CancelEditBookDetailbyCallNum(callNum) {
+    try {
+        //displayListing("editCard");
+        if (callNum.startsWith("ED")) {
+            callNum = callNum.substr(2);
+        }
+        var BookArr = [];
+        BookArr = window.Library().getBookList("callnum", callNum, "", false)
+        clearEditForm();
+        if (BookArr.length > 0) {
+            console.log(BookArr[0].details.publishDate);
+            var date = new Date();
+            date = BookArr[0].details.publishDate;
+            $('#hdCallNum').val(callNum);
+            $('#txtedTitle').val(BookArr[0].details.title);
+            $('#txtedAuthor').val(BookArr[0].details.author);
+            $('#txtedPageNum').val(BookArr[0].details.numberOfPages);
+            $('#txtedPubDate').val(BookArr[0].details.publishDateate);
+            console.log(date);
+            $("#dledCategory").val(BookArr[0].catagory);
+        }
+        return true;
+    }
+    catch (e) {
+
+    }
+
+}
+
+function clearEditForm() {
+    $('#hfCallNum').val('');
+    $('#hfBKcover').val('');
+    $('#txtedTitle').val('');
+    $('#txtedAuthor').val('');
+    $('#txtedPageNum').val('');
+    $('#txtedPubDate').val('');
+}
 function flip() {
     $('.card').toggleClass('flipped');
 }
@@ -1032,13 +1255,13 @@ function removeDuplicatesFromBookListings(array1, array2) {
 }
 //JQUERY---------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function () {
+    //Global event handlers 
     if (localStorage.hasOwnProperty("gLib")) {
         var gLib = new Library("gLib");
         gLib.updateLibraryfromStorage(false);
         LoadBookList();
     }
 
-    //Global event handler for load library button
     $("div").on("click", function () {
         if ($('#msg').length) {
             //document.getElementById("msg").innerHTML = "";
@@ -1059,26 +1282,35 @@ $(document).ready(function () {
         loadLibrary();
     });
 
-    //captures the click event of dynamic link button created in tables
-    $('#tblBKList').click(function (e) {
-        //alert(selected_id + "2nd run");
-        var bookid = $(e.target).attr("id"); // or e.target.id
-        if (bookid.startsWith("RM")) {
-            deleteFromLibrary(bookid);
-        } else if (bookid.startsWith("ED")) {
-
-        } else {
-            displayBookDetailbyCallNum(bookid);
-        }
+    //Admininstration Navigation buttons
+    $("#Home").on("click", function () {
+        loadLibrary();
     });
 
-    $("#searchLib").on("click", function () {
-        //$("cdBookInfo").toggle();
-        if ($('#searchLib').length) {
-            SearchLibrary();
-        }
+    $("#getAuthors").on("click", function () {
+        showAuthorListing();
     });
 
+    $('#removeAuthors').on('show.bs.modal', function (e) {
+        $("#txtremoveallauthors").val('');
+    });
+    $('#removeAuthors').on('shown.bs.modal', function (e) {
+        $('#txtremoveallauthors').focus();
+    });
+    $("#btnRemoveAllAuthor").on("click", function () {
+        var text = document.getElementById("txtremoveallauthors").value;
+        removeAuthors(text);
+    });
+
+    $("#btnAddBook").on("click", function () {
+        formAddBooks();
+    });
+
+    $("#getRandom").on("click", function () {
+        window.Library().displayRandomBook();
+    });
+
+    //Search Form Controls
     //checkbox group
     $("#cbAll").on("click", function () {
         cbTitle.checked = false;
@@ -1099,30 +1331,60 @@ $(document).ready(function () {
         cbTitleAuthor.checked = false;
     });
 
-    //Admininstration Navigation buttons
-    $("#Home").on("click", function () {
-        loadLibrary();
+    //Search button img
+    $("#searchLib").on("click", function () {
+        //$("cdBookInfo").toggle();
+        if ($('#searchLib').length) {
+            SearchLibrary();
+        }
     });
 
-    $("#getAuthors").on("click", function () {
-        showAuthorListing();
+    //Table Events
+    //captures the click event of dynamic link button created in tables
+    $('#tblBKList').click(function (e) {
+        //alert(selected_id + "2nd run");
+        var bookid = $(e.target).attr("id"); // or e.target.id
+        if (bookid.startsWith("RM")) {
+            deleteFromLibrary(bookid);
+        } else if (bookid.startsWith("ED")) {
+            displayEditBookDetailbyCallNum(bookid);
+        } else {
+            displayBookDetailbyCallNum(bookid);
+        }
     });
 
-    $('#removeAuthors').on('show.bs.modal', function (e) {
-        $("#txtremoveallauthors").val('');
+    //Library Sort events
+    $("#sortATitle").on("click", function () {
+        window.Library().sortLibraryList("title", false)
     });
-    $('#removeAuthors').on('shown.bs.modal', function (e) {
-        $('#txtremoveallauthors').focus();
+    $("#sortDTitle").on("click", function () {
+        window.Library().sortLibraryList("title", true)
     });
-    $("#btnRemoveAllAuthor").on("click", function () {
-        //console.log("btnRemoveAllAuthor clicked");
-        var text = document.getElementById("txtremoveallauthors").value;
-        removeAuthors(text);
+    $("#sortAAuthor").on("click", function () {
+        window.Library().sortLibraryList("author", false)
+    });
+    $("#sortDAuthor").on("click", function () {
+        window.Library().sortLibraryList("author", true)
+    });
+    $("#sortAPage").on("click", function () {
+        window.Library().sortLibraryList("page", false)
+    });
+    $("#sortDPage").on("click", function () {
+        window.Library().sortLibraryList("page", true)
+    });
+    $("#sortAPub").on("click", function () {
+        window.Library().sortLibraryList("pub", false)
+    });
+    $("#sortDPub").on("click", function () {
+        window.Library().sortLibraryList("pub", true)
     });
 
-    $("#btnAddBook").on("click", function () {
-        console.log("btnAddBook clicked");
-        formAddBooks();
+    //Edit card save button
+    $("#editBook").on("click", function () {
+        EditBookDetailbyCallNum(bookid);
+    });
+    $("#editBookCancel").on("click", function () {
+        CancelEditBookDetailbyCallNum(bookid);
     });
 });
 
@@ -1130,18 +1392,18 @@ $(document).ready(function () {
 //var gLib = new Library("gLib");
 
 //Book Instances that contains the properties of each book object.
-var gBL = new Book({ title: "Bool", author: "Jason West", numberOfPages: 250, publishDate: "Feburary 3, 1888" }, 147, "Western");
-var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "September 15, 1986" }, 524, "Horror", "IT_old.jpg");
-var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "January 5, 2016" }, 534, "Horror", "IT_new.jpg");
-var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPages: 1200, publishDate: "August 29, 1996" }, 516, "Horror", "SK_GreenMile.jpg");
-var gGMM = new Book({ title: "The Green Mile", author: "Scott Talbane", numberOfPages: 410, publishDate: "October 7, 1998" }, 710, "Drama", "ST_GreenMile.jpg");
-var gCatherInTheRye = new Book({ title: "Catcher In The Rye", author: "JD Salinger", numberOfPages: 200, publishDate: "December 25, 1987" }, 734, "Drama", "JD_CITR.jpg");
-var gNP = new Book({ title: "New Power", author: "Jeremy Heimans", numberOfPages: 873, publishDate: "April 12, 2019" }, 310, "Thriller", "JH_NewPower.jpg");
-var gTTC = new Book({ title: "The Follower", author: "Rick Fuller King", numberOfPages: 1250, publishDate: "May 17, 2000" }, 756, "Drama", "RF_Follower.jpg");
-var gPOW = new Book({ title: "War of Ewwww!", author: "Mary U'Banks", numberOfPages: 210, publishDate: "June 7, 1999" }, 888, "Comedy", "jBook.jpg");
-var gQOS = new Book({ title: "Kill the Mockingbird", author: "Marko Wines", numberOfPages: 1750, publishDate: "April 12, 2014" }, 790, "Drama", "TKMMB1.jpg");
-var gQOW = new Book({ title: "Kill the Other Mockingbird", author: "Marko Wines", numberOfPages: 1100, publishDate: "April 12, 2016" }, 791, "Drama", "TKMMB2.jpg");
-var gQOT = new Book({ title: "Kill the Blue Mockingbird Cause It Dont Like ME!", author: "Marko Wines", numberOfPages: 1650, publishDate: "April 12, 2018" }, 792, "Drama", "TKMMB3.jpg");
+var gBL = new Book({ title: "Bool", author: "Jason West", numberOfPages: 250, publishDate: "2/2/1888" }, 147, "Western");
+var gIT = new Book({ title: "IT", author: "Stephen King", numberOfPages: 1138, publishDate: "9/15/1986" }, 524, "Horror", "IT_old.jpg");
+var gIT2 = new Book({ title: "It: A Novel", author: "Stephen King", numberOfPages: 1168, publishDate: "1/5/2016" }, 534, "Horror", "IT_new.jpg");
+var gGM = new Book({ title: "The Green Mile", author: "Stephen King", numberOfPages: 1200, publishDate: "8/29/1996" }, 516, "Horror", "SK_GreenMile.jpg");
+var gGMM = new Book({ title: "The Green Mile", author: "Scott Talbane", numberOfPages: 410, publishDate: "10/7/1998" }, 710, "Drama", "ST_GreenMile.jpg");
+var gCatherInTheRye = new Book({ title: "Catcher In The Rye", author: "JD Salinger", numberOfPages: 200, publishDate: "12/25/1987" }, 734, "Drama", "JD_CITR.jpg");
+var gNP = new Book({ title: "New Power", author: "Jeremy Heimans", numberOfPages: 873, publishDate: "4/12/2019" }, 310, "Thriller", "JH_NewPower.jpg");
+var gTTC = new Book({ title: "The Follower", author: "Rick Fuller King", numberOfPages: 1250, publishDate: "5/17/2000" }, 756, "Drama", "RF_Follower.jpg");
+var gPOW = new Book({ title: "War of Ewwww!", author: "Mary U'Banks", numberOfPages: 210, publishDate: "6/7/1999" }, 888, "Comedy", "jBook.jpg");
+var gQOS = new Book({ title: "Kill the Mockingbird", author: "Marko Wines", numberOfPages: 1750, publishDate: "4/12/2014" }, 790, "Drama", "TKMMB1.jpg");
+var gQOW = new Book({ title: "Kill the Other Mockingbird", author: "Marko Wines", numberOfPages: 1100, publishDate: "4/12/2016" }, 791, "Drama", "TKMMB2.jpg");
+var gQOT = new Book({ title: "Kill the Blue Mockingbird Cause It Dont Like ME!", author: "Marko Wines", numberOfPages: 1650, publishDate: "4/12/2018" }, 792, "Drama", "TKMMB3.jpg");
 
 //Array collection of Book Instances
 var gBookArray1 = [gIT, gGM, gCatherInTheRye];
