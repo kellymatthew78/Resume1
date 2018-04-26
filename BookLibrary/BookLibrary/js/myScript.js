@@ -1239,6 +1239,20 @@ function SearchLibrary() {
                 Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
             }
         }
+        if (cbAll.checked) {
+            Temparr = this.Library().getBooksByAuthor(sText, false);
+            if (Bookarr.length == 0) {
+                Bookarr = Temparr;
+            } else {
+                Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
+            }
+            Temparr = this.Library().getBooksByTitleAuthor(sText, false);
+            if (Bookarr.length == 0) {
+                Bookarr = Temparr;
+            } else {
+                Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
+            }
+        }
         fillListing(Bookarr);
         return true;
     }
