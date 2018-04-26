@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>My Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script defer src="js/myJS2.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 id="msgError" class="msgError" style="color:red"></h3>
+                <form id ="regForm" class="regForm" style="display:block">
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" class="form-control " id="email">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd">
+                    </div>
+                    <div class="form-group" style="margin-top:1em">
+                        <label for="fName">First Name:</label>
+                        <input type="text" class="form-control " id="fName">
+                        <label for="lName">Last Name:</label>
+                        <input type="text" class="form-control" id="lName">
+                    </div>
+                    <div class="form-group" style="margin-top:1em">
+                        <label for="phone">Phone #</label>
+                        <input type="text" class="form-control " id="phone">
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="registerUser()" style="margin-top:1em">Submit</button>
+                </form>
+                <hr />
+                <form id="logForm" class="logForm" style="display:block">
+                    <div class="form-inline">
+                        <label for="lgemail">Email Address:</label>
+                        <input type="email" class="form-control w-25 ml-3 mr-3" id="lgemail">
+                        <label for="lgpwd">Password:</label>
+                        <input type="password" class="form-control w-25  ml-3 mr-3" id="lgpwd">
+                        <button type="button" class="btn btn-secondary" onclick="regLogin()">Login</button>
+                    </div>
+                </form>
+                <hr />
+                <br />
+                <div id="welForm" class="row">
+                    <div class="col">
+                        <h1 id="welcome">Welcome</h1>
+                        <small id="contact1">Contact 1</small><br />
+                        <small id="contact2">Contact 2</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="reset" class="btn-group" style="margin-top:3em">
+            <button id="btnReset" type="button" class="btn btn-danger" onclick="resetProfilePage()">Reset Page</button>
+            <button id="btnsReg" type="button" class="btn btn-success" onclick="showRegistration()">Register</button>
+            <button id="btnsLg" type="button" class="btn btn-success" onclick="showLogin()">Login</button>
+        </div>
+    </div>
+</body>
+</html>
