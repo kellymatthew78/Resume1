@@ -1,23 +1,22 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="vbLibraryHome.aspx.vb" Inherits="BookLibrary.vbLibraryHome" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+   <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>My Book Library</title>
 
-    <!--CDN-->
-    
-    <!-- CSS -->
+     <!-- CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/myStyle.css" rel="stylesheet" />
 
-
-
-
 </head>
 <body>
-    <div class="container-fluid">
+    <form id="form1" runat="server">
+           <div class="container-fluid">
         <div class="header clearfix">
             <h3 class="text-muted">My Library</h3>
         </div>
@@ -26,8 +25,8 @@
             <p class="lead">This is a small community library that is used by members to share books that they have. It can be used to checkout as well as donate various books to this library. </p>
 
             <p>
-                <a id="creatLibrary" class="btn btn-lg btn-success" href="javascript: void (0)" role="button">Refresh Library</a>
-                <a id="loadLibrary" class="btn btn-lg btn-success" href="javascript: void (0)" role="button">Load Library Listing</a>
+                <a id="creatLibrary" class="btn btn-lg btn-success" href="#" role="button">Refresh Library</a>
+                <a id="loadLibrary" class="btn btn-lg btn-success" href="#" role="button">Load Library Listing</a>
 
             </p>
         </div>
@@ -275,7 +274,6 @@
                             <div class="form-group">
                                 <label for="imgFile1">Upload File</label>
                                 <input type="file" class="form-control-file" id="imgFile1">
-
                             </div>
                         </form>
                     </div>
@@ -351,5 +349,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/myScript.js"></script>
     <script src="js/fontawesome-all.js"></script>
+
+    </form>
 </body>
 </html>

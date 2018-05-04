@@ -164,6 +164,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="test.html" />
+    <Content Include="vbLibraryHome.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +186,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="vbLibraryHome.aspx.designer.vb">
+      <DependentUpon>vbLibraryHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vbLibraryHome.aspx.vb">
+      <DependentUpon>vbLibraryHome.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

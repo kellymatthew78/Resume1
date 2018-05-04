@@ -774,6 +774,7 @@ function deleteFromLibrary(bookid) {
     LoadBookList();
     return true;
 }
+
 //automatically creates a callnumber for Library use. testing case only.
 function generateCallNum() {
     return Math.floor((Math.random() * 1000) + 1);
@@ -1032,10 +1033,21 @@ function loadLibrary() {
     }
 }
 
+function CleanLoad() {
+    if ($('#libHeading').length > 0) {
+        var gLib = new Library("gLib");
+        $("#tblBKList").hide();
+        $("#cdBookInfo").hide();
+        $("#tblAUList").hide();
+        $("#editCard").hide();
+        document.getElementById("libHeading").innerHTML = "No books were found in your current library..."
+    }
+  }
+
 function SearchLibrary() {
-    var sText = document.getElementById("txtSearch").value;
-    var Bookarr = [];
-    var Temparr = [];
+    let sText = document.getElementById("txtSearch").value;
+    let Bookarr = [];
+    let Temparr = [];
     if (cbTitle.checked) {
         Temparr = this.Library().getBooksByTitle(sText, false);
         if (Bookarr.length == 0) {
@@ -1060,20 +1072,6 @@ function SearchLibrary() {
             Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
         }
     }
-    //if (cbAll.checked) {
-    //    Temparr = this.Library().getBooksByAuthor(sText, false);
-    //    if (Bookarr.length == 0) {
-    //        Bookarr = Temparr;
-    //    } else {
-    //        Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
-    //    }
-    //    Temparr = this.Library().getBooksByTitleAuthor(sText, false);
-    //    if (Bookarr.length == 0) {
-    //        Bookarr = Temparr;
-    //    } else {
-    //        Bookarr = removeDuplicatesFromBookListings(Bookarr, Temparr)
-    //    }
-    //}
     fillListing(Bookarr);
     return true;
 }
@@ -1089,6 +1087,8 @@ $(function () {
         var gLib = new Library("gLib");
         gLib.updateLibraryfromStorage(false);
         LoadBookList();
+    } else {
+        CleanLoad();
     }
 
     $("div").on("click", function () {
