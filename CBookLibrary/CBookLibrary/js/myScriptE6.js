@@ -308,6 +308,36 @@ class Library2 {
         return -1;
     }
 
+    //this function will check 1 time if client storage is availible. if so a global var is set that will be used for concurrent checks. It then will be able to use either local or session storage based on a value set. These setting will also be saved. creates an alert if storage is not usable.
+    saveLibrary = function () {
+        if (storageAvilible == true) {
+            if (storageType == 'localStorage') {
+                localStorage.setItem(this.storagekey, JSON.stringify(this.Books));
+                return localStorage.hasOwnProperty(this.storagekey);
+            } else if (storageType == 'sessionStorage') {
+                sessionStorage.setItem(this.storagekey, JSON.stringify(this.Books));
+                return sessionStorage.hasOwnProperty(this.storagekey);
+            }
+        } else {
+            if (storageAvailable(storageType)) {
+                if (storageType == 'localStorage') {
+                    localStorage.setItem(this.storagekey, JSON.stringify(this.Books));
+                    return localStorage.hasOwnProperty(this.storagekey);
+                } else if (storageType == 'sessionStorage') {
+                    sessionStorage.setItem(this.storagekey, JSON.stringify(this.Books));
+                    return sessionStorage.hasOwnProperty(this.storagekey);
+                }
+            }
+            else {
+                document.getElementById("msg").innerHTML = "Window storage is not avilible!";
+                document.getElementById("msg").setAttribute("class", "errclass");
+                return false;
+            }
+
+        }
+
+    }
+
     //updates Library from local or session storage
     updateLibraryfromStorage(msg = true) {
         let text = "";

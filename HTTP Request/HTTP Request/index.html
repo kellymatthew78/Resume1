@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTTP REQUEST</title>
+
+    <!-- CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/MyStyles.css" rel="stylesheet" />
+
+    <style>
+         /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+         #map {
+             height: 100%;
+         }
+         /* Optional: Makes the sample page fill the window. */
+         html, body {
+             height: 100%;
+             margin: 0;
+             padding: 0;
+         }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="row">
+            <div class="col-lg-12">
+                <h1>Search MeetUP</h1>
+            </div>
+        </header>
+        <main class="row">
+            <div class="col-lg-7">
+                <h2>Search By:</h2>
+                <br />
+                <form>
+                    <div class="form-group row">
+                        <label for="txtResults" class="col-sm-2 col-form-label">Enter # of Results</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtResults" placeholder="#Results">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtState" class="col-sm-2 col-form-label">State</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtState" placeholder="State">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtCountry" class="col-sm-2 col-form-label">Country</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtCountry" placeholder="Country">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <button id="btnSubmit" type="button" class="btn btn-success">Search</button>
+                        <button id="btnSave" type="button" class="btn btn-success">Display</button>
+                        <button id="btnRMKey" type="button" class="btn btn-success">Clear Search</button>
+                    </div>
+                </form>
+                <br />
+                <table id="tblMUList" class="table table-striped table-bordered nowrap" data-show-columns="true" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Zipcode</th>
+                            <th>Country<i id="sortACountry" class="fas fa-angle-double-up ml-2"></i><i id="sortDCountry" class="fas fa-angle-double-down ml-2"></i></th>
+                            <th>City <i id="sortACity" class="fas fa-angle-double-up ml-2"></i><i id="sortDCity" class="fas fa-angle-double-down ml-2"></i></th>
+                            <th>Ranking<i id="sortARanking" class="fas fa-angle-double-up ml-2"></i><i id="sortDRanking" class="fas fa-angle-double-down ml-2"></i></th>
+                            <th>State <i id="sortAState" class="fas fa-angle-double-up ml-2"></i><i id="sortDState" class="fas fa-angle-double-down ml-2"></i></th>
+                            <th>Member Count</th>
+                            <th><input id="Hidden1" type="hidden" value="" /></th>
+                            <th><input id="Hidden1" type="hidden" /></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="col-lg-5">
+                <div id="map"></div>
+            </div>
+        </main>
+        <footer class="row">
+            <div class="col-lg-12">
+
+            </div>
+        </footer>
+    </div>
+
+    <!-- jQuery and necessary Bootstrap's files plus any CDN) -->
+    <script src="script/bootstrap.min.js"></script>
+    <script src="script/fontawesome-all.js"></script>
+    <script src="script/jquery-3.3.1.min.js"></script>
+    <script src="script/jquery.min.js"></script>
+    <script src="script/popper.min.js"></script>
+    <script src="script/MyScript.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZQPfpH4-_PtR9gVemxCvGMsC2w7ZyuIk&callback=initMap"
+            async defer></script>
+</body>
+</html>
