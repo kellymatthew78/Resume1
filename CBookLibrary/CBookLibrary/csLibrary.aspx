@@ -179,17 +179,18 @@
                                         <div class="form-group row">
                                             <label for="rblBookType" class="col-sm-2 col-form-label">BookType</label>
                                             <div class="col-sm-10">
-                                                <asp:RadioButtonList ID="rblBookType" class="form-control" runat="server">
-                                                    <asp:ListItem Value="HardBack" Selected="True">HardBack</asp:ListItem>
-                                                    <asp:ListItem Value="PapperBack">PapperBack</asp:ListItem>
-                                                    <asp:ListItem Value="Audio">Audio</asp:ListItem>
+                                                <asp:RadioButtonList ID="rblBookType" class="form-control" RepeatDirection="Horizontal" runat="server" CellPadding="5">
+                                                    <asp:ListItem Value="Hardcover" Selected="True">Hardcover</asp:ListItem>
+                                                    <asp:ListItem Value="Paperback">Paperback</asp:ListItem>
+                                                    <asp:ListItem Value="Digital">Digital</asp:ListItem>
+                                                    <asp:ListItem Value="Audiobook">Audiobook</asp:ListItem>
                                                 </asp:RadioButtonList>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="txtPageNum" class="col-sm-2 col-form-label"># of Pages</label>
                                             <div class="col-sm-10">
-                                                <asp:TextBox ID="txtPageNum" class="form-control" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="txtPageNum" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group row">
