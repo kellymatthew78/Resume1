@@ -12,117 +12,25 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="header clearfix">
-            <div class="jumbotron">
-                <h1>Welcome All To The Library</h1>
-                <p class="lead">This is a small community library that is used by members to share books that they have. It can be used to checkout as well as donate various books to this library. </p>
-
-                <p>
-                    <a id="creatLibrary" class="btn btn-lg btn-success" href="#" role="button">Create Library</a>
-                    <a id="loadLibrary" class="btn btn-lg btn-success" href="#" role="button">Load Library</a>
-
-                </p>
-            </div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <a class="navbar-brand" href="#">Administration</a>
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#removeAuthors">Link2</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
-                        </li>
-                    </ul>
-                    <form class="form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <div class="input-group md-form form-sm form-1 pl-0">
-                                    <div id="searchLib" class="input-group-prepend">
-                                        <span class="input-group-text purple lighten-3" id="basic-text1"><i class="fa fa-search text-white" aria-hidden="true"></i></span>
-                                    </div>
-                                    <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <div class="checkbox checkbox-inline checkbox-primary">
-                                        <input type="checkbox" id="cbAll" value="All" checked="">
-                                        <label for="cbAll"> All </label>
-                                        <input type="checkbox" id="cbTitle" value="Title">
-                                        <label for="cbTitle">Title</label>
-                                        <input type="checkbox" id="cbAuthor" value="Author">
-                                        <label for="cbAuthor">Author</label>
-                                        <input type="checkbox" id="cbTitleAuthor" value="TitleAuthor">
-                                        <label for="cbTitleAuthor">Title and Author</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+        <div class="row">
+            <section class="jPager mx-auto pb-3">
+                <div class="input-group  col-lg-auto  col-md-auto  col-sm-auto col-xs-12 mx-auto">
+                    <select class="form-control" data-pager-action='pagesize'>
+                        <option value="5">Records Per Page 5</option>
+                        <option value="10">Records Per Page 10</option>
+                        <option value="15">Records Per Page 15</option>
+                        <option value="20">Records Per Page 20</option>
+                        <option value="25">Records Per Page 25</option>
+                        <option value="50">Records Per Page 50</option>
+                        <option value="100">Records Per Page 100</option>
+                    </select>
+                    <span class="input-group-addon btn btn-primary" data-pager-action='first'><i class="fa fa-angle-left"></i> First</span>
+                    <span class="input-group-addon btn btn-primary" data-pager-action='previous'><i class="fa fa-angle-double-left"></i> Previous</span>
+                    <input type="text" class="form-control" data-pager-action='pagenum'>
+                    <span class="input-group-addon btn btn-primary" data-pager-action='next'><i class="fa  fa-angle-double-right"></i> Next</span>
+                    <span class="input-group-addon btn btn-primary" data-pager-action='last'><i class="fa  fa-angle-right"></i> Last</span>
                 </div>
-            </nav>
-
-            <br />
-            <form>
-                <div class="form-group row">
-                    <label for="txtTitle" class="col-sm-2 col-form-label">Title</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtTitle" placeholder="Book Title">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="txtAuthor" class="col-sm-2 col-form-label">Author</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtAuthor" placeholder="Book Author">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="txtPageNum" class="col-sm-2 col-form-label"># of Pages</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtPageNum" placeholder="Page #">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="txtPubDate" class="col-sm-2 col-form-label">Publish Date</label>
-                    <div class="col-sm-10">
-                        <input type="date" class="form-control" id="txtPubDate" placeholder="Publish Date">
-                    </div>
-                </div>
-                <label class="mr-sm-2" for="inlineFormCustomSelect">Category</label>
-                <select class="custom-select mr-sm-2" id="dlCategory">
-                    <option selected>Choose...</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Western">Western</option>
-                </select>
-                <div class="form-group">
-                    <label for="imgFile1">Upload File</label>
-                    <input type="file" class="form-control-file" id="imgFile1">
-                </div>
-            </form>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button id="btnAddBook" type="submit" class="btn btn-success">Add Book</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-            </div>
-
+            </section>
         </div>
     </div>
     <!-- jQuery and necessary Bootstrap's files plus any CDN) -->

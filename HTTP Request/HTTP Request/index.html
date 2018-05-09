@@ -61,20 +61,43 @@
                     </div>
                 </form>
                 <br />
-                <table id="tblMUList" class="table table-striped table-bordered nowrap" data-show-columns="true" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Zipcode</th>
-                            <th>Country<i id="sortACountry" class="fas fa-angle-double-up ml-2"></i><i id="sortDCountry" class="fas fa-angle-double-down ml-2"></i></th>
-                            <th>City <i id="sortACity" class="fas fa-angle-double-up ml-2"></i><i id="sortDCity" class="fas fa-angle-double-down ml-2"></i></th>
-                            <th>Ranking<i id="sortARanking" class="fas fa-angle-double-up ml-2"></i><i id="sortDRanking" class="fas fa-angle-double-down ml-2"></i></th>
-                            <th>State <i id="sortAState" class="fas fa-angle-double-up ml-2"></i><i id="sortDState" class="fas fa-angle-double-down ml-2"></i></th>
-                            <th>Member Count</th>
-                            <th><input id="Hidden1" type="hidden" value="" /></th>
-                            <th><input id="Hidden1" type="hidden" /></th>
-                        </tr>
-                    </thead>
-                </table>
+                <div class="row">
+                    <section class="jPager mx-auto pb-3">
+                        <div class="input-group  col-lg-auto  col-md-auto  col-sm-auto col-xs-12 mx-auto">
+                            <select class="form-control" data-pager-action='pagesize'>
+                                <option value="10">Records Per Page 10</option>
+                                <option value="15">Records Per Page 15</option>
+                                <option value="20">Records Per Page 20</option>
+                                <option value="25">Records Per Page 25</option>
+                                <option value="50">Records Per Page 50</option>
+                                <option value="100">Records Per Page 100</option>
+                            </select>
+                            <span class="input-group-addon btn btn-primary" data-pager-action='first'><i class="fa fa-angle-left"></i> First</span>
+                            <span class="input-group-addon btn btn-primary" data-pager-action='previous'><i class="fa fa-angle-double-left"></i> Previous</span>
+                            <input type="text" class="form-control" data-pager-action='pagenum'>
+                            <span class="input-group-addon btn btn-primary" data-pager-action='next'><i class="fa  fa-angle-double-right"></i> Next</span>
+                            <span class="input-group-addon btn btn-primary" data-pager-action='last'><i class="fa  fa-angle-right"></i> Last</span>
+                        </div>
+                    </section>
+                </div>
+                <section class="table-responsive" data-spy="scroll">
+                    <table id="tblMUList" class="table table-striped table-bordered table-hover nowrap" data-show-columns="true" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Zipcode<i id="sortAZip" class="fas fa-angle-double-up ml-2"></i><i id="sortDZip" class="fas fa-angle-double-down ml-2"></i></th>
+                                <th>Country<i id="sortACountry" class="fas fa-angle-double-up ml-2"></i><i id="sortDCountry" class="fas fa-angle-double-down ml-2"></i></th>
+                                <th>City <i id="sortACity" class="fas fa-angle-double-up ml-2"></i><i id="sortDCity" class="fas fa-angle-double-down ml-2"></i></th>
+                                <th>Ranking<i id="sortARanking" class="fas fa-angle-double-up ml-2"></i><i id="sortDRanking" class="fas fa-angle-double-down ml-2"></i></th>
+                                <th>State <i id="sortAState" class="fas fa-angle-double-up ml-2"></i><i id="sortDState" class="fas fa-angle-double-down ml-2"></i></th>
+                                <th>Member Count<i id="sortAMember" class="fas fa-angle-double-up ml-2"></i><i id="sortDMember" class="fas fa-angle-double-down ml-2"></i></th>
+                                <th hidden></th>
+                                <th hidden></th>
+                            </tr>
+                        </thead>
+
+                    </table>
+                </section>
+
             </div>
             <div class="col-lg-5">
                 <div id="map"></div>
@@ -94,7 +117,7 @@
     <script src="script/jquery.min.js"></script>
     <script src="script/popper.min.js"></script>
     <script src="script/MyScript.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZQPfpH4-_PtR9gVemxCvGMsC2w7ZyuIk&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3HXn0ukETEST3gLtrHPvwUTtroZ_JVD4&callback=setMap"
             async defer></script>
 </body>
 </html>
