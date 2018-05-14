@@ -12,7 +12,14 @@ var Book = function (details, callNum, catagory = "", bookcover = "") {
     this.callNum = callNum;
     this.catagory = catagory;
     this.bookcover = bookImgPath + bookcover;
+    this.bookex = BookExtend;
 
+}
+
+var BookExtend = function (booktype, plot ="", summary ="") {
+    this.plot = plot;
+    this.summary = summary;
+    this.booktype = booktype;
 }
 
 class Library2 {
