@@ -1,25 +1,36 @@
 ﻿// JavaScript source code
 var bookImgPath = encodeURI("../img/bookImg/");
+var bookImg64;
 var storageAvilible = false;
-//var storageType = "sessionStorage";
-var storageType = "localStorage";
+var storageType = "sessionStorage";
 //var storageType = "None";
+var dbURL = "http://localhost:3000/Library"
+var tblConfig;
+var gLib;
 
 
 //Book object constructor
-var Book = function (details, callNum, catagory = "", bookcover = "") {
+var Book = function (details, callNum, catagory = "", bookcover = "", plot = "", summary = "", booktype = "") {
     this.details = details;
     this.callNum = callNum;
     this.catagory = catagory;
-    this.bookcover = bookImgPath + bookcover;
-    this.bookex = BookExtend;
-
-}
-
-var BookExtend = function (booktype, plot ="", summary ="") {
+    this.bookcover = bookcover;
     this.plot = plot;
     this.summary = summary;
     this.booktype = booktype;
+
+}
+
+var TableConfig = function () {
+    this.data = [];
+    this.recordCount = 0;
+    this.pagenum = 0;
+    this.currentPage = 1;
+    this.pagesize = 0;
+    this.lastIndex = -1;
+    this.startIndex = -1;
+    this.stopIndex = -1;
+    this.selectedIndex = -1;
 }
 
 class Library2 {
@@ -51,6 +62,28 @@ class Library2 {
 
     //this will check to see if Book title by an author exists in Library. If not will add it. This function sets a message. because it is used by other functions and may be repeated the repeat var is used so the message is not set if used by another function.
     addBook(Book, repeat = false) {
+        if (Book.details === "undefined") { return false; };
+        let t = Book.details.title.toLowerCase();
+        let a = Book.details.author.toLowerCase();
+        let index = this.indexDetailItem("TA", t, a)
+        if (index < 0) {
+            this.Books.push(Book);
+            if (repeat == false) {
+                document.getElementById("msg").innerHTML = Book.details.title + " has been added to the Library.";
+                document.getElementById("msg").setAttribute("class", "msgclass");
+            }
+            return true;
+
+        } else {
+            if (repeat == false) {
+                document.getElementById("msg").innerHTML = Book.details.title + " is already in the Library.";
+                document.getElementById("msg").setAttribute("class", "msgclass");
+            }
+            return false;
+        }
+    };
+
+    addBookAjax(Book, repeat = false) {
         if (Book.details === "undefined") { return false; };
         let t = Book.details.title.toLowerCase();
         let a = Book.details.author.toLowerCase();
@@ -427,6 +460,9 @@ class Library2 {
     }
 
 
+
+
+
     //---------------------------------------------Form Functions-----------------------------------------------------------------
     //this will display a random Book from the Library.
     displayRandomBook() {
@@ -456,6 +492,86 @@ class Library2 {
         this.Books.push(gQOT);
         return this.Books.length;
     };
+}
+
+function initialize() {
+    CleanLoad();
+    gLib = new Library2("gLib");
+    tblConfig = new TableConfig();
+    GetBooksAjax();
+};
+
+//---------------------------------------------------AJAX ELEMENTS---------------------------------------------------------------
+function AddBooksAjax(Book) {
+    //console.log(Book.details.pubDate);
+    var d = new Date(Book.details.pubDate);
+    // var c = covertB64();
+    //console.log(c);
+    //console.log(d);
+    //console.log(Book.details.numPages);
+    $.ajax({
+        dataType: 'json',
+        type: "POST",
+        url: "http://localhost:3000/Library/",
+        data: {
+            title: Book.details.title,
+            author: Book.details.author,
+            pubDate: d,
+            numPages: Book.details.numberOfPages,
+            catagory: Book.catagory,
+            plot: Book.plot,
+            summary: Book.summary,
+            cover: Book.cover
+        },
+    }).done(function (response) {
+        Book.callNum = response._id;
+        if (Library2.prototype.addBook(Book, true)) {
+            LoadBookListAjax();
+            document.getElementById("addbookmsg").innerHTML = count + " book(s) has been added to library.";
+            $("#txtTitle").val('');
+            $("#txtAuthor").val('');
+            $("#txtPageNum").val('');
+            $("#txtPubDate").val('');
+            $('#dlCategory option:selected').val('');
+            $('input[type=file]').val('');
+            $("#txtPlot").val('');
+            $("#txtSummary").val('');
+            $("#txtTitle").focus();
+        }
+
+    }).fail(function () {
+        console.log("failed to retrieve data...")
+    });
+}
+function GetBooksAjax() {
+    $.ajax({
+        dataType: 'json',
+        type: "GET",
+        url: "http://localhost:3000/Library/"
+
+    }).done(function (response) {
+        LoadBookListAjax(response);
+
+    }).fail(function () {
+        console.log("failed to retrieve data...")
+    });
+}
+
+function GetBookAjax(id) {
+    $.ajax({
+        dataType: 'json',
+        type: "GET",
+        url: "http://localhost:3000/Library/",
+        data: {
+            id: id
+        }
+    }).done(function (response) {
+        console.log(response);
+        return response;
+
+    }).fail(function () {
+        console.log("failed to retrieve data...")
+    });
 }
 
 //---------------------------------------------------Global Functions---------------------------------------------------------------
@@ -502,6 +618,36 @@ function uppercase(str) {
     return newarray1.join(' ');
 }
 
+function formatDate(value) {
+    d = new Date(value);
+    return d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getYear();
+}
+
+function covertB64() {
+    console.log("covertB64 is running...");
+    var file = document.querySelector('input[type=file]').files[0];
+    //console.log(file);
+    var reader = new FileReader();
+    var z;
+
+    if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+        alert('The File APIs are not fully supported in this browser.');
+        return undefined;
+    };
+
+    reader.addEventListener("load", function () {
+        z = reader.result;
+        console.log("IMG IS:" + z);
+        return z;
+    }, false);
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+    console.log("IMG IS:" + z);
+    return z;
+}
+
 //---------------------------------------------------Form Controls-------------------------------------------------------------
 //model click event that will add a book to library
 function formAddBooks() {
@@ -530,6 +676,28 @@ function formAddBooks() {
             $('input[type=file]').val('')
             $("#txtTitle").focus();
         }
+    }
+}
+
+function formAddBooksAjax() {
+    const count = 0;
+
+    if (validateBookEntry()) {
+        let c = covertB64();
+        let bookcover = c;
+        console.log("bookcover:" + bookcover);
+        let ntitle = $("#txtTitle").val();
+        let nauthor = $("#txtAuthor").val();
+        let nnumberOfPages = $("#txtPageNum").val();
+        let npublishDate = $("#txtPubDate").val();
+        let catagory = $('#dlCategory option:selected').val();
+        let nplot = $("#txtPlot").val();
+        let nsummary = $("#txtSummary").val();
+
+        let nbook = new Book({ title: ntitle, author: nauthor, numberOfPages: nnumberOfPages, publishDate: npublishDate }, 0, catagory, bookcover, nplot, nsummary);
+        //AddBooksAjax(nbook);
+        console.log(nbook);
+
     }
 }
 
@@ -586,6 +754,24 @@ function LoadBookList(search = false) {
     };
 }
 
+//checks clientstorage for library. checks client storage for search results. Loads either one into book listing.
+function LoadBookListAjax(books) {
+    document.getElementById("msg").setAttribute("class", "msgclass");
+    let lHeading = "This is a listing of the current books in your selected library...";
+    let lSearch = "Library Listing";
+
+    if (books == "None" || books == undefined) {
+        document.getElementById("searchHeader").innerHTML = lSearch;
+        document.getElementById("libHeading").innerHTML = "No books were found in stored library. Default test book was looked for appearance. Once you add a book to the library, this listing will repopulate...";
+        return false;
+    } else {
+        displayListing("book");
+        fillListingAjax(books);
+        return true;
+    };
+}
+
+
 //contols which elements are displayed
 function displayListing(listing) {
     switch (listing) {
@@ -638,6 +824,36 @@ function fillListing(Bookarr) {
     displayBookDetailbyCallNum(Bookarr[0].callNum);
     return count;
 }
+
+//fills book listing
+function fillListingAjax(Bookarr) {
+    let i = 0;
+    let count = 0;
+    //check if storage has value
+    //clear table
+    $("#tblBKList").find("tr:not(:first)").remove();
+
+    var tr;
+    var x = "";
+    for (i = 0; i < Bookarr.length; i++) {
+        x = Bookarr[i]._id;
+        d = formatDate(Bookarr[i].pubDate);
+        tr = $('<tr/>');
+        tr.append("<td><a href='javascript: void (0)' class='bookdetail' id='" + x + "'>" + x + "</a></td>");
+        tr.append("<td>" + Bookarr[i].title + "</td>");
+        tr.append("<td>" + Bookarr[i].author + "</td>");
+        tr.append("<td>" + Bookarr[i].numPages + "</td>");
+        tr.append("<td>" + d + "</td>");
+        tr.append("<td>" + Bookarr[i].catagory + "</td>");
+        tr.append("<td><a href='javascript: void (0)' class='bookremove' id=RM" + x + ">Remove</a></td>");
+        tr.append("<td><a href='javascript: void (0)' class='bookremove' id=ED" + x + ">Edit</a></td>");
+        $('table').first().append(tr);
+        count++;
+    }
+    displayBookDetailAjax(Bookarr[0]);
+    return count;
+}
+
 //fills author listing
 function fillAUListing(Authorarr) {
     let i = 0;
@@ -669,6 +885,14 @@ function displayBookDetailbyCallNum(callNum) {
         document.getElementById("cardAuthor").innerHTML = "Written by: " + BookArr[0].details.author;
     }
     return BookArr.length;
+}
+
+function displayBookDetailAjax(BookArr) {
+    $('#cbBookImg').attr('src', BookArr.cover);
+    document.getElementById("cardtitle").innerHTML = BookArr.title;
+    document.getElementById("cardAuthor").innerHTML = "Written by: " + BookArr.author;
+    document.getElementById("cardPlot").innerHTML = BookArr.plot;
+    return true;
 }
 
 //contols the edit book details form
@@ -828,20 +1052,6 @@ function generateCallNum() {
 //---------------------------------------------------JQUERY ELEMENTS---------------------------------------------------------------
 $(function () {
     //Global event handlers 
-    if (localStorage.hasOwnProperty("gLib")) {
-        var gLib = new Library2("gLib");
-        gLib.updateLibraryfromStorage(false);
-        LoadBookList();
-    } else {
-        CleanLoad();
-    }
-
-    $("div").on("click", function () {
-        if ($('#msg').length) {
-            $('#msg').hide().html(data).fadeIn('slow').delay(5000).hide(1);
-            $('#msg').val('');
-        }
-    })
 
     //Jumbotron buttons
     //This button will create a default library, fill it with books and then save those books to browser storage.
@@ -878,7 +1088,8 @@ $(function () {
     });
 
     $("#btnAddBook").on("click", function () {
-        formAddBooks();
+        //formAddBooks();
+        formAddBooksAjax();
     });
 
     $("#getRandom").on("click", function () {
@@ -960,6 +1171,8 @@ $(function () {
     $("#editBookCancel").on("click", function () {
         CancelEditBookDetailbyCallNum();
     });
+
+
 });
 
 
@@ -1001,8 +1214,8 @@ function resetTotalLibrary(vLibrary, createNew = true, newKey = "LibraryKey") {
 }
 
 //testing auto loads Library
-var gLib2 = new Library2("gLib2");
-//gLib2.addBook(gCatherInTheRye);
-gLib2.fillLib();
-//gLib.saveLibrary();
-//loadLibrary();
+initialize();
+setTimeout(function () {
+    $('#msgdiv').fadeOut('fast');
+    $('#msg').val('');
+}, 30000); // <-- time in milliseconds
