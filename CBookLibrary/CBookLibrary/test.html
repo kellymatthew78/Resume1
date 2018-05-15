@@ -111,7 +111,8 @@
                 </select>
                 <div class="form-group">
                     <label for="imgFile1">Upload File</label>
-                    <input type="file" class="form-control-file" id="imgFile1">
+                    <input type="file" class="form-control-file" id="imgFile1" onchange="encodeImageFileAsURL(this)">
+                    <input id="hfb64" type="hidden" />
                 </div>
                 <button id="btntest" type="button" class="btn btn-success">test</button>
                 <img id ="demoimg"src="" alt="" />
